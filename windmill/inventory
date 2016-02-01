@@ -1,0 +1,2 @@
+[zuul]
+zuul ansible_host=localhost ansible_user=jenkins
