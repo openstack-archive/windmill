@@ -12,11 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul.
-  hosts: zuul
-
-  roles:
-    - windmill.zuul
-
-  vars_files:
-    - vars/zuul.yaml
+# windmill.zuul
+zuul_service_zuul_merger_enabled: no
+zuul_service_zuul_merger_state: stopped
