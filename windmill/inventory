@@ -1,2 +1,2 @@
-[zuul]
-zuul ansible_host=localhost ansible_user=jenkins
+[zuul-merger]
+zm01 ansible_host=localhost ansible_user=jenkins

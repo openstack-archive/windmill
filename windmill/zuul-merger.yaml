@@ -12,11 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul.
-  hosts: zuul
+- name: Install zuul-merger.
+  hosts: zuul-merger
 
   roles:
-    - windmill.zuul
+      - { role: windmill.zuul, tags: [ 'merger'] }
 
   vars_files:
     - vars/zuul.yaml
