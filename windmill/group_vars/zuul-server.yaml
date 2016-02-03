@@ -12,5 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+# windmill.zuul
+zuul_service_zuul_merger_enabled: no
+zuul_service_zuul_merger_state: stopped
