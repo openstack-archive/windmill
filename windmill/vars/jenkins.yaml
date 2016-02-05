@@ -12,9 +12,5 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: jenkins.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+# NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
+# current don't because this deployment is used as an example.
