@@ -12,8 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+# windmill.nodepool
+nodepool_service_nodepool_builder_enabled: no
+nodepool_service_nodepool_builder_manage: false
+nodepool_service_nodepool_builder_state: stopped
