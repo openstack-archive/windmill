@@ -1,3 +1,6 @@
+[jenkins]
+jenkins01 ansible_host=localhost ansible_user=jenkins
+
 [nodepool-builder]
 nb01 ansible_host=localhost ansible_user=jenkins
 
