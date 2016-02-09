@@ -15,7 +15,37 @@
 - name: Install jenkins.
   hosts: jenkins
 
+  pre_tasks:
+    - name: Configure yum for Jenkins repository.
+      become: yes
+      copy:
+        src: jenkins/etc/yum.repos.d/jenkins.repo
+        dest: /etc/yum.repos.d
+      when: ansible_os_family == 'RedHat'
+
+    - name: Configure gpg key for Jenkins repository.
+      become: yes
+      copy:
+        src: jenkins/jenkins-ci.org.key
+        dest: /etc/pki/rpm-gpg/
+      when: ansible_os_family == 'RedHat'
+
+    - name: Import GPG key for Jenkins repo.
+      become: yes
+      rpm_key:
+        key: /etc/pki/rpm-gpg/jenkins-ci.org.key
+      when: ansible_os_family == 'RedHat'
+
+      # Make sure we have EPEL enabled.
+    - name: Ensure EPEL is enabled.
+      become: yes
+      package:
+        name: epel-release
+        state: installed
+      when: ansible_os_family == 'RedHat'
+
   roles:
+    - windmill.jenkins
     - windmill.jenkins-job-builder
 
   vars_files:
