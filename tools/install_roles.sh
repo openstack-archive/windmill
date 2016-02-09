@@ -17,6 +17,7 @@ zuul-cloner -m clonemap.yaml \
   --cache-dir /opt/git \
   git://git.openstack.org \
   openstack/ansible-role-diskimage-builder \
+  openstack/ansible-role-jenkins \
   openstack/ansible-role-jenkins-job-builder \
   openstack/ansible-role-nodepool \
   openstack/ansible-role-zuul
