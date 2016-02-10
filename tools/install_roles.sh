@@ -19,5 +19,6 @@ zuul-cloner -m clonemap.yaml \
   openstack/ansible-role-diskimage-builder \
   openstack/ansible-role-jenkins \
   openstack/ansible-role-jenkins-job-builder \
+  openstack/ansible-role-jenkins-plugins \
   openstack/ansible-role-nodepool \
   openstack/ansible-role-zuul

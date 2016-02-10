@@ -12,3 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# windmill.jenkins-plugins
+jenkins_plugins_manager:
+  - name: gearman-plugin
+    version: 0.1.3
+  - name: zmq-event-publisher
+    version: 0.0.3

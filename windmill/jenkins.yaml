@@ -58,6 +58,7 @@
   roles:
     - windmill.jenkins
     - windmill.jenkins-job-builder
+    - windmill.jenkins-plugins
 
   vars_files:
     - vars/jenkins.yaml
