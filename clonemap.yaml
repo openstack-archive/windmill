@@ -1,3 +1,0 @@
-clonemap:
-  - name: 'openstack/ansible-role-(.*)'
-    dest: 'windmill/roles/windmill.\1'

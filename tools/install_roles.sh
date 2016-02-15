@@ -13,7 +13,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-zuul-cloner -m clonemap.yaml \
+CLONEMAP=`mktemp`
+function cleanup {
+    rm -f $CLONEMAP
+}
+trap cleanup EXIT
+cat > $CLONEMAP << EOF
+clonemap:
+  - name: 'openstack/ansible-role-(.*)'
+    dest: 'windmill/roles/windmill.\1'
+EOF
+
+zuul-cloner -m $CLONEMAP \
   --cache-dir /opt/git \
   git://git.openstack.org \
   openstack/ansible-role-diskimage-builder \
