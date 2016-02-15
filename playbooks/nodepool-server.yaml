@@ -17,6 +17,7 @@
 
   roles:
     - windmill.diskimage-builder
+
     - windmill.nodepool
 
   vars_files:
