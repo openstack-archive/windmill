@@ -21,7 +21,7 @@ trap cleanup EXIT
 cat > $CLONEMAP << EOF
 clonemap:
   - name: 'openstack/ansible-role-(.*)'
-    dest: 'windmill/roles/windmill.\1'
+    dest: 'playbooks/roles/windmill.\1'
 EOF
 
 zuul-cloner -m $CLONEMAP \
