@@ -59,6 +59,7 @@
     - windmill.jenkins
     - windmill.jenkins-job-builder
     - windmill.jenkins-plugins
+    - windmill.nginx
 
   vars_files:
     - vars/jenkins.yaml
