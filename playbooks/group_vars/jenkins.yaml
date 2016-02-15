@@ -18,3 +18,7 @@ jenkins_plugins_manager:
     version: 0.1.3
   - name: zmq-event-publisher
     version: 0.0.3
+
+# windmill.nginx
+nginx_file_include_dir_src: jenkins/etc/nginx/conf.d/
+nginx_file_nginx_conf_src: "jenkins/etc/nginx.conf.{{ ansible_os_family }}"
