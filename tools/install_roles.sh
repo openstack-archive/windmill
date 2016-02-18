@@ -31,6 +31,7 @@ zuul-cloner -m $CLONEMAP \
   openstack/ansible-role-jenkins \
   openstack/ansible-role-jenkins-job-builder \
   openstack/ansible-role-jenkins-plugins \
+  openstack/ansible-role-nginx \
   openstack/ansible-role-nodepool \
   openstack/ansible-role-shade \
   openstack/ansible-role-zuul
