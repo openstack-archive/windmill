@@ -19,6 +19,7 @@
     - windmill.diskimage-builder
     - windmill.shade
     - windmill.nodepool
+    - windmill.ssh
 
   vars_files:
     - vars/nodepool.yaml
