@@ -17,6 +17,7 @@
 
   roles:
     - windmill.zuul
+    - windmill.ssh
 
   vars_files:
     - vars/zuul.yaml
