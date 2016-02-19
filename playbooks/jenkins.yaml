@@ -57,6 +57,7 @@
 
   roles:
     - windmill.jenkins
+    - windmill.ssh
     - windmill.jenkins-job-builder
     - windmill.jenkins-plugins
     - windmill.nginx

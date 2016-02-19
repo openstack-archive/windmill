@@ -22,3 +22,7 @@ jenkins_plugins_manager:
 # windmill.nginx
 nginx_file_include_dir_src: jenkins/etc/nginx/conf.d/
 nginx_file_nginx_conf_src: "jenkins/etc/nginx/nginx.conf.{{ ansible_os_family }}"
+
+# windmill.ssh
+ssh_user_name: "{{ jenkins_user_name }}"
+ssh_user_home: "{{ jenkins_user_home }}"
