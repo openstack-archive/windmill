@@ -1,14 +1,14 @@
 [jenkins]
-jenkins01 ansible_host=localhost
+jenkins01 ansible_host=127.0.0.1
 
 [nodepool-builder]
-nb01 ansible_host=localhost
+nb01 ansible_host=127.0.0.1
 
 [nodepool-server]
-nodepool ansible_host=localhost
+nodepool ansible_host=127.0.0.1
 
 [zuul-merger]
-zm01 ansible_host=localhost
+zm01 ansible_host=127.0.0.1
 
 [zuul-server]
-zuul ansible_host=localhost
+zuul ansible_host=127.0.0.1
