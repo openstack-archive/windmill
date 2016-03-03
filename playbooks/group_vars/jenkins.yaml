@@ -12,6 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# windmill.jenkins
+jenkins_config_args: "--prefix=/jenkins"
+
 # windmill.jenkins-plugins
 jenkins_plugins_manager:
   - name: gearman-plugin
