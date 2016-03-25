@@ -65,7 +65,7 @@
   post_tasks:
     - name: Check HTTP for jenkins
       delay: 10
-      shell: "curl --head --silent http://localhost/jenkins/"
+      shell: "curl --head --silent http://{{ ansible_host }}/jenkins/"
       register: result
       retries: 3
       until: result.stdout.find('200 OK') != -1
