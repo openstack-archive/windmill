@@ -25,6 +25,17 @@ nodepool_config_zmq_publishers:
 
 nodepool_elements_dir: nodepool/elements/
 
+nodepool_template_clouds_yaml_contents:
+  clouds:
+    openstack:
+      auth:
+        auth_url: http://127.0.0.1:5000/v2.0
+        username: username
+        password: password
+        project_name: project
+
+nodepool_template_nodepool_yaml_contents: "{{ lookup('file', 'nodepool/etc/nodepool/nodepool.yaml') }}"
+
 nodepool_template_secure_conf_contents: |
   [jenkins "jenkins01"]
   url = http://{{ hostvars.jenkins01.ansible_host }}

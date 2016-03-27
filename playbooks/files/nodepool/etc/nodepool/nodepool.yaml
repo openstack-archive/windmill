@@ -1,0 +1,27 @@
+diskimages:
+  - name: ubuntu-trusty
+    elements:
+      - ubuntu-minimal
+      - vm
+      - nodepool
+
+labels:
+  - name: ubuntu-trusty
+    image: ubuntu-trusty
+    min-ready: 1
+    providers:
+      - name: openstack
+
+providers:
+  - name: openstack
+    cloud: openstack
+    max-servers: 10
+    images:
+      - name: ubuntu-trusty
+        min-ram: 8192
+        diskimage: ubuntu-trusty
+        private-key: /var/lib/nodepool/.ssh/id_rsa
+        username: jenkins
+
+targets:
+  - name: jenkins01

@@ -20,5 +20,16 @@
     - windmill.shade
     - windmill.nodepool
 
+  tasks:
+    # NOTE(pabelanger): Move this to ansible-role-sudoers
+    - name: Copy sudoers includes into place.
+      become: yes
+      copy:
+        dest: /etc/sudoers.d/
+        group: root
+        mode: 0444
+        owner: root
+        src: nodepool/etc/sudoers.d/nodepool
+
   vars_files:
     - vars/nodepool.yaml
