@@ -4,11 +4,15 @@ diskimages:
       - centos-minimal
       - vm
       - nodepool
+      - simple-init
+      - growroot
   - name: ubuntu-trusty
     elements:
       - ubuntu-minimal
       - vm
       - nodepool
+      - simple-init
+      - growroot
 
 labels:
   - name: centos-7
