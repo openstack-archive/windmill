@@ -23,7 +23,7 @@ nodepool_config_gearman_servers:
 nodepool_config_zmq_publishers:
   - tcp://{{ hostvars.jenkins01.ansible_host }}:8888
 
-nodepool_elements_dir: nodepool/elements/
+nodepool_elements_dir: nodepool/etc/nodepool/elements/
 
 nodepool_template_clouds_yaml_contents:
   clouds:
