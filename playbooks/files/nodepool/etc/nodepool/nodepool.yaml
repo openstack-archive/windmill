@@ -1,4 +1,9 @@
 diskimages:
+  - name: centos-7
+    elements:
+      - centos-minimal
+      - vm
+      - nodepool
   - name: ubuntu-trusty
     elements:
       - ubuntu-minimal
@@ -6,6 +11,11 @@ diskimages:
       - nodepool
 
 labels:
+  - name: centos-7
+    image: centos-7
+    min-ready: 1
+    providers:
+      - name: openstack
   - name: ubuntu-trusty
     image: ubuntu-trusty
     min-ready: 1
@@ -17,6 +27,11 @@ providers:
     cloud: openstack
     max-servers: 10
     images:
+      - name: centos-7
+        min-ram: 8192
+        diskimage: centos-7
+        private-key: /var/lib/nodepool/.ssh/id_rsa
+        username: jenkins
       - name: ubuntu-trusty
         min-ram: 8192
         diskimage: ubuntu-trusty
