@@ -62,6 +62,18 @@
     - windmill.jenkins-plugins
     - windmill.nginx
 
+  tasks:
+    # NOTE(pabelanger): Move this to ansible-role-jenkins-groovy
+    - name: Copy groovy scripts into place.
+      become: yes
+      copy:
+        dest: "{{ jenkins_user_home }}"
+        group: "{{ jenkins_user_group }}"
+        mode: 0444
+        owner: "{{ jenkins_user_home }}"
+        src: jenkins/var/lib/jenkins/init.groovy.d/
+      notify: Restart jenkins
+
   post_tasks:
     - name: Check HTTP for jenkins
       delay: 10
