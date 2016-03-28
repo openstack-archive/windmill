@@ -14,6 +14,14 @@ diskimages:
       - simple-init
       - growroot
     release: trusty
+  - name: ubuntu-xenial
+    elements:
+      - ubuntu-minimal
+      - vm
+      - nodepool
+      - simple-init
+      - growroot
+    release: xenial
 
 labels:
   - name: centos-7
@@ -23,6 +31,11 @@ labels:
       - name: openstack
   - name: ubuntu-trusty
     image: ubuntu-trusty
+    min-ready: 1
+    providers:
+      - name: openstack
+  - name: ubuntu-xenial
+    image: ubuntu-xenial
     min-ready: 1
     providers:
       - name: openstack
@@ -40,6 +53,11 @@ providers:
       - name: ubuntu-trusty
         min-ram: 8192
         diskimage: ubuntu-trusty
+        private-key: /var/lib/nodepool/.ssh/id_rsa
+        username: jenkins
+      - name: ubuntu-xenial
+        min-ram: 8192
+        diskimage: ubuntu-xenial
         private-key: /var/lib/nodepool/.ssh/id_rsa
         username: jenkins
 
