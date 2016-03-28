@@ -13,6 +13,7 @@ diskimages:
       - nodepool
       - simple-init
       - growroot
+    release: trusty
 
 labels:
   - name: centos-7
