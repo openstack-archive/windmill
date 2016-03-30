@@ -23,12 +23,14 @@ Quickstart
 The following is a list of instructions to get started quickly with an
 all-in-one deployment.
 
-* sudo yum update -y && reboot
-* sudo yum install git epel-release
-* sudo yum install python-devel python-tox python-pip gcc
-* pip install --user zuul
-* git clone https://github.com/openstack/windmill
-* cd windmill
+.. code-block:: none
+
+  sudo yum update -y && reboot
+  sudo yum install git epel-release
+  sudo yum install python-devel python-tox python-pip gcc
+  pip install --user zuul
+  git clone https://github.com/openstack/windmill
+  cd windmill
 
 Before running the following command, you need to remove `zuul` from the
 `requirements.txt` file. This is a temporary work around for now and will
@@ -38,4 +40,6 @@ Additionall, modify the `playbooks/vars/nodepool.yaml` file and update
 `nodepool_template_clouds_yaml_contents` variable for launching nodepool
 instances in your cloud infrastructure.
 
-* tox -edeploy
+.. code-block:: node
+
+  tox -edeploy
