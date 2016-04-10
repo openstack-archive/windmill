@@ -23,12 +23,14 @@ Quickstart
 The following is a list of instructions to get started quickly with an
 all-in-one deployment.
 
-* sudo yum update -y && reboot
-* sudo yum install git epel-release
-* sudo yum install python-devel python-tox python-pip gcc
-* pip install --user zuul
-* git clone https://github.com/openstack/windmill
-* cd windmill
+.. code-block:: bash
+
+    sudo yum update -y && reboot
+    sudo yum install git epel-release
+    sudo yum install python-devel python-tox python-pip gcc
+    pip install --user zuul
+    git clone https://github.com/openstack/windmill
+    cd windmill
 
 Before running the following command, you need to remove `zuul` from the
 `requirements.txt` file. This is a temporary work around for now and will
