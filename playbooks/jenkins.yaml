@@ -79,7 +79,7 @@
       delay: 10
       shell: "curl --head --silent http://{{ ansible_host }}/jenkins/"
       register: result
-      retries: 3
+      retries: 6
       until: result.stdout.find('200 OK') != -1
       tags: skip_ansible_lint
 
