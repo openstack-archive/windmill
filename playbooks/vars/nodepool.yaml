@@ -20,11 +20,6 @@ nodepool_config_gearman_servers:
   - host: "{{ hostvars.zuul.ansible_host }}"
     port: 4730
 
-nodepool_config_zmq_publishers:
-  - tcp://{{ hostvars.jenkins01.ansible_host }}:8888
-
-nodepool_elements_dir: nodepool/etc/nodepool/elements/
-
 nodepool_template_clouds_yaml_contents:
   clouds:
     openstack:
@@ -35,13 +30,6 @@ nodepool_template_clouds_yaml_contents:
         project_name: project
 
 nodepool_template_nodepool_yaml_contents: "{{ lookup('file', 'nodepool/etc/nodepool/nodepool.yaml') }}"
-
-nodepool_template_secure_conf_contents: |
-  [jenkins "jenkins01"]
-  url = http://{{ hostvars.jenkins01.ansible_host }}/jenkins/
-  user = admin
-  apikey = 25ba22f790871e2dd2013d6e27f82517
-  credentials = 9292f6a1-ebc6-40e8-80da-b8940261cdce
 
 # windmill.ssh
 ssh_key_private_content: |
