@@ -3,14 +3,12 @@ diskimages:
     elements:
       - centos-minimal
       - vm
-      - nodepool
       - simple-init
       - growroot
   - name: ubuntu-trusty
     elements:
       - ubuntu-minimal
       - vm
-      - nodepool
       - simple-init
       - growroot
     release: trusty
@@ -18,7 +16,6 @@ diskimages:
     elements:
       - ubuntu-minimal
       - vm
-      - nodepool
       - simple-init
       - growroot
     release: xenial

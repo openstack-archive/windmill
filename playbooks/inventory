@@ -1,6 +1,3 @@
-[jenkins]
-jenkins01 ansible_host=127.0.0.2
-
 [nodepool-builder]
 nb01 ansible_host=127.0.0.3
 
