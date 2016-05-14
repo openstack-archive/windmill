@@ -15,6 +15,9 @@
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
 
+# windmill.zuul
+zuul_file_zuul_conf_src: zuul/etc/zuul/zuul.conf
+
 # windmill.ssh
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
