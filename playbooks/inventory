@@ -1,14 +1,14 @@
 [nodepool-builder]
-nb01 ansible_host=127.0.0.3
+nb01 ansible_host=127.0.1.1
 
 [nodepool-server]
-nodepool ansible_host=127.0.0.4
-
-[zuul-merger]
-zm01 ansible_host=127.0.0.5
-
-[zuul-server]
-zuul ansible_host=127.0.0.6
+nodepool ansible_host=127.0.2.1
 
 [zuul-launcher]
-zl01 ansible_host=127.0.0.7
+zl01 ansible_host=127.0.3.1
+
+[zuul-merger]
+zm01 ansible_host=127.0.4.1
+
+[zuul-server]
+zuul ansible_host=127.0.5.1
