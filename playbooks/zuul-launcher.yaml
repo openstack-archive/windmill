@@ -12,11 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.zuul
-zuul_service_zuul_launcher_enabled: no
-zuul_service_zuul_launcher_manage: false
-zuul_service_zuul_launcher_state: stopped
+- name: Install zuul-launcher.
+  hosts: zuul-launcher
 
-zuul_service_zuul_server_enabled: no
-zuul_service_zuul_server_manage: false
-zuul_service_zuul_server_state: stopped
+  roles:
+    - windmill.jenkins-job-builder
+    - windmill.zuul
+
+  vars_files:
+    - vars/zuul.yaml
