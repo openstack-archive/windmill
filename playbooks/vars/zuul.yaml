@@ -15,11 +15,6 @@
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
 
-# windmill.zuul
-zuul_config_gearman_server: "{{ hostvars.zuul.ansible_host }}"
-zuul_config_gearman_server_listen_address: "{{ hostvars.zuul.ansible_host }}"
-zuul_config_merger_zuul_url: "{{ hostvars.zuul.ansible_host }}"
-
 # windmill.ssh
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
