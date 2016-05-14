@@ -9,3 +9,6 @@ zm01 ansible_host=127.0.0.5
 
 [zuul-server]
 zuul ansible_host=127.0.0.6
+
+[zuul-launcher]
+zl01 ansible_host=127.0.0.7

@@ -15,5 +15,6 @@
 - include: bootstrap.yaml
 - include: nodepool-server.yaml
 - include: nodepool-builder.yaml
+- include: zuul-launcher.yaml
 - include: zuul-merger.yaml
 - include: zuul-server.yaml
