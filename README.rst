@@ -27,7 +27,7 @@ all-in-one deployment.
 
     sudo yum update -y && reboot
     sudo yum install git epel-release
-    sudo yum install python-devel python-tox python-pip gcc
+    sudo yum install libssl-devel openssl-devel python-devel python-tox python-pip gcc
     pip install --user zuul
     git clone https://github.com/openstack/windmill
     cd windmill
