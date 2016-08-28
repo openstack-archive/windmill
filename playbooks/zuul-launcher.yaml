@@ -19,5 +19,17 @@
     - windmill.jenkins-job-builder
     - windmill.zuul
 
+  post_tasks:
+    - name: Register /opt/zuul-launcher-env.
+      stat:
+        path: /opt/zuul-launcher-env
+      register: test_zuul_pip_virtualenv_stat
+
+    - name: Assert /opt/zuul-launcher-env tests.
+      assert:
+        that:
+          - test_zuul_pip_virtualenv_stat.stat.exists
+          - test_zuul_pip_virtualenv_stat.stat.isdir
+
   vars_files:
     - vars/zuul.yaml

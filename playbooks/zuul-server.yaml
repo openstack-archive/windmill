@@ -19,5 +19,17 @@
     - windmill.zuul
     - windmill.ssh
 
+  post_tasks:
+    - name: Register /opt/zuul-server-env.
+      stat:
+        path: /opt/zuul-server-env
+      register: test_zuul_pip_virtualenv_stat
+
+    - name: Assert /opt/zuul-server-env tests.
+      assert:
+        that:
+          - test_zuul_pip_virtualenv_stat.stat.exists
+          - test_zuul_pip_virtualenv_stat.stat.isdir
+
   vars_files:
     - vars/zuul.yaml
