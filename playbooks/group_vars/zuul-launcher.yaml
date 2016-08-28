@@ -13,6 +13,8 @@
 # under the License.
 ---
 # windmill.zuul
+zuul_pip_virtualenv: /opt/zuul-launcher-env
+
 zuul_service_zuul_merger_enabled: no
 zuul_service_zuul_merger_manage: false
 zuul_service_zuul_merger_state: stopped
