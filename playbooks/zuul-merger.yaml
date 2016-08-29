@@ -19,12 +19,12 @@
     - windmill.zuul
 
   post_tasks:
-    - name: Register /opt/zuul-merger-env.
+    - name: Register /opt/venv/zuul-merger
       stat:
-        path: /opt/zuul-merger-env
+        path: /opt/venv/zuul-merger
       register: test_zuul_pip_virtualenv_stat
 
-    - name: Assert /opt/zuul-merger-env tests.
+    - name: Assert /opt/venv/zuul-merger tests
       assert:
         that:
           - test_zuul_pip_virtualenv_stat.stat.exists

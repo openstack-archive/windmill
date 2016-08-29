@@ -20,12 +20,12 @@
     - windmill.zuul
 
   post_tasks:
-    - name: Register /opt/zuul-launcher-env.
+    - name: Register /opt/venv/zuul-launcher
       stat:
-        path: /opt/zuul-launcher-env
+        path: /opt/venv/zuul-launcher
       register: test_zuul_pip_virtualenv_stat
 
-    - name: Assert /opt/zuul-launcher-env tests.
+    - name: Assert /opt/venv/zuul-launcher tests
       assert:
         that:
           - test_zuul_pip_virtualenv_stat.stat.exists

@@ -20,12 +20,12 @@
     - windmill.ssh
 
   post_tasks:
-    - name: Register /opt/zuul-server-env.
+    - name: Register /opt/venv/zuul-server
       stat:
-        path: /opt/zuul-server-env
+        path: /opt/venv/zuul-server
       register: test_zuul_pip_virtualenv_stat
 
-    - name: Assert /opt/zuul-server-env tests.
+    - name: Assert /opt/venv/zuul-server-env tests
       assert:
         that:
           - test_zuul_pip_virtualenv_stat.stat.exists
