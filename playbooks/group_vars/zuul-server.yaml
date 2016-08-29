@@ -13,6 +13,8 @@
 # under the License.
 ---
 # windmill.zuul
+zuul_file_zuul_server_service_config_src: zuul/etc/sysconfig/zuul-server
+
 zuul_pip_virtualenv: /opt/venv/zuul-server
 
 zuul_service_zuul_launcher_enabled: no
