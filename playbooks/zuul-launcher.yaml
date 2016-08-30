@@ -18,6 +18,7 @@
   roles:
     - windmill.jenkins-job-builder
     - windmill.zuul
+    - test.zuul-launcher
 
   post_tasks:
     - name: Register /opt/venv/zuul-launcher
