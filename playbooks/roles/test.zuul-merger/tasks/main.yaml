@@ -12,12 +12,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul-merger.
-  hosts: zuul-merger
+- name: Register /opt/venv/zuul-merger
+  stat:
+    path: /opt/venv/zuul-merger
+  register: test_zuul_pip_virtualenv_stat
 
-  roles:
-    - windmill.zuul
-    - test.zuul-merger
+- name: Assert /opt/venv/zuul-merger tests
+  assert:
+    that:
+      - test_zuul_pip_virtualenv_stat.stat.exists
+      - test_zuul_pip_virtualenv_stat.stat.isdir
 
-  vars_files:
-    - vars/zuul.yaml
+- name: Ensure zuul-merger is running
+  shell: /usr/sbin/service zuul-merger status
+  tags: skip_ansible_lint
