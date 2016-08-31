@@ -19,6 +19,7 @@
     - windmill.diskimage-builder
     - windmill.shade
     - windmill.nodepool
+    - test.nodepool-builder
 
   tasks:
     # NOTE(pabelanger): Move this to ansible-role-sudoers
