@@ -12,15 +12,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install nodepool-server.
-  hosts: nodepool-server
+- name: Register /opt/venv/nodepool
+  stat:
+    path: /opt/venv/nodepool
+  register: test_nodepool_pip_virtualenv_stat
 
-  roles:
-    - windmill.diskimage-builder
-    - windmill.shade
-    - windmill.nodepool
-    - windmill.ssh
-    - test.nodepool-server
+- name: Assert /opt/venv/nodepool tests
+  assert:
+    that:
+      - test_nodepool_pip_virtualenv_stat.stat.exists
+      - test_nodepool_pip_virtualenv_stat.stat.isdir
 
-  vars_files:
-    - vars/nodepool.yaml
+- name: Ensure nodepool is running
+  shell: /usr/sbin/service nodepool status
+  tags: skip_ansible_lint

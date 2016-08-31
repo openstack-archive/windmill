@@ -12,7 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# windmill.diskimage-builder
+diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
+
 # windmill.nodepool
+nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool-builder
+
+nodepool_pip_virtualenv: /opt/venv/nodepool-builder
+
 nodepool_service_nodepool_enabled: no
 nodepool_service_nodepool_manage: false
 nodepool_service_nodepool_state: stopped
