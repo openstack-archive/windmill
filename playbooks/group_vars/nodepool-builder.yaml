@@ -23,3 +23,6 @@ nodepool_pip_virtualenv: /opt/venv/nodepool-builder
 nodepool_service_nodepool_enabled: no
 nodepool_service_nodepool_manage: false
 nodepool_service_nodepool_state: stopped
+
+# windmill.shade
+shade_pip_virtualenv: /opt/venv/nodepool-builder
