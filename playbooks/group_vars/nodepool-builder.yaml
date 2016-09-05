@@ -16,6 +16,8 @@
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
 
 # windmill.nodepool
+nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml
+
 nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool-builder
 
 nodepool_pip_virtualenv: /opt/venv/nodepool-builder

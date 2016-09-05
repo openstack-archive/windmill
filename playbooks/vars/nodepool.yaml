@@ -15,11 +15,6 @@
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
 
-# windmill.nodepool
-nodepool_config_gearman_servers:
-  - host: "{{ hostvars.zuul.ansible_host }}"
-    port: 4730
-
 nodepool_template_clouds_yaml_contents:
   clouds:
     openstack:
@@ -28,8 +23,6 @@ nodepool_template_clouds_yaml_contents:
         username: username
         password: password
         project_name: project
-
-nodepool_template_nodepool_yaml_contents: "{{ lookup('file', 'nodepool/etc/nodepool/nodepool.yaml') }}"
 
 # windmill.ssh
 ssh_key_private_content: |
