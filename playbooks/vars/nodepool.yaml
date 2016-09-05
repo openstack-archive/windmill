@@ -15,15 +15,6 @@
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
 
-nodepool_template_clouds_yaml_contents:
-  clouds:
-    openstack:
-      auth:
-        auth_url: http://127.0.0.1:5000/v2.0
-        username: username
-        password: password
-        project_name: project
-
 # windmill.ssh
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
