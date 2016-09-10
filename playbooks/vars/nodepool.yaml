@@ -15,6 +15,13 @@
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
 
+# windmill.nodepool
+# NOTE(pabelanger): Because we are installing nodepool and nodepool-builder on a
+# shared host, we need to make sure both tasks use the same configuration.
+nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool-builder
+nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
+nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml
+
 # windmill.ssh
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
