@@ -6,4 +6,7 @@
 # if you are using a virtualenv.
 PREFIX=/opt/venv/nodepool
 
+# Options to pass to nodepoold.
+ARGS="-l /etc/nodepool/logging.conf"
+
 DIB_IMAGE_CACHE=/opt/nodepool/cache
