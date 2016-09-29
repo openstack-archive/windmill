@@ -24,5 +24,6 @@
       - test_zuul_pip_virtualenv_stat.stat.isdir
 
 - name: Ensure zuul-server is running
+  become: yes
   shell: /usr/sbin/service zuul-server status
   tags: skip_ansible_lint
