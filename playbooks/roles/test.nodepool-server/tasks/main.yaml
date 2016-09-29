@@ -24,5 +24,6 @@
       - test_nodepool_pip_virtualenv_stat.stat.isdir
 
 - name: Ensure nodepool is running
+  become: yes
   shell: /usr/sbin/service nodepool status
   tags: skip_ansible_lint
