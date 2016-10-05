@@ -27,3 +27,8 @@
   become: yes
   shell: /usr/sbin/service zuul-merger status
   tags: skip_ansible_lint
+
+- name: Assert
+  assert:
+    that:
+      - zuul_service_zuul_merger.changed
