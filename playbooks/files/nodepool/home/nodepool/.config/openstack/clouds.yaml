@@ -1,0 +1,17 @@
+clouds:
+  openstackzuul-devstack:
+    auth:
+      auth_url: http://127.0.0.1/identity_admin
+      password: secretadmin
+      project_domain_id: default
+      project_name: demo
+      user_domain_id: default
+      username: demo
+    identity_api_version: '3'
+    region_name: RegionOne
+    volume_api_version: '2'
+
+cache:
+  expiration:
+    server: 5
+    port: 5

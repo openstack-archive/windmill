@@ -22,5 +22,16 @@
     - windmill.ssh
     - test.nodepool-server
 
+  tasks:
+    # TODO(pabelanger): This should be moved into a role.
+    - name: Copy clouds.yaml into place.
+      become: yes
+      copy:
+        dest: /home/nodepool/.config/openstack/clouds.yaml
+        group: nodepool
+        mode: 0400
+        owner: nodepool
+        src: nodepool/home/nodepool/.config/openstack/clouds.yaml
+
   vars_files:
     - vars/nodepool.yaml
