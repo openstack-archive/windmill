@@ -27,3 +27,13 @@
   become: yes
   shell: /usr/sbin/service nodepool status
   tags: skip_ansible_lint
+
+- name: Ensure nodepool-deleter is running
+  become: yes
+  shell: /usr/sbin/service nodepool-deleter status
+  tags: skip_ansible_lint
+
+- name: Ensure nodepool-launcher is running
+  become: yes
+  shell: /usr/sbin/service nodepool-launcher status
+  tags: skip_ansible_lint
