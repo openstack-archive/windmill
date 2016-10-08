@@ -12,6 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- include: bastion.yaml
 - include: bootstrap.yaml
 - include: nodepool-server.yaml
 - include: nodepool-builder.yaml
