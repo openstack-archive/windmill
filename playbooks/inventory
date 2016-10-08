@@ -1,3 +1,6 @@
+[bastion]
+bastion ansible_connection=local
+
 [nodepool-builder]
 nb01 ansible_host=127.0.1.1
 
