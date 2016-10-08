@@ -12,10 +12,21 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bastion.yaml
-- include: bootstrap.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-launcher.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+- name: Bootstrap bastion node.
+  hosts: bastion
+
+  tasks:
+    - name: Create SSH keys (if missing).
+      command: ssh-keygen -f ~/.ssh/id_rsa -N ""
+      args:
+        creates: ~/.ssh/id_rsa
+
+    - name: Ensure SSH public key is authorized.
+      authorized_key:
+        user: "{{ lookup('env', 'USER') }}"
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+    - name: Ensure remote SSH host keys are known.
+      known_hosts:
+        user: "{{ lookup('env', 'USER') }}"
+        key: "{{ lookup('pipe', 'ssh-keyscan localhost') }}"
