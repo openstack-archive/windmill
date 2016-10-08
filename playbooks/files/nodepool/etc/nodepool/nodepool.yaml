@@ -36,21 +36,21 @@ labels:
     image: centos-7
     min-ready: 1
     providers:
-      - name: openstack
+      - name: devstack
   - name: ubuntu-trusty
     image: ubuntu-trusty
     min-ready: 1
     providers:
-      - name: openstack
+      - name: devstack
   - name: ubuntu-xenial
     image: ubuntu-xenial
     min-ready: 1
     providers:
-      - name: openstack
+      - name: devstack
 
 providers:
-  - name: openstack
-    cloud: openstack
+  - name: devstack
+    cloud: openstackzuul-devstack
     max-servers: 10
     images:
       - name: centos-7
