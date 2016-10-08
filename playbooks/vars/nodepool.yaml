@@ -20,6 +20,7 @@
 # shared host, we need to make sure both tasks use the same configuration.
 nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool-builder
 nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter
+nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodepool-launcher
 nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
 nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml
 

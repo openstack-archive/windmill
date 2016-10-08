@@ -7,6 +7,6 @@
 PREFIX=/opt/venv/nodepool
 
 # Options to pass to nodepoold.
-ARGS="-l /etc/nodepool/logging.conf --no-builder --no-deletes"
+ARGS="-l /etc/nodepool/logging.conf --no-builder --no-deletes --no-launches"
 
 DIB_IMAGE_CACHE=/opt/nodepool/cache
