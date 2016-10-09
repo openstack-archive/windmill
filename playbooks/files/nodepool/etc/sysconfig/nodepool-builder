@@ -7,6 +7,6 @@
 PREFIX=/opt/venv/nodepool-builder
 
 # Options to pass to nodepool-builder.
-ARGS="-l /etc/nodepool/logging.conf"
+ARGS="-l /etc/nodepool/builder-logging.conf"
 
 DIB_IMAGE_CACHE=/opt/nodepool/cache
