@@ -15,7 +15,7 @@
 - name: Bootstrap bastion node.
   hosts: bastion
 
-  tasks:
+  pre_tasks:
     - name: Create SSH keys (if missing).
       command: ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
       args:
@@ -31,3 +31,14 @@
         name: "{{ hostvars[item].ansible_host }}"
         key: "{{ lookup('pipe', 'ssh-keyscan -t rsa {{ hostvars[item].ansible_host }}') }}"
       with_inventory_hostnames: all:!bastion
+
+  tasks:
+    - name: Create tmp directory.
+      file:
+        path: /tmp/windmill/zuul/etc/zuul
+        state: directory
+
+    - name: Template
+      template:
+        dest: /tmp/windmill/zuul/etc/zuul/zuul.conf
+        src: zuul/etc/zuul/zuul.conf.j2
