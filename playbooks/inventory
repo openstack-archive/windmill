@@ -14,4 +14,4 @@ zl01 ansible_host=127.0.3.1
 zm01 ansible_host=127.0.4.1
 
 [zuul-server]
-zuul ansible_host=127.0.5.1
+zuul ansible_host=127.0.55.1
