@@ -3,10 +3,10 @@
 #
 [gearman]
 port = 4730
-server = 127.0.5.1
+server = {{ hostvars['zuul'].ansible_host }}
 
 [gearman_server]
-listen_address = 127.0.5.1
+listen_address = {{ hostvars['zuul'].ansible_host }}
 log_config = /etc/zuul/gearman-logging.conf
 start = true
 
@@ -31,4 +31,4 @@ workspace_root=/var/lib/zuul/workspace
 git_dir = /var/lib/zuul/git
 log_config = /etc/zuul/merger-logging.conf
 pidfile = /var/run/zuul-merger/zuul-merger.pid
-zuul_url = 127.0.5.1
+zuul_url = {{ hostvars['zuul'].ansible_host }}
