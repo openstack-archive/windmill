@@ -6,3 +6,4 @@ libffi-dev [platform:dpkg]
 libffi-devel [platform:rpm]
 python-dev [platform:dpkg]
 python-devel [platform:rpm]
+dbus
