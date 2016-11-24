@@ -12,11 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bastion.yaml
-- include: bootstrap.yaml
-- include: zookeeper.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-launcher.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+- name: Ensure zookeeper is running
+  become: yes
+  shell: /usr/sbin/service zookeeper status
+  tags: skip_ansible_lint

@@ -33,4 +33,5 @@ zuul-cloner -m $CLONEMAP \
   openstack/ansible-role-shade \
   openstack/ansible-role-ssh \
   openstack/ansible-role-virtualenv \
+  openstack/ansible-role-zookeeper \
   openstack/ansible-role-zuul
