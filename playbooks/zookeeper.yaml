@@ -12,11 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bastion.yaml
-- include: bootstrap.yaml
-- include: zookeeper.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-launcher.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+- name: Install zookeeper.
+  hosts: zookeeper
+
+  roles:
+    - windmill.zookeeper
+    - test.zookeeper
