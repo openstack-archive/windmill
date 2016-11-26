@@ -16,7 +16,6 @@
   hosts: nodepool-server
 
   roles:
-    - windmill.diskimage-builder
     - windmill.shade
     - windmill.nodepool
     - windmill.ssh
