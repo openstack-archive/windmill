@@ -32,5 +32,14 @@
         owner: root
         src: nodepool/etc/sudoers.d/nodepool
 
+    - name: Template disk-image-create wrapper script.
+      become: yes
+      template:
+        dest: /usr/local/bin/disk-image-create.sh
+        group: root
+        mode: 0755
+        owner: root
+        src: nodepool-builder/usr/local/bin/disk-image-create.sh.j2
+
   vars_files:
     - vars/nodepool.yaml
