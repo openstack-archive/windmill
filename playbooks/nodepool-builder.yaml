@@ -21,7 +21,7 @@
     - windmill.nodepool
     - test.nodepool-builder
 
-  tasks:
+  pre_tasks:
     # NOTE(pabelanger): Move this to ansible-role-sudoers
     - name: Copy sudoers includes into place.
       become: yes
@@ -31,6 +31,15 @@
         mode: 0444
         owner: root
         src: nodepool/etc/sudoers.d/nodepool
+
+    - name: Template disk-image-create wrapper script.
+      become: yes
+      template:
+        dest: /usr/local/bin/disk-image-create
+        group: root
+        mode: 0755
+        owner: root
+        src: nodepool-builder/usr/local/bin/disk-image-create.j2
 
   vars_files:
     - vars/nodepool.yaml
