@@ -1,4 +1,4 @@
-# Copyright 2016 Red Hat, Inc.
+# Copyright 2015 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,13 +11,10 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
----
-- include: bastion.yaml
-- include: bootstrap.yaml
-- include: zookeeper.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-launcher.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
-- include: prove.yaml
+
+IMAGE=$1
+STATUS=$2
+
+VENV=/opt/venv/nodepool-builder
+
+$VENV/bin/nodepool dib-image-list | awk '{print $2,$10;}' | grep $IMAGE | grep $STATUS
