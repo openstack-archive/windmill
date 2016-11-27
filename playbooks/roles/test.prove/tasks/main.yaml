@@ -12,12 +12,29 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bastion.yaml
-- include: bootstrap.yaml
-- include: zookeeper.yaml
-- include: nodepool-server.yaml
-- include: nodepool-builder.yaml
-- include: zuul-launcher.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
-- include: prove.yaml
+- name: Create required directories.
+  become: yes
+  file:
+    group: root
+    owner: root
+    path: /opt/windmill/test.prove
+    state: directory
+
+- name: Install dib-image-list.sh wrapper.
+  become: yes
+  copy:
+    dest: /opt/windmill/test.prove
+    group: root
+    mode: 0755
+    owner: root
+    src: test_dib_image_list.sh
+
+- name: Ensure centos-7 DIB is ready
+  become: yes
+  become_user: nodepool
+  delay: 10
+  delegate_to: nb01
+  register: task_result
+  retries: 360
+  shell: /opt/windmill/test.prove/test_dib_image_list.sh centos-7 ready
+  until: task_result.rc == 0
