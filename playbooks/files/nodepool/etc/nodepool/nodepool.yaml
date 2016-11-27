@@ -9,6 +9,10 @@ gearman-servers:
   - host: 127.0.5.1
     port: 4730
 
+zookeeper-servers:
+  - host: 127.0.6.1
+    port: 2181
+
 diskimages:
   - name: centos-7
     elements:
