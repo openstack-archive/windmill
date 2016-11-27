@@ -1,0 +1,67 @@
+# Copyright 2016 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+- name: Create required directories.
+  become: yes
+  file:
+    group: root
+    owner: root
+    path: /opt/windmill/test.prove
+    state: directory
+
+- name: Install dib-image-list.sh wrapper.
+  become: yes
+  copy:
+    dest: /opt/windmill/test.prove
+    group: root
+    mode: 0755
+    owner: root
+    src: test_dib_image_list.sh
+
+- name: Ensure centos-7 DIB image is built.
+  become: yes
+  become_user: nodepool
+  delay: 10
+  delegate_to: nb01
+  register: task_result
+  retries: 360
+  shell: /opt/windmill/test.prove/test_dib_image_list.sh centos-7 ready
+  tags: skip_ansible_lint
+  until: task_result.rc == 0
+  # NOTE(pabelanger): There is currently a bug in diskimage-builder that causes
+  # centos-7 to fail to build on ubuntu-xenial. Just skip this check for now.
+  when: (ansible_os_family == 'RedHat') or
+        (ansible_distribution == 'Ubuntu' and ansible_distribution_release != 'xenial')
+
+- name: Ensure ubuntu-trusty DIB image is built.
+  become: yes
+  become_user: nodepool
+  delay: 10
+  delegate_to: nb01
+  register: task_result
+  retries: 360
+  shell: /opt/windmill/test.prove/test_dib_image_list.sh ubuntu-trusty ready
+  tags: skip_ansible_lint
+  until: task_result.rc == 0
+
+- name: Ensure ubuntu-xenial DIB image is built.
+  become: yes
+  become_user: nodepool
+  delay: 10
+  delegate_to: nb01
+  register: task_result
+  retries: 360
+  shell: /opt/windmill/test.prove/test_dib_image_list.sh ubuntu-xenial ready
+  tags: skip_ansible_lint
+  until: task_result.rc == 0
