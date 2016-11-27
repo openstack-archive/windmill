@@ -9,13 +9,11 @@ gearman-servers:
   - host: 127.0.5.1
     port: 4730
 
+zookeeper-servers:
+  - host: 127.0.6.1
+    port: 2181
+
 diskimages:
-  - name: centos-7
-    elements:
-      - centos-minimal
-      - vm
-      - simple-init
-      - growroot
   - name: ubuntu-trusty
     elements:
       - ubuntu-minimal
@@ -23,27 +21,10 @@ diskimages:
       - simple-init
       - growroot
     release: trusty
-  - name: ubuntu-xenial
-    elements:
-      - ubuntu-minimal
-      - vm
-      - simple-init
-      - growroot
-    release: xenial
 
 labels:
-  - name: centos-7
-    image: centos-7
-    min-ready: 1
-    providers:
-      - name: devstack
   - name: ubuntu-trusty
     image: ubuntu-trusty
-    min-ready: 1
-    providers:
-      - name: devstack
-  - name: ubuntu-xenial
-    image: ubuntu-xenial
     min-ready: 1
     providers:
       - name: devstack
@@ -52,16 +33,4 @@ providers:
   - name: devstack
     cloud: openstackzuul-devstack
     max-servers: 10
-    images:
-      - name: centos-7
-        min-ram: 8192
-        diskimage: centos-7
-        private-key: /var/lib/nodepool/.ssh/id_rsa
-      - name: ubuntu-trusty
-        min-ram: 8192
-        diskimage: ubuntu-trusty
-        private-key: /var/lib/nodepool/.ssh/id_rsa
-      - name: ubuntu-xenial
-        min-ram: 8192
-        diskimage: ubuntu-xenial
-        private-key: /var/lib/nodepool/.ssh/id_rsa
+    images: []

@@ -16,6 +16,8 @@
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
 
 # windmill.nodepool
+nodepool_git_version: feature/zuulv3
+
 nodepool_pip_virtualenv: /opt/venv/nodepool-builder
 
 nodepool_service_nodepool_enabled: no
