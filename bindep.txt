@@ -7,4 +7,4 @@ libffi-dev [platform:dpkg]
 libffi-devel [platform:rpm]
 python-dev [platform:dpkg]
 python-devel [platform:rpm]
-dbus
+python2-dnf [platform:fedora]
