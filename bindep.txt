@@ -2,9 +2,9 @@
 # see http://docs.openstack.org/infra/bindep/ for additional information.
 
 dbus
-libselinux-python [platform:rpm]
-libffi-dev [platform:dpkg]
 libffi-devel [platform:rpm]
-python-dev [platform:dpkg]
+libffi-dev [platform:dpkg]
+libselinux-python [platform:rpm]
+python2-dnf [platform:fedora]
 python-devel [platform:rpm]
-dbus
+python-dev [platform:dpkg]
