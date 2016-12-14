@@ -35,3 +35,10 @@ zuul-cloner -m $CLONEMAP \
   openstack/ansible-role-virtualenv \
   openstack/ansible-role-zookeeper \
   openstack/ansible-role-zuul
+
+$ANSIBLE_CALLBACK_PLUGINS="~/.ansible/plugins/callback"
+
+if [ ! -d $ANSIBLE_CALLBACK_PLUGINS ]; then
+  mkdir -p $ANSIBLE_CALLBACK_PLUGINS
+fi
+cp tools/ansible/console_logging.py $ANSIBLE_CALLBACK_PLUGINS
