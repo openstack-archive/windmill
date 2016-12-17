@@ -59,13 +59,10 @@ providers:
     images:
       - name: centos-7
         min-ram: 8192
-        diskimage: centos-7
         private-key: /var/lib/nodepool/.ssh/id_rsa
       - name: ubuntu-trusty
         min-ram: 8192
-        diskimage: ubuntu-trusty
         private-key: /var/lib/nodepool/.ssh/id_rsa
       - name: ubuntu-xenial
         min-ram: 8192
-        diskimage: ubuntu-xenial
         private-key: /var/lib/nodepool/.ssh/id_rsa
