@@ -69,3 +69,13 @@ providers:
         min-ram: 8192
         diskimage: ubuntu-xenial
         private-key: /var/lib/nodepool/.ssh/id_rsa
+  - name: diskimage-builder
+    max-servers: 0
+    image-type: tar
+    images:
+      - name: centos-7
+        diskimage: centos-7
+      - name: ubuntu-trusty
+        diskimage: ubuntu-trusty
+      - name: ubuntu-xenial
+        diskimage: ubuntu-xenial
