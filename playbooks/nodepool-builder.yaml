@@ -19,7 +19,6 @@
     - windmill.diskimage-builder
     - windmill.shade
     - windmill.nodepool
-    - test.nodepool-builder
 
   pre_tasks:
     # NOTE(pabelanger): Move this to ansible-role-sudoers
@@ -40,6 +39,11 @@
         mode: 0755
         owner: root
         src: nodepool-builder/usr/local/bin/disk-image-create.j2
+
+  post_tasks:
+    - name: Run nodepool-server validation.
+      include_role:
+        name: test.nodepool-builder
 
   vars_files:
     - vars/nodepool.yaml

@@ -18,7 +18,11 @@
   roles:
     - windmill.zuul
     - windmill.ssh
-    - test.zuul-server
+
+  post_tasks:
+    - name: Run zuul-server validation.
+      include_role:
+        name: test.zuul-server
 
   vars_files:
     - vars/zuul.yaml

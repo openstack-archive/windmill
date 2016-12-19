@@ -19,7 +19,6 @@
     - windmill.shade
     - windmill.nodepool
     - windmill.ssh
-    - test.nodepool-server
 
   tasks:
     # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
@@ -39,6 +38,11 @@
         mode: 0400
         owner: "{{ nodepool_user_name }}"
         src: nodepool/home/nodepool/.config/openstack/clouds.yaml
+
+  post_tasks:
+    - name: Run nodepool-server validation.
+      include_role:
+        name: test.nodepool-server
 
   vars_files:
     - vars/nodepool.yaml

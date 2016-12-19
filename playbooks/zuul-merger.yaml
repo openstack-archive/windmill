@@ -17,7 +17,11 @@
 
   roles:
     - windmill.zuul
-    - test.zuul-merger
+
+  post_tasks:
+    - name: Run zuul-merger validation.
+      include_role:
+        name: test.zuul-merger
 
   vars_files:
     - vars/zuul.yaml

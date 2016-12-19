@@ -17,4 +17,8 @@
 
   roles:
     - windmill.zookeeper
-    - test.zookeeper
+
+  post_tasks:
+    - name: Run zookeeper validation.
+      include_role:
+        name: test.zookeeper

@@ -18,7 +18,11 @@
   roles:
     - windmill.jenkins-job-builder
     - windmill.zuul
-    - test.zuul-launcher
+
+  post_tasks:
+    - name: Run zuul-launcher validation.
+      include_role:
+        name: test.zuul-launcher
 
   vars_files:
     - vars/zuul.yaml
