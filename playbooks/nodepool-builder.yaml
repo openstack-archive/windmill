@@ -32,6 +32,24 @@
         owner: root
         src: nodepool/etc/sudoers.d/nodepool
 
+    # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
+    - name: Create os-client-config directories.
+      become: yes
+      file:
+        group: "{{ nodepool_user_group }}"
+        owner: "{{ nodepool_user_name }}"
+        path: "{{ nodepool_user_home }}/.config/openstack"
+        state: directory
+
+    - name: Copy clouds.yaml into place.
+      become: yes
+      copy:
+        dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
+        group: "{{ nodepool_user_group }}"
+        mode: 0400
+        owner: "{{ nodepool_user_name }}"
+        src: nodepool/home/nodepool/.config/openstack/clouds.yaml
+
     - name: Template disk-image-create wrapper script.
       become: yes
       template:
