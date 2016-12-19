@@ -32,6 +32,15 @@
         owner: root
         src: nodepool/etc/sudoers.d/nodepool
 
+    - name: Copy clouds.yaml into place.
+      become: yes
+      copy:
+        dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
+        group: "{{ nodepool_user_group }}"
+        mode: 0400
+        owner: "{{ nodepool_user_name }}"
+        src: nodepool/home/nodepool/.config/openstack/clouds.yaml
+
     - name: Template disk-image-create wrapper script.
       become: yes
       template:
