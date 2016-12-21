@@ -12,8 +12,25 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bastion.yaml
-- include: bootstrap.yaml
-- include: zookeeper.yaml
-- include: nodepool-builder.yaml
-- include: prove.yaml
+- include: build-images.yaml
+
+- name: Publish diskimages.
+  hosts: bastion
+  connection: local
+
+  vars:
+    images_dir: "{{ lookup('env','WORKSPACE') }}/images"
+
+  tasks:
+    - name: Create images directory.
+      file:
+        path: "{{ images_dir }}"
+        state: directory
+
+    - name: Copy diskimages into images directory.
+      shell: "/bin/bash -c 'gzip -9 < /opt/nodepool/images/{{ item }}*.tar > {{ images_dir }}/{{ item }}.tgz'"
+      with_items:
+        - centos-7
+        - ubuntu-trusty
+        - ubuntu-xenial
+      tags: skip_ansible_lint
