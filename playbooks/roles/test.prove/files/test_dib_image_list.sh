@@ -17,4 +17,4 @@ STATUS=$2
 
 VENV=/opt/venv/nodepool-builder
 
-$VENV/bin/nodepool dib-image-list | awk '{print $2,$10;}' | grep $IMAGE | grep $STATUS
+$VENV/bin/nodepool nodepool dib-image-list | awk '{print $4,$8,$10;}' | grep $IMAGE | grep $STATUS
