@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # Copyright 2015 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +14,9 @@
 # under the License.
 
 IMAGE=$1
-STATUS=$2
+FORMAT=$2
+STATUS=$3
 
 VENV=/opt/venv/nodepool-builder
 
-$VENV/bin/nodepool dib-image-list | awk '{print $2,$10;}' | grep $IMAGE | grep $STATUS
+$VENV/bin/nodepool dib-image-list | awk '{print $4,$8,$10;}' | grep $IMAGE | grep $FORMAT | grep $STATUS
