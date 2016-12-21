@@ -20,6 +20,7 @@ diskimages:
       - vm
       - simple-init
       - growroot
+
   - name: ubuntu-trusty
     elements:
       - ubuntu-minimal
@@ -27,12 +28,33 @@ diskimages:
       - simple-init
       - growroot
     release: trusty
+
   - name: ubuntu-xenial
     elements:
       - ubuntu-minimal
       - vm
       - simple-init
       - growroot
+    release: xenial
+
+  - name: centos-7-tarball
+    elements:
+      - centos-minimal
+    env-vars:
+      - SKIP_BASE: '1'
+
+  - name: ubuntu-trusty-tarball
+    elements:
+      - ubuntu-minimal
+    env-vars:
+      - SKIP_BASE: '1'
+    release: trusty
+
+  - name: ubuntu-xenial-tarball
+    elements:
+      - ubuntu-minimal
+    env-vars:
+      - SKIP_BASE: '1'
     release: xenial
 
 labels:
@@ -71,11 +93,11 @@ providers:
         private-key: /var/lib/nodepool/.ssh/id_rsa
   - name: diskimage-builder
     max-servers: 0
-    image-type: tar
+    image-type: tgz
     images:
-      - name: centos-7
+      - name: centos-7-tarball
         min-ram: 1024
-      - name: ubuntu-trusty
+      - name: ubuntu-trusty-tarball
         min-ram: 1024
-      - name: ubuntu-xenial
+      - name: ubuntu-xenial-tarball
         min-ram: 1024
