@@ -4,12 +4,16 @@
 images-dir: /opt/nodepool/images
 
 gearman-servers:
-  - host: 127.0.5.1
+{% host in groups['zuul'] %}
+  - host: "{{ hostvars[host]['ansible_host'] }}"
     port: 4730
+{% end for %}
 
 zookeeper-servers:
-  - host: 127.0.6.1
+{% host in groups['zookeeper'] %}
+  - host: "{{ hostvars[host]['ansible_host'] }}"
     port: 2181
+{% endfor %}
 
 diskimages:
   - name: centos-7
