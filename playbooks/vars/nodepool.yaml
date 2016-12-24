@@ -22,7 +22,7 @@ nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepo
 nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter
 nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodepool-launcher
 nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
-nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml
+nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml.j2
 
 # windmill.ssh
 ssh_key_private_content: |
