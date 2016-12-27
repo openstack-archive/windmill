@@ -16,7 +16,7 @@
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
 
 # windmill.nodepool
-nodepool_file_nodepool_builder_service_config_src: nodepool-builder/etc/sysconfig/nodepool-builder
+nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool.j2
 
 nodepool_pip_virtualenv: /opt/venv/nodepool-builder
 
@@ -26,3 +26,8 @@ nodepool_service_nodepool_launcher_manage: false
 
 # windmill.shade
 shade_pip_virtualenv: /opt/venv/nodepool-builder
+
+windmill_nodepool_service_config:
+  PREFIX: "{{ nodepool_pip_virtualenv }}"
+  ARGS: -l /etc/nodepool/builder-logging.conf
+  DIB_IMAGE_CACHE: /opt/nodepool/cache
