@@ -15,14 +15,31 @@
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
 
+windmill_nodepool_builder_service_config:
+  PREFIX: /opt/venv/nodepool-builder
+  ARGS: -l /etc/nodepool/builder-logging.conf
+  DIB_IMAGE_CACHE: /opt/nodepool/cache
+
+windmill_nodepool_deleter_service_config:
+  PREFIX: /opt/venv/nodepool
+  ARGS: -l /etc/nodepool/deleter-logging.conf --no-builder --no-launches --no-webapp
+
+windmill_nodepool_launcher_service_config:
+  PREFIX: /opt/venv/nodepool
+  ARGS: -l /etc/nodepool/launcher-logging.conf --no-builder --no-deletes --no-webapp
+
+windmill_nodepool_service_config:
+  PREFIX: /opt/venv/nodepool
+  ARGS: -l /etc/nodepool/logging.conf --no-builder --no-deletes --no-launches
+
 # windmill.nodepool
 # NOTE(pabelanger): Because we are installing nodepool and nodepool-builder on a
 # shared host, we need to make sure both tasks use the same configuration.
 nodepool_file_builder_logging_conf_src: nodepool/etc/nodepool/builder-logging.conf.j2
-nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool-builder
-nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter
-nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodepool-launcher
-nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
+nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool-builder.j2
+nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter.j2
+nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodepool-launcher.j2
+nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool.j2
 nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml.j2
 
 # windmill.ssh
