@@ -13,7 +13,6 @@
 # under the License.
 ---
 # windmill.nodepool
-nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter
 nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
 
 nodepool_pip_virtualenv: /opt/venv/nodepool
@@ -21,6 +20,10 @@ nodepool_pip_virtualenv: /opt/venv/nodepool
 nodepool_service_nodepool_builder_enabled: no
 nodepool_service_nodepool_builder_manage: false
 nodepool_service_nodepool_builder_state: stopped
+
+nodepool_service_nodepool_deleter_enabled: no
+nodepool_service_nodepool_deleter_manage: false
+nodepool_service_nodepool_deleter_state: stopped
 
 nodepool_service_nodepool_launcher_enabled: no
 nodepool_service_nodepool_launcher_manage: false

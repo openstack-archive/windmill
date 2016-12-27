@@ -4,6 +4,9 @@ bastion ansible_connection=local
 [nodepool-builder]
 nb01 ansible_host=127.0.1.1
 
+[nodepool-deleter]
+nd01 ansible_host=127.0.8.1
+
 [nodepool-launcher]
 nl01 ansible_host=127.0.7.1
 
