@@ -13,7 +13,7 @@
 # under the License.
 ---
 # windmill.nodepool
-nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter
+nodepool_file_nodepool_deleter_service_config_src: nodepool-deleter/etc/sysconfig/nodepool-deleter
 
 nodepool_pip_virtualenv: /opt/venv/nodepool-deleter
 
