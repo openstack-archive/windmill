@@ -13,7 +13,7 @@
 # under the License.
 ---
 # windmill.nodepool
-nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
+nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool.j2
 
 nodepool_pip_virtualenv: /opt/venv/nodepool
 
@@ -29,3 +29,7 @@ ssh_key_public_content: |
 
 # windmill.shade
 shade_pip_virtualenv: /opt/venv/nodepool
+
+windmill_nodepool_service_config:
+  PREFIX: "{{ nodepool_pip_virtualenv }}"
+  ARGS: -l /etc/nodepool/logging.conf --no-builder --no-deletes --no-launches
