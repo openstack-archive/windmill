@@ -16,6 +16,10 @@
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool
 
 # windmill.nodepool
+nodepool_file_nodepool_deleter_service_config_src: nodepool/etc/sysconfig/nodepool-deleter
+nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodepool-launcher
+nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool
+
 nodepool_pip_virtualenv: /opt/venv/nodepool
 
 nodepool_service_nodepool_builder_enabled: no
