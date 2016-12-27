@@ -17,6 +17,7 @@
 - include: zookeeper.yaml
 - include: nodepool-server.yaml
 - include: nodepool-builder.yaml
+- include: nodepool-launcher.yaml
 - include: zuul-launcher.yaml
 - include: zuul-merger.yaml
 - include: zuul-server.yaml
