@@ -16,9 +16,9 @@
   hosts: nodepool-builder
 
   roles:
-    - windmill.diskimage-builder
-    - windmill.shade
-    - windmill.nodepool
+    - openstack.diskimage-builder
+    - openstack.shade
+    - openstack.nodepool
 
   pre_tasks:
     # NOTE(pabelanger): Move this to ansible-role-sudoers

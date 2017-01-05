@@ -16,9 +16,9 @@
   hosts: nodepool-server
 
   roles:
-    - windmill.shade
-    - windmill.nodepool
-    - windmill.ssh
+    - openstack.shade
+    - openstack.nodepool
+    - openstack.ssh
 
   pre_tasks:
     # TODO(pabelanger): This should be moved into ansible-role-os-client-config.

@@ -16,8 +16,8 @@
   hosts: zuul-launcher
 
   roles:
-    - windmill.jenkins-job-builder
-    - windmill.zuul
+    - openstack.jenkins-job-builder
+    - openstack.zuul
 
   post_tasks:
     - name: Run zuul-launcher validation.

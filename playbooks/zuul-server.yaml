@@ -16,8 +16,8 @@
   hosts: zuul-server
 
   roles:
-    - windmill.zuul
-    - windmill.ssh
+    - openstack.zuul
+    - openstack.ssh
 
   post_tasks:
     - name: Run zuul-server validation.

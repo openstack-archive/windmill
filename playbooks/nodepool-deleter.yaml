@@ -16,8 +16,8 @@
   hosts: nodepool-deleter
 
   roles:
-    - windmill.shade
-    - windmill.nodepool
+    - openstack.shade
+    - openstack.nodepool
 
   pre_tasks:
     # TODO(pabelanger): This should be moved into ansible-role-os-client-config.

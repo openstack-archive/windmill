@@ -19,7 +19,7 @@
   serial: 1
 
   roles:
-    - windmill.virtualenv
+    - openstack.virtualenv
 
   pre_tasks:
     # NOTE(pabelanger): We need to make sure apt does not have a stale package

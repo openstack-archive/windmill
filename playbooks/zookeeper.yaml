@@ -16,7 +16,7 @@
   hosts: zookeeper
 
   roles:
-    - windmill.zookeeper
+    - openstack.zookeeper
 
   post_tasks:
     - name: Run zookeeper validation.

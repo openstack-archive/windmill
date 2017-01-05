@@ -16,7 +16,7 @@
   hosts: zuul-merger
 
   roles:
-    - windmill.zuul
+    - openstack.zuul
 
   post_tasks:
     - name: Run zuul-merger validation.
