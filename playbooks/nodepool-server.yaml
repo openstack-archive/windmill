@@ -21,7 +21,10 @@
     - openstack.ssh
 
   pre_tasks:
-    - name: Run openstack.nodepool pre stage.
+    # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
+    # nodepool, create the required home direcotry first (pre task). So we can
+    # add the clouds.yaml file.
+    - name: Create nodepool user directories.
       include_role:
         name: openstack.nodepool
       vars:
