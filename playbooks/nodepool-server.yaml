@@ -21,7 +21,10 @@
     - openstack.ssh
 
   pre_tasks:
-    - name: Run openstack.nodepool pre stage.
+    # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
+    # nodepool, create the required home direcotry first (pre task). So we can
+    # add the clouds.yaml file.
+    - name: Create nodepool user directories.
       include_role:
         name: openstack.nodepool
       vars:
@@ -34,13 +37,13 @@
       file:
         group: nodepool
         owner: nodepool
-        path: "{{ nodepool_user_home }}/.cache/openstack"
+        path: "{{ nodepool_user_home }}/.config/openstack"
         state: directory
 
     - name: Copy clouds.yaml into place.
       become: yes
       copy:
-        dest: "{{ nodepool_user_home }}/.cache/openstack/clouds.yaml"
+        dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
         group: nodepool
         mode: 0400
         owner: nodepool
