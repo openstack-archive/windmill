@@ -21,22 +21,29 @@
     - openstack.ssh
 
   pre_tasks:
+    - name: Run openstack.nodepool pre stage.
+      include_role:
+        name: openstack.nodepool
+      vars:
+        nodepool_task_manager:
+          - pre
+
     # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
     - name: Create os-client-config directories.
       become: yes
       file:
-        group: root
-        owner: root
-        path: /etc/openstack
+        group: nodepool
+        owner: nodepool
+        path: "{{ nodepool_user_home }}/.cache/openstack"
         state: directory
 
     - name: Copy clouds.yaml into place.
       become: yes
       copy:
-        dest: /etc/openstack/clouds.yaml
-        group: root
-        mode: 0755
-        owner: root
+        dest: "{{ nodepool_user_home }}/.cache/openstack/clouds.yaml"
+        group: nodepool
+        mode: 0400
+        owner: nodepool
         src: nodepool/home/nodepool/.config/openstack/clouds.yaml
 
   post_tasks:
