@@ -21,6 +21,34 @@
     - openstack.nodepool
 
   pre_tasks:
+    # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
+    # nodepool, create the required home direcotry first (pre task). So we can
+    # add the clouds.yaml file.
+    - name: Create nodepool user directories.
+      include_role:
+        name: openstack.nodepool
+      vars:
+        nodepool_task_manager:
+          - pre
+
+    # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
+    - name: Create os-client-config directories.
+      become: yes
+      file:
+        group: nodepool
+        owner: nodepool
+        path: "{{ nodepool_user_home }}/.config/openstack"
+        state: directory
+
+    - name: Copy clouds.yaml into place.
+      become: yes
+      copy:
+        dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
+        group: nodepool
+        mode: 0400
+        owner: nodepool
+        src: nodepool/home/nodepool/.config/openstack/clouds.yaml
+
     # NOTE(pabelanger): Move this to ansible-role-sudoers
     - name: Copy sudoers includes into place.
       become: yes
@@ -39,24 +67,6 @@
         mode: 0755
         owner: root
         src: nodepool-builder/usr/local/bin/disk-image-create.j2
-
-    # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
-    - name: Create os-client-config directories.
-      become: yes
-      file:
-        group: root
-        owner: root
-        path: /etc/openstack
-        state: directory
-
-    - name: Copy clouds.yaml into place.
-      become: yes
-      copy:
-        dest: /etc/openstack/clouds.yaml
-        group: root
-        mode: 0755
-        owner: root
-        src: nodepool/home/nodepool/.config/openstack/clouds.yaml
 
   post_tasks:
     - name: Run nodepool-server validation.
