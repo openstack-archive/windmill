@@ -3,11 +3,15 @@
 #
 images-dir: /opt/nodepool/images
 
+{% if 'zuul-server' in groups %}
 gearman-servers:
 {% for host in groups['zuul-server'] %}
   - host: {{ hostvars[host].ansible_host }}
     port: 4730
 {% endfor %}
+{% else %}
+gearman-servers: []
+{% endif %}
 
 zookeeper-servers:
 {% for host in groups['zookeeper'] %}
