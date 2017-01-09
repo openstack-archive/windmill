@@ -19,6 +19,7 @@
   serial: 1
 
   roles:
+    - openstack.sudoers
     - openstack.virtualenv
 
   pre_tasks:
