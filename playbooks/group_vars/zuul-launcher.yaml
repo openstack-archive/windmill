@@ -16,9 +16,12 @@
 jenkins_job_builder_pip_virtualenv: /opt/venv/zuul-launcher
 
 # windmill.zuul
-zuul_file_zuul_launcher_service_config_src: zuul/etc/sysconfig/zuul-launcher
-
+# We default to pip, since we zuul clone zuul into the /tmp folder.
+zuul_install_method: pip
+zuul_pip_name: file:///tmp/zuul
 zuul_pip_virtualenv: /opt/venv/zuul-launcher
+
+zuul_file_zuul_launcher_service_config_src: zuul/etc/sysconfig/zuul-launcher
 
 zuul_service_zuul_merger_enabled: no
 zuul_service_zuul_merger_manage: false
