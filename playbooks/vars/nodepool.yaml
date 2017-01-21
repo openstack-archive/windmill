@@ -21,6 +21,10 @@
 nodepool_file_builder_logging_conf_src: nodepool/etc/nodepool/builder-logging.conf.j2
 nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml.j2
 
+# We default to pip, since we zuul clone nodepool into the /tmp folder.
+nodepool_install_method: pip
+nodepool_pip_name: "file:///tmp/nodepool"
+
 # windmill.ssh
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
