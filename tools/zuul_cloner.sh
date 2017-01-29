@@ -21,7 +21,7 @@ trap cleanup EXIT
 cat > $CLONEMAP << EOF
 clonemap:
   - name: 'openstack/ansible-role-(.*)'
-    dest: 'playbooks/roles/openstack.\1'
+    dest: 'playbooks/roles/ansible-role-\1'
   - name: 'openstack(-infra)?/(?!ansible-role)(.*)'
     dest: '/tmp/\2'
 EOF

@@ -12,10 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.jenkins-job-builder
+# ansible-role-jenkins-job-builder
 jenkins_job_builder_pip_virtualenv: /opt/venv/zuul-launcher
 
-# windmill.zuul
+# ansible-role-zuul
 # We default to pip, since we zuul clone zuul into the /tmp folder.
 zuul_install_method: pip
 zuul_pip_name: file:///tmp/zuul

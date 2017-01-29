@@ -16,7 +16,7 @@
   hosts: zookeeper
 
   roles:
-    - openstack.zookeeper
+    - ansible-role-zookeeper
 
   post_tasks:
     - name: Run zookeeper validation.

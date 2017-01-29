@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.zuul
+# ansible-role-zuul
 # We default to pip, since we zuul clone zuul into the /tmp folder.
 zuul_install_method: pip
 zuul_pip_name: file:///tmp/zuul
@@ -28,7 +28,7 @@ zuul_service_zuul_merger_enabled: no
 zuul_service_zuul_merger_manage: false
 zuul_service_zuul_merger_state: stopped
 
-# windmill.ssh
+# ansible-role-ssh
 ssh_user_name: "{{ zuul_user_name }}"
 ssh_user_home: "{{ zuul_user_home }}"
 ssh_key_public_content: |

@@ -12,12 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.diskimage-builder
+# ansible-role-diskimage-builder
 diskimage_builder_install_method: pip
 diskimage_builder_pip_name: file:///tmp/diskimage-builder
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
 
-# windmill.nodepool
+# ansible-role-nodepool
 # We default to pip, since we zuul clone nodepool into the /tmp folder.
 nodepool_install_method: pip
 nodepool_pip_name: file:///tmp/nodepool
@@ -29,13 +29,13 @@ nodepool_service_nodepool_manage: false
 nodepool_service_nodepool_deleter_manage: false
 nodepool_service_nodepool_launcher_manage: false
 
-# windmill.shade
+# ansible-role-shade
 # We default to pip, since we zuul clone shade into the /tmp folder.
 shade_install_method: pip
 shade_pip_name: file:///tmp/shade
 shade_pip_virtualenv: /opt/venv/nodepool-builder
 
-# openstack.sudoers
+# ansible-role-sudoers
 sudoers_task_manager:
   - config
 sudoers_file_includes_dest: /etc/sudoers.d/nodepool
