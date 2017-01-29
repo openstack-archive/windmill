@@ -12,5 +12,5 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.virtualenv
+# ansible-role-virtualenv
 virtualenv_install_method: pip

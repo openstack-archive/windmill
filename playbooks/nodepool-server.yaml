@@ -16,9 +16,9 @@
   hosts: nodepool-server
 
   roles:
-    - openstack.shade
-    - openstack.nodepool
-    - openstack.ssh
+    - ansible-role-shade
+    - ansible-role-nodepool
+    - ansible-role-ssh
 
   pre_tasks:
     # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
@@ -26,7 +26,7 @@
     # add the clouds.yaml file.
     - name: Create nodepool user directories.
       include_role:
-        name: openstack.nodepool
+        name: ansible-role-nodepool
       vars:
         nodepool_task_manager:
           - pre

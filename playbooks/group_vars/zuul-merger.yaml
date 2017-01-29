@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.zuul
+# ansible-role-zuul
 # We default to pip, since we zuul clone zuul into the /tmp folder.
 zuul_install_method: pip
 zuul_pip_name: file:///tmp/zuul

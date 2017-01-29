@@ -16,8 +16,8 @@
   hosts: zuul-launcher
 
   roles:
-    - openstack.jenkins-job-builder
-    - openstack.zuul
+    - ansible-role-jenkins-job-builder
+    - ansible-role-zuul
 
   post_tasks:
     - name: Run zuul-launcher validation.

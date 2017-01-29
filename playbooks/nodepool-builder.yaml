@@ -16,10 +16,10 @@
   hosts: nodepool-builder
 
   roles:
-    - openstack.sudoers
-    - openstack.diskimage-builder
-    - openstack.shade
-    - openstack.nodepool
+    - ansible-role-sudoers
+    - ansible-role-diskimage-builder
+    - ansible-role-shade
+    - ansible-role-nodepool
 
   pre_tasks:
     # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
@@ -27,7 +27,7 @@
     # add the clouds.yaml file.
     - name: Create nodepool user directories.
       include_role:
-        name: openstack.nodepool
+        name: ansible-role-nodepool
       vars:
         nodepool_task_manager:
           - pre
