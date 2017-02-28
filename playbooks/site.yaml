@@ -19,7 +19,7 @@
 - include: nodepool-builder.yaml
 - include: nodepool-deleter.yaml
 - include: nodepool-launcher.yaml
-- include: zuul-launcher.yaml
-- include: zuul-merger.yaml
-- include: zuul-server.yaml
+#- include: zuul-launcher.yaml
+#- include: zuul-merger.yaml
+#- include: zuul-server.yaml
 - include: prove.yaml
