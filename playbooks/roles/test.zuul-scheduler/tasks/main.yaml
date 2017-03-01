@@ -12,18 +12,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Register /opt/venv/zuul-server
+- name: Register /opt/venv/zuul-scheduler
   stat:
-    path: /opt/venv/zuul-server
+    path: /opt/venv/zuul-scheduler
   register: test_zuul_pip_virtualenv_stat
 
-- name: Assert /opt/venv/zuul-server tests
+- name: Assert /opt/venv/zuul-scheduler tests
   assert:
     that:
       - test_zuul_pip_virtualenv_stat.stat.exists
       - test_zuul_pip_virtualenv_stat.stat.isdir
 
-- name: Ensure zuul-server is running
+- name: Ensure zuul-scheduler is running
   become: yes
-  shell: /usr/sbin/service zuul-server status
+  shell: /usr/sbin/service zuul-scheduler status
   tags: skip_ansible_lint
