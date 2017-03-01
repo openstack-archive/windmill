@@ -13,12 +13,9 @@
 # under the License.
 ---
 # windmill.nodepool
-# We default to pip, since we zuul clone nodepool into the /tmp folder.
-nodepool_install_method: pip
-nodepool_pip_name: file:///tmp/nodepool
-nodepool_pip_virtualenv: /opt/venv/nodepool
-
 nodepool_file_nodepool_service_config_src: nodepool/etc/sysconfig/nodepool.j2
+
+nodepool_pip_virtualenv: /opt/venv/nodepool
 
 nodepool_service_nodepool_builder_manage: false
 nodepool_service_nodepool_deleter_manage: false
@@ -31,9 +28,6 @@ ssh_key_public_content: |
   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDPFYsTS2aTFpgJHACEZjtkr4kt7rf9fHjavl5OhCq7rwAzfiQfq25YSaCZRRPywjUg6stm5JmBCLvQAa1LuhpsrUTE61TvGBIxeRwE6B0OecPW8SoXNbhgvfdrgVb4OIvH51tndPmXYPMpVN03iWyoSfN58YE77Z0VipDuG++dAjSJg+bmBlmmVE3L1419E2Jm56OnRDADWEDlvYciEIXaFWN9pIYXTL+Q1QdYKkWGPfuvMu6k5xSgQtNeXO4IWLSKyqkqj/PRQeY7XVBNstRhGzy+10fV0J4LrYcTAs/80rI2qgvrRoiDuXuhPMXyyD0OxoVrlIO4/f7BD2xk1lbq6JrUQthsNeLn9O5KVX9H7zhnFM1EUSRZz+knasDRfv8jrfrhUtM1QpF/3LITKftrjbr9whpOrxGSKSRRtnYlS5OrY1o9qqEfYPbelQdnz4oa+aTl0R7ApLfRpg64tbF1uNyVXwJvm7EYY2Ju1t0dY6vxFWlC8lLujE4Zq/VWajf5FhzsIh6SD0NVdz8UK1W/sZYKczejo0UHgQujfuJeJ3wRWAB/idzP2B69/uFJn7gp6199637j3v/3l38xRPi/kbh8zK0LjwvR8PKOlTx8pMJzNFaLzRqOTVJzhl4YmlYXtiNpxf/7/dPRUu8kJlb+yvVPo811v537EnmtsXin9w== nodepool@example.org
 
 # windmill.shade
-# We default to pip, since we zuul clone shade into the /tmp folder.
-shade_install_method: pip
-shade_pip_name: file:///tmp/shade
 shade_pip_virtualenv: /opt/venv/nodepool
 
 windmill_nodepool_service_config:

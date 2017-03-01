@@ -13,12 +13,9 @@
 # under the License.
 ---
 # windmill.zuul
-# We default to pip, since we zuul clone zuul into the /tmp folder.
-zuul_install_method: pip
-zuul_pip_name: file:///tmp/zuul
-zuul_pip_virtualenv: /opt/venv/zuul-merger
-
 zuul_file_zuul_merger_service_config_src: zuul/etc/sysconfig/zuul-merger
+
+zuul_pip_virtualenv: /opt/venv/zuul-merger
 
 zuul_service_zuul_launcher_enabled: no
 zuul_service_zuul_launcher_manage: false

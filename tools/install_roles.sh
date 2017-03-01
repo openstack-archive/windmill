@@ -22,8 +22,6 @@ cat > $CLONEMAP << EOF
 clonemap:
   - name: 'openstack/ansible-role-(.*)'
     dest: 'playbooks/roles/openstack.\1'
-  - name: 'openstack(-infra)?/(?!ansible-role)(.*)'
-    dest: '/tmp/\2'
 EOF
 
 zuul-cloner -m $CLONEMAP \
@@ -37,8 +35,4 @@ zuul-cloner -m $CLONEMAP \
   openstack/ansible-role-sudoers \
   openstack/ansible-role-virtualenv \
   openstack/ansible-role-zookeeper \
-  openstack/ansible-role-zuul \
-  openstack/diskimage-builder \
-  openstack-infra/nodepool \
-  openstack-infra/shade \
-  openstack-infra/zuul
+  openstack/ansible-role-zuul

@@ -13,21 +13,15 @@
 # under the License.
 ---
 # windmill.nodepool
-# We default to pip, since we zuul clone nodepool into the /tmp folder.
-nodepool_install_method: pip
-nodepool_pip_name: file:///tmp/nodepool
-nodepool_pip_virtualenv: /opt/venv/nodepool-launcher
-
 nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodepool.j2
+
+nodepool_pip_virtualenv: /opt/venv/nodepool-launcher
 
 nodepool_service_nodepool_manage: false
 nodepool_service_nodepool_builder_manage: false
 nodepool_service_nodepool_deleter_manage: false
 
 # windmill.shade
-# We default to pip, since we zuul clone shade into the /tmp folder.
-shade_install_method: pip
-shade_pip_name: file:///tmp/shade
 shade_pip_virtualenv: /opt/venv/nodepool-launcher
 
 windmill_nodepool_service_config:
