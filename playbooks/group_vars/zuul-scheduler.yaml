@@ -13,9 +13,9 @@
 # under the License.
 ---
 # windmill.zuul
-zuul_file_zuul_server_service_config_src: zuul/etc/sysconfig/zuul-server
+zuul_file_zuul_scheduler_service_config_src: zuul/etc/sysconfig/zuul-scheduler
 
-zuul_pip_virtualenv: /opt/venv/zuul-server
+zuul_pip_virtualenv: /opt/venv/zuul-scheduler
 
 zuul_service_zuul_launcher_enabled: no
 zuul_service_zuul_launcher_manage: false
