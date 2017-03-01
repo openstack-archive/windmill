@@ -21,6 +21,6 @@ zuul_service_zuul_launcher_enabled: no
 zuul_service_zuul_launcher_manage: false
 zuul_service_zuul_launcher_state: stopped
 
-zuul_service_zuul_server_enabled: no
-zuul_service_zuul_server_manage: false
-zuul_service_zuul_server_state: stopped
+zuul_service_zuul_scheduler_enabled: no
+zuul_service_zuul_scheduler_manage: false
+zuul_service_zuul_scheduler_state: stopped
