@@ -12,17 +12,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul-server.
-  hosts: zuul-server
+- name: Install zuul-scheduler.
+  hosts: zuul-scheduler
 
   roles:
     - openstack.zuul
     - openstack.ssh
 
   post_tasks:
-    - name: Run zuul-server validation.
+    - name: Run zuul-scheduler validation.
       include_role:
-        name: test.zuul-server
+        name: test.zuul-scheduler
 
   vars_files:
     - vars/zuul.yaml
