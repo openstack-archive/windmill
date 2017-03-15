@@ -12,17 +12,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul-launcher.
-  hosts: zuul-launcher
+- name: Install zuul-executor.
+  hosts: zuul-executor
 
   roles:
     - openstack.jenkins-job-builder
     - openstack.zuul
 
   post_tasks:
-    - name: Run zuul-launcher validation.
+    - name: Run zuul-executor validation.
       include_role:
-        name: test.zuul-launcher
+        name: test.zuul-executor
 
   vars_files:
     - vars/zuul.yaml

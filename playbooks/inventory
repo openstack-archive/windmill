@@ -13,8 +13,8 @@ nl01 ansible_host=127.0.7.1
 [nodepool-server]
 nodepool ansible_host=127.0.2.1
 
-[zuul-launcher]
-zl01 ansible_host=127.0.3.1
+[zuul-executor]
+ze01 ansible_host=127.0.3.1
 
 [zuul-merger]
 zm01 ansible_host=127.0.4.1

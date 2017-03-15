@@ -12,18 +12,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.jenkins-job-builder
-jenkins_job_builder_pip_virtualenv: /opt/venv/zuul-launcher
+- name: Register /opt/venv/zuul-executor
+  stat:
+    path: /opt/venv/zuul-executor
+  register: test_zuul_pip_virtualenv_stat
 
-# windmill.zuul
-zuul_file_zuul_launcher_service_config_src: zuul/etc/sysconfig/zuul-launcher
+- name: Assert /opt/venv/zuul-executor tests
+  assert:
+    that:
+      - test_zuul_pip_virtualenv_stat.stat.exists
+      - test_zuul_pip_virtualenv_stat.stat.isdir
 
-zuul_pip_virtualenv: /opt/venv/zuul-launcher
-
-zuul_service_zuul_merger_enabled: no
-zuul_service_zuul_merger_manage: false
-zuul_service_zuul_merger_state: stopped
-
-zuul_service_zuul_scheduler_enabled: no
-zuul_service_zuul_scheduler_manage: false
-zuul_service_zuul_scheduler_state: stopped
+- name: Ensure zuul-executor is running
+  become: yes
+  shell: /usr/sbin/service zuul-executor status
+  tags: skip_ansible_lint
