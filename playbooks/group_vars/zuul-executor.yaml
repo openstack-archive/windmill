@@ -12,9 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.jenkins-job-builder
-jenkins_job_builder_pip_virtualenv: /opt/venv/zuul-executor
-
 # windmill.zuul
 zuul_file_zuul_executor_service_config_src: zuul/etc/sysconfig/zuul-executor
 

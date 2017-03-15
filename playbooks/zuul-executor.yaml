@@ -16,7 +16,6 @@
   hosts: zuul-executor
 
   roles:
-    - openstack.jenkins-job-builder
     - openstack.zuul
 
   post_tasks:
