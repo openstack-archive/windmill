@@ -50,6 +50,18 @@
         owner: nodepool
         src: nodepool/home/nodepool/.config/openstack/clouds.yaml
 
+    # TODO(pabelanger): This should maybe be moved into ansible-role-nodepool.
+    - name: Create required directories.
+      become: yes
+      file:
+        group: nodepool
+        owner: nodepool
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - /var/log/nodepool
+        - /var/log/nodepool/images
+
     - name: Template disk-image-create wrapper script.
       become: yes
       template:
