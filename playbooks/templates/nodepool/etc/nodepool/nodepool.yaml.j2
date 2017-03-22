@@ -31,6 +31,8 @@ diskimages:
       - vm
       - simple-init
       - growroot
+    env-vars:
+      DIB_CHECKSUM: '1'
   - name: ubuntu-trusty
     elements:
       - ubuntu-minimal
@@ -38,6 +40,9 @@ diskimages:
       - simple-init
       - growroot
     release: trusty
+    env-vars:
+      DIB_CHECKSUM: '1'
+      DIB_DEBIAN_COMPONENTS: 'main,universe'
   - name: ubuntu-xenial
     elements:
       - ubuntu-minimal
@@ -45,6 +50,9 @@ diskimages:
       - simple-init
       - growroot
     release: xenial
+    env-vars:
+      DIB_CHECKSUM: '1'
+      DIB_DEBIAN_COMPONENTS: 'main,universe'
 
 labels:
   - name: centos-7
