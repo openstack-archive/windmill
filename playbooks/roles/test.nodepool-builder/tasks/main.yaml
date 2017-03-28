@@ -37,6 +37,11 @@
       - test_nodepool_builder_dib_command.stat.gr_name == 'root'
       - test_nodepool_builder_dib_command.stat.mode == '0755'
 
+- name: Validate /etc/nodepool/nodepool.yaml
+  become: yes
+  become_user: nodepool
+  command: /opt/venv/nodepool-builder/bin/nodepool -c /etc/nodepool/nodepool.yaml config-validate
+
 - name: Ensure nodepool-builder is running
   become: yes
   shell: /usr/sbin/service nodepool-builder status

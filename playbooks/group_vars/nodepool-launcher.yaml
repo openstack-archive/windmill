@@ -17,13 +17,11 @@ nodepool_file_nodepool_launcher_service_config_src: nodepool/etc/sysconfig/nodep
 
 nodepool_pip_virtualenv: /opt/venv/nodepool-launcher
 
-nodepool_service_nodepool_manage: false
 nodepool_service_nodepool_builder_manage: false
-nodepool_service_nodepool_deleter_manage: false
 
 # windmill.shade
 shade_pip_virtualenv: /opt/venv/nodepool-launcher
 
 windmill_nodepool_service_config:
   PREFIX: "{{ nodepool_pip_virtualenv }}"
-  ARGS: -l /etc/nodepool/launcher-logging.conf --no-builder --no-deletes --no-webapp
+  ARGS: -l /etc/nodepool/launcher-logging.conf --no-webapp
