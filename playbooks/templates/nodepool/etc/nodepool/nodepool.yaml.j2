@@ -3,16 +3,6 @@
 #
 images-dir: /opt/nodepool/images
 
-{% if 'zuul-scheduler' in groups %}
-gearman-servers:
-{% for host in groups['zuul-scheduler'] %}
-  - host: {{ hostvars[host].ansible_host }}
-    port: 4730
-{% endfor %}
-{% else %}
-gearman-servers: []
-{% endif %}
-
 zookeeper-servers:
 {% if 'zookeeper' in groups %}
 {% for host in groups['zookeeper'] %}
@@ -26,6 +16,8 @@ zookeeper-servers:
 
 diskimages:
   - name: centos-7
+    formats:
+      - tar
     elements:
       - centos-minimal
       - vm
@@ -34,6 +26,8 @@ diskimages:
     env-vars:
       DIB_CHECKSUM: '1'
   - name: ubuntu-trusty
+    formats:
+      - tar
     elements:
       - ubuntu-minimal
       - vm
@@ -44,6 +38,8 @@ diskimages:
       DIB_CHECKSUM: '1'
       DIB_DEBIAN_COMPONENTS: 'main,universe'
   - name: ubuntu-xenial
+    formats:
+      - tar
     elements:
       - ubuntu-minimal
       - vm
@@ -56,51 +52,35 @@ diskimages:
 
 labels:
   - name: centos-7
-    image: centos-7
     min-ready: 1
-    providers:
-      - name: devstack
   - name: ubuntu-trusty
-    image: ubuntu-trusty
     min-ready: 1
-    providers:
-      - name: devstack
   - name: ubuntu-xenial
-    image: ubuntu-xenial
     min-ready: 1
-    providers:
-      - name: devstack
 
 providers:
   - name: devstack
     cloud: openstackzuul-devstack
-    max-servers: 10
-    images:
+    diskimages:
       - name: centos-7
-        min-ram: 8192
-        diskimage: centos-7
-        pause: True
-        private-key: /var/lib/nodepool/.ssh/id_rsa
-      - name: ubuntu-trusty
-        min-ram: 8192
-        diskimage: ubuntu-trusty
-        pause: True
-        private-key: /var/lib/nodepool/.ssh/id_rsa
-      - name: ubuntu-xenial
-        min-ram: 8192
-        diskimage: ubuntu-xenial
-        pause: True
-        private-key: /var/lib/nodepool/.ssh/id_rsa
-  - name: diskimage-builder
-    max-servers: 0
-    image-type: tar
-    images:
-      - name: centos-7
-        min-ram: 1024
+        config-drive: true
         pause: True
       - name: ubuntu-trusty
-        min-ram: 1024
+        config-drive: true
         pause: True
       - name: ubuntu-xenial
-        min-ram: 1024
+        config-drive: true
         pause: True
+    pools:
+      - name: main
+        max-servers: 10
+        labels:
+          - name: centos-7
+            diskimage: centos-7
+            min-ram: 8192
+          - name: ubuntu-trusty
+            diskimage: ubuntu-trusty
+            min-ram: 8192
+          - name: ubuntu-xenial
+            diskimage: ubuntu-xenial
+            min-ram: 8192
