@@ -23,6 +23,11 @@
       - test_nodepool_pip_virtualenv_stat.stat.exists
       - test_nodepool_pip_virtualenv_stat.stat.isdir
 
+- name: Validate /etc/nodepool/nodepool.yaml
+  become: yes
+  become_user: nodepool
+  command: /opt/venv/nodepool-launcher/bin/nodepool -c /etc/nodepool/nodepool.yaml config-validate
+
 - name: Ensure nodepool-launcher is running
   become: yes
   shell: /usr/sbin/service nodepool-launcher status
