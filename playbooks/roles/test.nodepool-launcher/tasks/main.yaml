@@ -27,3 +27,8 @@
   become: yes
   shell: /usr/sbin/service nodepool-launcher status
   tags: skip_ansible_lint
+
+- name: Validate /etc/nodepool/nodepool.yaml
+  become: yes
+  become_user: nodepool
+  command: /opt/venv/nodepool-launcher/bin/nodepool -c /etc/nodepool/nodepool.yaml config-validate
