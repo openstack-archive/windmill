@@ -17,6 +17,11 @@
 
 # windmill.zuul
 zuul_file_zuul_conf_src: zuul/etc/zuul/zuul.conf.j2
+# NOTE(pabelanger): Because we run ansible-role-zuul 3 times on the same host,
+# we need to make sure all three playbooks have the same contents.
+zuul_file_zuul_executor_service_config_src: zuul/etc/systemd/system/zuul-executor.service.d/override.conf
+zuul_file_zuul_merger_service_config_src: zuul/etc/systemd/system/zuul-merger.service.d/override.conf
+zuul_file_zuul_scheduler_service_config_src: zuul/etc/systemd/system/zuul-scheduler.service.d/override.conf
 
 # windmill.ssh
 ssh_key_private_content: |

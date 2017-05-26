@@ -13,8 +13,6 @@
 # under the License.
 ---
 # windmill.zuul
-zuul_file_zuul_executor_service_config_src: zuul/etc/sysconfig/zuul-executor
-
 zuul_pip_virtualenv: /opt/venv/zuul-executor
 
 zuul_service_zuul_merger_enabled: no
