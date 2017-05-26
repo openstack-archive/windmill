@@ -1,4 +1,4 @@
-# Copyright 2016 Red Hat, Inc.
+ Copyright 2016 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 # under the License.
 ---
 # windmill.zuul
-zuul_file_zuul_executor_service_config_src: zuul/etc/sysconfig/zuul-executor
+zuul_file_zuul_executor_service_config_src: zuul/etc/systemd/system/zuul-executor.service.d/override.conf.j2
 
 zuul_pip_virtualenv: /opt/venv/zuul-executor
 
