@@ -13,9 +13,15 @@
 # under the License.
 ---
 # windmill.zuul
-zuul_file_zuul_merger_service_config_src: zuul/etc/sysconfig/zuul-merger
+zuul_file_zuul_merger_service_config_src: zuul/etc/systemd/system/zuul-merger.service.d/override.conf.j2
 
 zuul_pip_virtualenv: /opt/venv/zuul-merger
+
+zuul_file_zuul_executor_service_config_manage: false
+zuul_file_zuul_executor_service_manage: false
+
+zuul_file_zuul_scheduler_service_config_manage: false
+zuul_file_zuul_scheduler_service_manage: false
 
 zuul_service_zuul_executor_enabled: no
 zuul_service_zuul_executor_manage: false
