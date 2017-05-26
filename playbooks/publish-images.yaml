@@ -30,7 +30,5 @@
     - name: Copy diskimages into images directory.
       shell: "/bin/bash -c 'gzip -9 < /opt/nodepool/images/{{ item }}*.tar > {{ images_dir }}/{{ item }}.tgz'"
       with_items:
-        - centos-7
-        - ubuntu-trusty
         - ubuntu-xenial
       tags: skip_ansible_lint

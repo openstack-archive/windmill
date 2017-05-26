@@ -29,35 +29,6 @@
     owner: root
     src: test_dib_image_list.sh
 
-- name: Ensure centos-7 DIB image is built.
-  become: yes
-  become_user: nodepool
-  delay: 10
-  delegate_to: nb01
-  register: task_result
-  retries: 360
-  shell: /opt/windmill/test.prove/test_dib_image_list.sh centos-7 ready
-  tags: skip_ansible_lint
-  until: task_result.rc == 0
-  # NOTE(pabelanger): There is currently a bug in diskimage-builder that causes
-  # centos-7 to fail to build on ubuntu-xenial. Just skip this check for now.
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_distribution == 'Ubuntu' and ansible_distribution_release != 'xenial')
-
-- name: Ensure ubuntu-trusty DIB image is built.
-  become: yes
-  become_user: nodepool
-  delay: 10
-  delegate_to: nb01
-  register: task_result
-  retries: 360
-  shell: /opt/windmill/test.prove/test_dib_image_list.sh ubuntu-trusty ready
-  tags: skip_ansible_lint
-  until: task_result.rc == 0
-  # NOTE(pabelanger): There is currently a bug in diskimage-builder that causes
-  # ubuntu-minimal to fail to build on fedora. Just skip this check for now.
-  when: ansible_os_family != 'RedHat'
-
 - name: Ensure ubuntu-xenial DIB image is built.
   become: yes
   become_user: nodepool

@@ -15,28 +15,6 @@ zookeeper-servers:
 {% endif %}
 
 diskimages:
-  - name: centos-7
-    formats:
-      - tar
-    elements:
-      - centos-minimal
-      - vm
-      - simple-init
-      - growroot
-    env-vars:
-      DIB_CHECKSUM: '1'
-  - name: ubuntu-trusty
-    formats:
-      - tar
-    elements:
-      - ubuntu-minimal
-      - vm
-      - simple-init
-      - growroot
-    release: trusty
-    env-vars:
-      DIB_CHECKSUM: '1'
-      DIB_DEBIAN_COMPONENTS: 'main,universe'
   - name: ubuntu-xenial
     formats:
       - tar
@@ -51,10 +29,6 @@ diskimages:
       DIB_DEBIAN_COMPONENTS: 'main,universe'
 
 labels:
-  - name: centos-7
-    min-ready: 1
-  - name: ubuntu-trusty
-    min-ready: 1
   - name: ubuntu-xenial
     min-ready: 1
 
@@ -62,12 +36,6 @@ providers:
   - name: devstack
     cloud: openstackzuul-devstack
     diskimages:
-      - name: centos-7
-        config-drive: true
-        pause: True
-      - name: ubuntu-trusty
-        config-drive: true
-        pause: True
       - name: ubuntu-xenial
         config-drive: true
         pause: True
@@ -75,12 +43,6 @@ providers:
       - name: main
         max-servers: 10
         labels:
-          - name: centos-7
-            diskimage: centos-7
-            min-ram: 8192
-          - name: ubuntu-trusty
-            diskimage: ubuntu-trusty
-            min-ram: 8192
           - name: ubuntu-xenial
             diskimage: ubuntu-xenial
             min-ram: 8192
