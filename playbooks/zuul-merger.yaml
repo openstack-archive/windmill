@@ -15,8 +15,10 @@
 - name: Install zuul-merger.
   hosts: zuul-merger
 
-  roles:
-    - openstack.zuul
+  tasks:
+    - name: Setup openstack.zuul role.
+      include_role:
+        name: openstack.zuul
 
   post_tasks:
     - name: Run zuul-merger validation.

@@ -15,8 +15,10 @@
 - name: Install zuul-executor.
   hosts: zuul-executor
 
-  roles:
-    - openstack.zuul
+  tasks:
+    - name: Setup openstack.zuul role.
+      include_role:
+        name: openstack.zuul
 
   post_tasks:
     - name: Run zuul-executor validation.
