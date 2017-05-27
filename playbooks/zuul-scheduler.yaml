@@ -15,9 +15,14 @@
 - name: Install zuul-scheduler.
   hosts: zuul-scheduler
 
-  roles:
-    - openstack.zuul
-    - openstack.ssh
+  tasks:
+    - name: Setup openstack.zuul role.
+      include_role:
+        name: openstack.zuul
+
+    - name: Setup openstack.ssh role.
+      include_role:
+        name: openstack.ssh
 
   post_tasks:
     - name: Run zuul-scheduler validation.

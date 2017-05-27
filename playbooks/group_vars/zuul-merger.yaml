@@ -30,3 +30,6 @@ zuul_service_zuul_executor_state: stopped
 zuul_service_zuul_scheduler_enabled: no
 zuul_service_zuul_scheduler_manage: false
 zuul_service_zuul_scheduler_state: stopped
+
+zuul_user_name: zuul
+zuul_user_home: /var/lib/zuul
