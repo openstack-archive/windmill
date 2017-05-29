@@ -1,5 +1,5 @@
 clouds:
-  openstackzuul-devstack:
+  openstackzuul:
     auth:
       auth_url: http://127.0.0.1/identity_admin
       password: secretadmin
