@@ -16,7 +16,7 @@
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
 
 # windmill.nodepool
-nodepool_file_nodepool_builder_service_config_src: nodepool/etc/sysconfig/nodepool.j2
+nodepool_file_nodepool_builder_service_config_src: nodepool-builder/etc/systemd/system/nodepool-builder.service.d/override.conf.j2
 
 nodepool_pip_virtualenv: /opt/venv/nodepool-builder
 
@@ -32,8 +32,3 @@ sudoers_task_manager:
   - config
 sudoers_file_includes_dest: /etc/sudoers.d/nodepool
 sudoers_file_includes_src: nodepool-builder/etc/sudoers.d/nodepool.j2
-
-windmill_nodepool_service_config:
-  PREFIX: "{{ nodepool_pip_virtualenv }}"
-  ARGS: -l /etc/nodepool/builder-logging.conf
-  DIB_IMAGE_CACHE: /opt/nodepool/cache
