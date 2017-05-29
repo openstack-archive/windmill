@@ -20,9 +20,10 @@ diskimages:
       - tar
     elements:
       - ubuntu-minimal
-      - vm
-      - simple-init
       - growroot
+      - openssh-server
+      - simple-init
+      - vm
     release: xenial
     env-vars:
       TMPDIR: /opt/nodepool/tmp
@@ -39,11 +40,11 @@ providers:
     diskimages:
       - name: ubuntu-xenial
         config-drive: true
-        pause: True
     pools:
       - name: main
         max-servers: 10
         labels:
           - name: ubuntu-xenial
+            console-log: true
             diskimage: ubuntu-xenial
             min-ram: 8192
