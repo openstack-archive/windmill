@@ -15,6 +15,7 @@
 # windmill.zuul
 zuul_file_zuul_merger_service_config_src: zuul/etc/systemd/system/zuul-merger.service.d/override.conf.j2
 
+zuul_pip_virtualenv_python: python3
 zuul_pip_virtualenv: /opt/venv/zuul-merger
 
 zuul_file_zuul_executor_service_config_manage: false
