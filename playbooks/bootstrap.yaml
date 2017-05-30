@@ -39,3 +39,8 @@
         update_cache: yes
         upgrade: dist
       when: ansible_os_family == 'Debian'
+
+  tasks:
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
