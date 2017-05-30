@@ -67,6 +67,11 @@
         owner: root
         src: nodepool-builder/usr/local/bin/disk-image-create.j2
 
+  tasks:
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
+
   post_tasks:
     - name: Run nodepool-server validation.
       include_role:

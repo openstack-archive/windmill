@@ -27,6 +27,17 @@ nodepool_service_nodepool_launcher_manage: false
 # windmill.shade
 shade_pip_virtualenv: /opt/venv/nodepool-builder
 
+# openstack.logrotate
+logrotate_configs:
+  - name: nodepool-builder
+    log: /var/log/nodepool/builder-debug.log /var/log/nodepool/nodepool-builder.log
+    options:
+      - compress
+      - missingok
+      - rotate 7
+      - daily
+      - notifempty
+
 # openstack.sudoers
 sudoers_task_manager:
   - config

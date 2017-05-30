@@ -48,6 +48,11 @@
         owner: nodepool
         src: nodepool/home/nodepool/.config/openstack/clouds.yaml
 
+  tasks:
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
+
   post_tasks:
     - name: Run nodepool-launcher validation.
       include_role:

@@ -23,3 +23,14 @@ nodepool_service_nodepool_builder_manage: false
 
 # windmill.shade
 shade_pip_virtualenv: /opt/venv/nodepool-launcher
+
+# openstack.logrotate
+logrotate_configs:
+  - name: nodepool-launcher
+    log: /var/log/nodepool/launcher-debug.log /var/log/nodepool/nodepool-launcher.log
+    options:
+      - compress
+      - missingok
+      - rotate 7
+      - daily
+      - notifempty
