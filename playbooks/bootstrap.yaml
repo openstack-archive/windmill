@@ -19,6 +19,7 @@
   serial: 1
 
   roles:
+    - openstack.logrotate
     - openstack.sudoers
     - openstack.virtualenv
 
