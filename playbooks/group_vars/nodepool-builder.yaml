@@ -19,8 +19,7 @@ diskimage_builder_pip_virtualenv: /opt/venv/nodepool-builder
 # windmill.nodepool
 nodepool_file_nodepool_builder_service_config_src: nodepool-builder/etc/systemd/system/nodepool-builder.service.d/override.conf.j2
 
-nodepool_pip_virtualenv_python: python3
-nodepool_pip_virtualenv: /opt/venv/nodepool-builder
+nodepool_pip_executable: python3 -m pip
 
 nodepool_file_nodepool_launcher_service_config_manage: false
 nodepool_file_nodepool_launcher_service_manage: false
