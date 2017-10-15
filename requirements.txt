@@ -1,6 +1,6 @@
 # NOTE(pabelanger): Cap paramiko at 2.0.0 to avoid breaking changes.
 paramiko<2.0.0
 
-ansible>=2.0
+ansible>=2.0.0,<2.4.0
 bindep
 zuul
