@@ -1,0 +1,9 @@
+Verified+1: Jenkins
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 16 Oct 2017 11:27:20 +0000
+Reviewed-on: https://review.openstack.org/512112
+Project: openstack/windmill
+Branch: refs/heads/master
