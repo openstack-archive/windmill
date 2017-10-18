@@ -7,30 +7,24 @@
       - openstack/windmill
 
 - job:
-    name: windmill-deploy
+    name: windmill-base
     parent: legacy-base
     run: tests/legacy/windmill-deploy/run
     timeout: 3600
     required-projects:
       - openstack/windmill
-    voting: false
 
 - job:
-    name: windmill-deploy-centos-7
-    parent: legacy-base
-    run: tests/legacy/windmill-deploy-centos-7/run
-    timeout: 3600
-    nodeset: legacy-centos-7
-    required-projects:
-      - openstack/windmill
-    voting: false
+    name: windmill-centos-7
+    parent: windmill-base
+    nodeset: centos-7
 
 - job:
-    name: windmill-deploy-fedora-26
-    parent: legacy-base
-    run: tests/legacy/windmill-deploy-fedora-26/run
-    timeout: 3600
-    nodeset: legacy-fedora-26
-    required-projects:
-      - openstack/windmill
-    voting: false
+    name: windmill-fedora-26
+    parent: windmill-base
+    nodeset: fedora-26
+
+- job:
+    name: windmill-ubuntu-xenial
+    parent: windmill-base
+    nodeset: ubuntu-xenial
