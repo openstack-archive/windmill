@@ -34,14 +34,14 @@
     name: windmill-jobs-xenial
     check:
       jobs:
-        - windmill-deploy
+        - windmill-deploy-ubuntu-xenial
     gate:
       jobs:
-        - windmill-deploy
+        - windmill-deploy-ubuntu-xenial
 
 - project-template:
     name: windmill-jobs-xenial-nv
     check:
       jobs:
-        - windmill-deploy:
+        - windmill-deploy-ubuntu-xenial:
             voting: false
