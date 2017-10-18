@@ -17,9 +17,19 @@
 
   roles:
     - openstack.shade
-    - openstack.nodepool
+    - ansible-role-nodepool
 
   pre_tasks:
+    # NOTE(pabelanger): Check if we are running the playbook in zuul, if so we
+    # we want to use the local git repos that zuul has prepared for us.
+    - name: Set facts if zuul.executor exists
+      set_facts:
+        nodepool_git_dest: /home/zuul/src/git.openstack.org/openstack-infra/nodepool
+        nodepool_git_update: false
+      when:
+        - zuul is defined
+        - zuul.executor is defined
+
     # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
     # nodepool, create the required home direcotry first (pre task). So we can
     # add the clouds.yaml file.
