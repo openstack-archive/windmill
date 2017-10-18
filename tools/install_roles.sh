@@ -29,7 +29,6 @@ zuul-cloner -m $CLONEMAP \
   git://git.openstack.org \
   openstack/ansible-role-diskimage-builder \
   openstack/ansible-role-logrotate \
-  openstack/ansible-role-nodepool \
   openstack/ansible-role-shade \
   openstack/ansible-role-ssh \
   openstack/ansible-role-sudoers \
