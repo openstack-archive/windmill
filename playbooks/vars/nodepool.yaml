@@ -14,14 +14,21 @@
 ---
 # NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
 # current don't because this deployment is used as an example.
+#
 
-# windmill.nodepool
+# ansible-role-nodepool
 # NOTE(pabelanger): Because we are installing nodepool and nodepool-builder on a
 # shared host, we need to make sure both tasks use the same configuration.
 nodepool_file_builder_logging_conf_src: nodepool/etc/nodepool/builder-logging.conf.j2
 nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml.j2
 
-# windmill.ssh
+# NOTE(pabelanger): If windmill is used locally (out side of nodepool) this
+# won't work. We really should use set_fact in a pre-playbook to check if this
+# is needed.
+nodepool_git_dest: "/home/zuul/src/git.openstack.org/openstack-infra/nodepool"
+nodepool_git_update: false
+
+# ansible-role-ssh
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
   MIIJKgIBAAKCAgEAzxWLE0tmkxaYCRwAhGY7ZK+JLe63/Xx42r5eToQqu68AM34k
