@@ -18,6 +18,6 @@
 - include: nodepool-builder.yaml
 - include: nodepool-launcher.yaml
 #- include: zuul-executor.yaml
-#- include: zuul-merger.yaml
-#- include: zuul-scheduler.yaml
-#- include: prove.yaml
+- include: zuul-merger.yaml
+- include: zuul-scheduler.yaml
+- include: prove.yaml
