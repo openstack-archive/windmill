@@ -23,8 +23,9 @@ pidfile = /var/run/zuul-scheduler/zuul-scheduler.pid
 state_dir = /var/lib/zuul-test
 
 [executor]
+finger_port = 17979
 log_config = /etc/zuul/executor-logging.conf
-workspace_root=/var/lib/zuul-test/workspace
+workspace_root = /var/lib/zuul-test/workspace
 
 [merger]
 git_dir = /var/lib/zuul-test/git
