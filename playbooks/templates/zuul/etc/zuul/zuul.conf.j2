@@ -13,22 +13,22 @@ start = true
 [gerrit]
 port = 29418
 server = 127.0.0.1
-sshkey = /var/lib/zuul-test/.ssh/id_rsa
+sshkey = {{ zuul_user_home }}/.ssh/id_rsa
 user = zuul
 
 [scheduler]
 tenant_config = /etc/zuul/config/layout.yaml
 log_config = /etc/zuul/scheduler-logging.conf
 pidfile = /var/run/zuul-scheduler/zuul-scheduler.pid
-state_dir = /var/lib/zuul-test
+state_dir = {{ zuul_user_home }}
 
 [executor]
 finger_port = 17979
 log_config = /etc/zuul/executor-logging.conf
-workspace_root = /var/lib/zuul-test/workspace
+workspace_root = {{ zuul_user_home }}/workspace
 
 [merger]
-git_dir = /var/lib/zuul-test/git
+git_dir = {{ zuul_user_home }}/git
 log_config = /etc/zuul/merger-logging.conf
 pidfile = /var/run/zuul-merger/zuul-merger.pid
 zuul_url = {{ hostvars['zs01'].ansible_host }}

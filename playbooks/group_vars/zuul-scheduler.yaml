@@ -34,7 +34,7 @@ zuul_service_zuul_merger_state: stopped
 
 zuul_user_name: zuul-test
 zuul_user_group: zuul-test
-zuul_user_home: /var/lib/zuul-test
+zuul_user_home: /var/lib/zuul
 
 # windmill.ssh
 ssh_user_name: "{{ zuul_user_name }}"

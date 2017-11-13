@@ -34,4 +34,4 @@ zuul_service_zuul_scheduler_state: stopped
 
 zuul_user_name: zuul-test
 zuul_user_group: zuul-test
-zuul_user_home: /var/lib/zuul-test
+zuul_user_home: /var/lib/zuul
