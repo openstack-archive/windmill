@@ -33,9 +33,10 @@
   become: yes
   become_user: nodepool
   delay: 10
-  delegate_to: nb01
   register: task_result
   retries: 360
   shell: /opt/windmill/test.prove/test_dib_image_list.sh ubuntu-xenial ready
   tags: skip_ansible_lint
   until: task_result.rc == 0
+  delegate_to: "{{ item }}"
+  with_items: "{{ groups['nodepool-builder'] }}"
