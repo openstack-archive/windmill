@@ -7,13 +7,38 @@
       - openstack/windmill
 
 - job:
-    name: windmill-base
-    run: tests/tox/run.yaml
+    name: windmill-base-minimal
+    parent: base-minimal
+    pre-run: tests/base-minimal.yaml
+    roles:
+      - zuul: openstack-infra/zuul-jobs
+      - zuul: openstack-infra/openstack-zuul-jobs
     timeout: 3600
-    required-projects:
-      - openstack/windmill
-    vars:
-      tox_envlist: deploy
+
+- job:
+    name: windmill-base
+    parent: windmill-base-minimal
+    run: playbooks/site.yaml
+    post-run: playbooks/prove.yaml
+    roles:
+      - zuul: openstack/ansible-role-diskimage-builder
+        name: openstack.diskimage-builder
+      - zuul: openstack/ansible-role-logrotate
+        name: openstack.logrotate
+      - zuul: openstack/ansible-role-nodepool
+        name: openstack.nodepool
+      - zuul: openstack/ansible-role-shade
+        name: openstack.shade
+      - zuul: openstack/ansible-role-ssh
+        name: openstack.ssh
+      - zuul: openstack/ansible-role-sudoers
+        name: openstack.sudoers
+      - zuul: openstack/ansible-role-virtualenv
+        name: openstack.virtualenv
+      - zuul: openstack/ansible-role-zookeeper
+        name: openstack.zookeeper
+      - zuul: openstack/ansible-role-zuul
+        name: openstack.zuul
 
 - job:
     name: windmill-centos-7
@@ -23,9 +48,67 @@
 - job:
     name: windmill-fedora-26
     parent: windmill-base
-    nodeset: fedora-26
+    nodeset:
+      nodes:
+        - name:
+            - bastion
+            - nb01
+            - nl01
+            - ze01
+            - zk01
+            - zm01
+            - zs01
+          label: fedora-26
+      groups:
+        - name: nodepool-builder
+          nodes:
+            - nb01
+        - name: nodepool-launcher
+          nodes:
+            - nl01
+        - name: zookeeper
+          nodes:
+            - zk01
+        - name: zuul-executor
+          nodes:
+            - ze01
+        - name: zuul-merger
+          nodes:
+            - zm01
+        - name: zuul-scheduler
+          nodes:
+            - zs01
 
 - job:
     name: windmill-ubuntu-xenial
     parent: windmill-base
-    nodeset: ubuntu-xenial
+    nodeset:
+      nodes:
+        - name:
+            - bastion
+            - nb01
+            - nl01
+            - ze01
+            - zk01
+            - zm01
+            - zs01
+          label: ubuntu-xenial
+      groups:
+        - name: nodepool-builder
+          nodes:
+            - nb01
+        - name: nodepool-launcher
+          nodes:
+            - nl01
+        - name: zookeeper
+          nodes:
+            - zk01
+        - name: zuul-executor
+          nodes:
+            - ze01
+        - name: zuul-merger
+          nodes:
+            - zm01
+        - name: zuul-scheduler
+          nodes:
+            - zs01
