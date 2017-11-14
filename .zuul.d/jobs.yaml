@@ -16,6 +16,21 @@
       tox_envlist: deploy
 
 - job:
+    name: windmill-new
+    run: playbooks/site2.yaml
+    timeout: 3600
+    required-projects:
+      - openstack/windmill
+    nodeset:
+      nodes:
+        - name: zk01
+          labels: ubuntu-xenial
+      groups:
+        - name: zookeeper
+          nodes:
+            - zk01
+
+- job:
     name: windmill-centos-7
     parent: windmill-base
     nodeset: centos-7
