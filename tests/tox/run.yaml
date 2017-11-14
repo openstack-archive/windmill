@@ -1,4 +1,0 @@
-- hosts: all
-  roles:
-    - role: tox
-      zuul_work_dir: ~/src/git.openstack.org/openstack/windmill
