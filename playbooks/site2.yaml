@@ -12,13 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zookeeper.
-  hosts: zookeeper
-
-  roles:
-    - zookeeper
-
-  post_tasks:
-    - name: Run zookeeper validation.
-      include_role:
-        name: test.zookeeper
+- include: bootstrap.yaml
+- include: zookeeper.yaml
+#- include: nodepool-builder.yaml
+#- include: nodepool-launcher.yaml
+#- include: zuul-executor.yaml
+#- include: zuul-merger.yaml
+#- include: zuul-scheduler.yaml
+#- include: prove.yaml

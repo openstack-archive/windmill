@@ -16,6 +16,30 @@
       tox_envlist: deploy
 
 - job:
+    name: windmill-new
+    run: playbooks/site2.yaml
+    timeout: 3600
+    required-projects:
+      - openstack/ansible-role-diskimage-builder
+      - openstack/ansible-role-logrotate
+      - openstack/ansible-role-nodepool
+      - openstack/ansible-role-shade
+      - openstack/ansible-role-ssh
+      - openstack/ansible-role-sudoers
+      - openstack/ansible-role-virtualenv
+      - openstack/ansible-role-zookeeper
+      - openstack/ansible-role-zuul
+      - openstack/windmill
+    nodeset:
+      nodes:
+        - name: zk01
+          label: ubuntu-xenial
+      groups:
+        - name: zookeeper
+          nodes:
+            - zk01
+
+- job:
     name: windmill-centos-7
     parent: windmill-base
     nodeset: centos-7
