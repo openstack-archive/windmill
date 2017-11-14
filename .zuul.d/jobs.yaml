@@ -16,6 +16,61 @@
       tox_envlist: deploy
 
 - job:
+    name: windmill-new
+    run: playbooks/site2.yaml
+#    post-run: playbooks/prove.yaml
+    timeout: 3600
+    roles:
+      - zuul: openstack/ansible-role-diskimage-builder
+        name: openstack.diskimage-builder
+      - zuul: openstack/ansible-role-logrotate
+        name: openstack.logrotate
+      - zuul: openstack/ansible-role-nodepool
+        name: openstack.nodepool
+      - zuul: openstack/ansible-role-shade
+        name: openstack.shade
+      - zuul: openstack/ansible-role-ssh
+        name: openstack.ssh
+      - zuul: openstack/ansible-role-sudoers
+        name: openstack.sudoers
+      - zuul: openstack/ansible-role-virtualenv
+        name: openstack.virtualenv
+      - zuul: openstack/ansible-role-zookeeper
+        name: openstack.zookeeper
+      - zuul: openstack/ansible-role-zuul
+        name: openstack.zuul
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial
+        - name: nb01
+          label: ubuntu-xenial
+        - name: nl01
+          label: ubuntu-xenial
+      groups:
+        - name: bastion
+          nodes:
+            - ubuntu-xenial
+        - name: nodepool-builder
+          nodes:
+            - nb01
+        - name: nodepool-launcher
+          nodes:
+            - nl01
+        - name: zookeeper
+          nodes:
+            - ubuntu-xenial
+        - name: zuul-executor
+          nodes:
+            - ubuntu-xenial
+        - name: zuul-merger
+          nodes:
+            - ubuntu-xenial
+        - name: zuul-scheduler
+          nodes:
+            - ubuntu-xenial
+
+- job:
     name: windmill-centos-7
     parent: windmill-base
     nodeset: centos-7
