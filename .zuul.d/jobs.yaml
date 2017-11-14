@@ -8,11 +8,12 @@
 
 - job:
     name: windmill-base
-    parent: legacy-base
-    run: tests/legacy/windmill-deploy/run.yaml
+    run: tests/tox/run.yaml
     timeout: 3600
     required-projects:
       - openstack/windmill
+    vars:
+      tox_envlist: deploy
 
 - job:
     name: windmill-centos-7
