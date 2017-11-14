@@ -34,6 +34,7 @@
     name: windmill-jobs-xenial
     check:
       jobs:
+        - windmill-new
         - windmill-ubuntu-xenial
     gate:
       jobs:
