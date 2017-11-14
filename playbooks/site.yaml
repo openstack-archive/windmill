@@ -12,7 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bastion.yaml
 - include: bootstrap.yaml
 - include: zookeeper.yaml
 - include: nodepool-builder.yaml
@@ -20,4 +19,3 @@
 - include: zuul-executor.yaml
 - include: zuul-merger.yaml
 - include: zuul-scheduler.yaml
-- include: prove.yaml
