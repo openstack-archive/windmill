@@ -1,0 +1,8 @@
+- hosts: bastion
+  roles:
+    - configure-unbound
+    - validate-host
+    - use-cached-repos
+    - mirror-workspace-git-repos
+    - mirror-info
+    - configure-mirrors
