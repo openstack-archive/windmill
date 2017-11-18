@@ -3,12 +3,10 @@
 #
 [gearman]
 port = 4730
-server = {{ hostvars['zs01'].ansible_host }}
+server = {{ hostvars['gear01'].ansible_host }}
 
 [gearman_server]
-listen_address = {{ hostvars['zs01'].ansible_host }}
-log_config = /etc/zuul/gearman-logging.conf
-start = true
+start = false
 
 [gerrit]
 port = 29418
