@@ -12,11 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: gear.yaml
-- include: zookeeper.yaml
-- include: nodepool-builder.yaml
-- include: nodepool-launcher.yaml
-- include: zuul-executor.yaml
-- include: zuul-merger.yaml
-- include: zuul-scheduler.yaml
+# openstack.gearman
+gear_file_gear_service_config_src: gear/etc/systemd/system/gear.service.d/override.conf.j2
+
+gear_pip_virtualenv_python: python3
+gear_pip_virtualenv: /opt/venv/gear

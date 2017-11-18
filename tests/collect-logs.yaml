@@ -1,3 +1,17 @@
+- hosts: gear01
+  tasks:
+    - name: Collect gear log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/gear01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/gear
+        - /var/log/gear
+
 - hosts: nb01
   tasks:
     - name: Collect nodepool log files
