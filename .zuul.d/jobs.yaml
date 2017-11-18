@@ -17,6 +17,8 @@
     roles:
       - zuul: openstack/ansible-role-diskimage-builder
         name: openstack.diskimage-builder
+      - zuul: openstack/ansible-role-gearman
+        name: openstack.gear
       - zuul: openstack/ansible-role-logrotate
         name: openstack.logrotate
       - zuul: openstack/ansible-role-nodepool
@@ -46,6 +48,7 @@
       nodes:
         - name:
             - bastion
+            - gear01
             - nb01
             - nl01
             - ze01
@@ -54,6 +57,9 @@
             - zs01
           label: fedora-26
       groups:
+        - name: gear
+          nodes:
+            - gear01
         - name: nodepool-builder
           nodes:
             - nb01
@@ -80,6 +86,7 @@
       nodes:
         - name:
             - bastion
+            - gear01
             - nb01
             - nl01
             - ze01
@@ -88,6 +95,9 @@
             - zs01
           label: fedora-27
       groups:
+        - name: gear
+          nodes:
+            - gear01
         - name: nodepool-builder
           nodes:
             - nb01
@@ -114,6 +124,7 @@
       nodes:
         - name:
             - bastion
+            - gear01
             - nb01
             - nl01
             - ze01
@@ -122,6 +133,9 @@
             - zs01
           label: ubuntu-xenial
       groups:
+        - name: gear
+          nodes:
+            - gear01
         - name: nodepool-builder
           nodes:
             - nb01
