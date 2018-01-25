@@ -1,13 +1,4 @@
 - project-template:
-    name: windmill-buildimages-xenial
-    check:
-      jobs:
-        - windmill-buildimages
-    gate:
-      jobs:
-        - windmill-buildimages
-
-- project-template:
     name: windmill-jobs-centos7-nv
     check:
       jobs:

@@ -1,12 +1,4 @@
 - job:
-    name: windmill-buildimages
-    parent: legacy-base
-    run: tests/legacy/windmill-buildimages/run.yaml
-    timeout: 3600
-    required-projects:
-      - openstack/windmill
-
-- job:
     name: windmill-base-minimal
     parent: base-minimal
     pre-run: tests/base-minimal.yaml
