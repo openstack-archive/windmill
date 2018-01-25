@@ -1,10 +1,13 @@
 - job:
     name: windmill-buildimages
-    parent: legacy-base
-    run: tests/legacy/windmill-buildimages/run.yaml
+    parent: openstack-tox-with-sudo
+    description: |
+      Run test for windmill project.
+
+      Uses tox with the ``buildimages`` environment.
+    vars:
+      tox_envlist: buildimages
     timeout: 3600
-    required-projects:
-      - openstack/windmill
 
 - job:
     name: windmill-base-minimal
