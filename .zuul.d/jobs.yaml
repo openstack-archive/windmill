@@ -19,7 +19,9 @@
     name: windmill-base
     parent: windmill-base-minimal
     run: playbooks/site.yaml
-    post-run: playbooks/prove.yaml
+    post-run:
+      - playbooks/prove.yaml
+      - tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-diskimage-builder
         name: openstack.diskimage-builder
