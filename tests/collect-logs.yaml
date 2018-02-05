@@ -1,0 +1,19 @@
+- hosts: bastion
+  tasks:
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ zuul.executor.log_root }}/logs"
+        state: directory
+      delegate_to: localhost
+
+    - name: Collect nodepool log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/nodepool
+        - /var/log/nodepool
