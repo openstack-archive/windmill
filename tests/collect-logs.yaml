@@ -1,0 +1,41 @@
+- hosts: bastion
+  tasks:
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ zuul.executor.log_root }}/{{ item }}"
+        state: directory
+      delegate_to: localhost
+      with_items:
+        - nb01
+        - nl01
+
+    - name: Collect nb01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/nb01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      delegate_to: nb01
+      with_items:
+        - /etc/nodepool/builder-logging.conf
+        - /etc/nodepool/nodepool.yaml
+        - /var/log/nodepool/builder-debug.log
+        - /var/log/nodepool/images
+        - /var/log/nodepool/nodepool-builder.log
+
+    - name: Collect nl01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/nl01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      delegate_to: nl01
+      with_items:
+        - /etc/nodepool/launcher-logging.conf
+        - /etc/nodepool/nodepool.yaml
+        - /var/log/nodepool/launcher-debug.log
+        - /var/log/nodepool/nodepool-launcher.log
