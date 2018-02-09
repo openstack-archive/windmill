@@ -16,4 +16,5 @@
   hosts: bastion
 
   roles:
-    - test.prove
+    - role: test.prove
+      when: zuul_success | bool
