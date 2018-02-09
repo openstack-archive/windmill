@@ -31,6 +31,22 @@
             voting: false
 
 - project-template:
+    name: windmill-jobs-fedora-27
+    check:
+      jobs:
+        - windmill-fedora-27
+    gate:
+      jobs:
+        - windmill-fedora-27
+
+- project-template:
+    name: windmill-jobs-fedora-27-nv
+    check:
+      jobs:
+        - windmill-fedora-27:
+            voting: false
+
+- project-template:
     name: windmill-jobs-xenial
     check:
       jobs:
