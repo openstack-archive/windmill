@@ -1,0 +1,80 @@
+- hosts: nb01
+  tasks:
+    - name: Collect nodepool log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/nb01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/nodepool/builder-logging.conf
+        - /etc/nodepool/nodepool.yaml
+        - /var/log/nodepool/builder-debug.log
+        - /var/log/nodepool/images
+        - /var/log/nodepool/nodepool-builder.log
+
+- hosts: nl01
+  tasks:
+    - name: Collect nl01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/nl01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/nodepool/launcher-logging.conf
+        - /etc/nodepool/nodepool.yaml
+        - /var/log/nodepool/launcher-debug.log
+        - /var/log/nodepool/nodepool-launcher.log
+
+- hosts: ze01
+  tasks:
+    - name: Collect ze01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/ze01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/executor-logging.conf
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/executor-debug.log
+        - /var/log/zuul/executor.log
+
+- hosts: zm01
+  tasks:
+    - name: Collect zm01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/zm01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/merger-logging.conf
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/merger-debug.log
+        - /var/log/zuul/merger.log
+
+- hosts: zs01
+  tasks:
+    - name: Collect zs01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/zs01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/scheduler-logging.conf
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/scheduler-debug.log
+        - /var/log/zuul/scheduler.log
