@@ -2,4 +2,5 @@
     templates:
       - ansible-role-jobs
       - windmill-jobs-fedora-26
+      - windmill-jobs-fedora-27
       - windmill-jobs-xenial
