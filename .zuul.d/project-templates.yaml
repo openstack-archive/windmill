@@ -11,6 +11,7 @@
       jobs:
         - windmill-fedora-26
     gate:
+      queue: windmill
       jobs:
         - windmill-fedora-26
 
@@ -27,6 +28,7 @@
       jobs:
         - windmill-fedora-27
     gate:
+      queue: windmill
       jobs:
         - windmill-fedora-27
 
@@ -43,6 +45,7 @@
       jobs:
         - windmill-ubuntu-xenial
     gate:
+      queue: windmill
       jobs:
         - windmill-ubuntu-xenial
 
