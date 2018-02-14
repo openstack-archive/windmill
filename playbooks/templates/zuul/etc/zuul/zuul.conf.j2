@@ -17,7 +17,7 @@ sshkey = {{ zuul_user_home }}/.ssh/id_rsa
 user = zuul
 
 [scheduler]
-tenant_config = /etc/zuul/config/layout.yaml
+#tenant_config = /etc/zuul/config/layout.yaml
 log_config = /etc/zuul/scheduler-logging.conf
 pidfile = /var/run/zuul-scheduler/zuul-scheduler.pid
 state_dir = {{ zuul_user_home }}
