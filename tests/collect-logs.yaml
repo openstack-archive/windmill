@@ -43,6 +43,7 @@
         verify_host: true
       with_items:
         - /etc/zuul/executor-logging.conf
+        - /etc/zuul/config
         - /etc/zuul/zuul.conf
         - /var/log/zuul/executor-debug.log
         - /var/log/zuul/executor.log
@@ -58,6 +59,7 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
+        - /etc/zuul/config
         - /etc/zuul/merger-logging.conf
         - /etc/zuul/zuul.conf
         - /var/log/zuul/merger-debug.log
@@ -74,6 +76,7 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
+        - /etc/zuul/config
         - /etc/zuul/scheduler-logging.conf
         - /etc/zuul/zuul.conf
         - /var/log/zuul/scheduler-debug.log
