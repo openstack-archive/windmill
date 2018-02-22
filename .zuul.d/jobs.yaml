@@ -86,7 +86,7 @@
             - zk01
             - zm01
             - zs01
-          label: fedora-27
+          label: fedora-28
       groups:
         - name: nodepool-builder
           nodes:
