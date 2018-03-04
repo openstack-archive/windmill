@@ -5,3 +5,16 @@
     # - mirror-workspace-git-repos
     - mirror-info
     - configure-mirrors
+
+  tasks:
+    # NOTE(pabelanger): Because use-cache-repos force the delete of origin, the
+    # git module from ansible will not setup origin correctly. This is like a
+    # bug in ansible, and should be discussed upstream.
+    - name: Add origin to local git repos
+      command: "git remote add origin https://{{ item.canonical_name }}"
+      args:
+        chdir: "{{ ansible_user_dir }}/{{ item.src_dir}}"
+      with_items: "{{ zuul.projects.values() | list }}"
+      # ANSIBLE0006: git remote is not supported by ansible module
+      tags:
+        - skip_ansible_lint
