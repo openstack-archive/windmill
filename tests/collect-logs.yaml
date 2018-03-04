@@ -1,8 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ zuul.executor.log_root }}/logs"
+        state: directory
+
 - hosts: gear01
   tasks:
     - name: Collect gear log files
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/gear01"
+        dest: "{{ zuul.executor.log_root }}/logs/gear01"
         mode: pull
         rsync_opts:
           - "--relative"
@@ -16,7 +23,7 @@
   tasks:
     - name: Collect nodepool log files
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/nb01"
+        dest: "{{ zuul.executor.log_root }}/logs/nb01"
         mode: pull
         rsync_opts:
           - "--relative"
@@ -33,7 +40,7 @@
   tasks:
     - name: Collect nl01 log files
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/nl01"
+        dest: "{{ zuul.executor.log_root }}/logs/nl01"
         mode: pull
         rsync_opts:
           - "--relative"
@@ -49,7 +56,7 @@
   tasks:
     - name: Collect ze01 log files
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/ze01"
+        dest: "{{ zuul.executor.log_root }}/logs/ze01"
         mode: pull
         rsync_opts:
           - "--relative"
@@ -66,7 +73,7 @@
   tasks:
     - name: Collect zm01 log files
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/zm01"
+        dest: "{{ zuul.executor.log_root }}/logs/zm01"
         mode: pull
         rsync_opts:
           - "--relative"
@@ -83,7 +90,7 @@
   tasks:
     - name: Collect zs01 log files
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/zs01"
+        dest: "{{ zuul.executor.log_root }}/logs/zs01"
         mode: pull
         rsync_opts:
           - "--relative"
