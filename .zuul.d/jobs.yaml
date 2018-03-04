@@ -35,6 +35,12 @@
         name: openstack.zookeeper
       - zuul: openstack/ansible-role-zuul
         name: openstack.zuul
+    required-projects:
+      - openstack/diskimage-builder
+      - openstack-infra/gear
+      - openstack-infra/nodepool
+      - openstack-infra/shade
+      - openstack-infra/zuul
 
 - job:
     name: windmill-centos-7
