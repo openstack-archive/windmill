@@ -48,44 +48,6 @@
     nodeset: centos-7
 
 - job:
-    name: windmill-fedora-26
-    parent: windmill-base
-    nodeset:
-      nodes:
-        - name:
-            - bastion
-            - gear01
-            - nb01
-            - nl01
-            - ze01
-            - zk01
-            - zm01
-            - zs01
-          label: fedora-26
-      groups:
-        - name: gear
-          nodes:
-            - gear01
-        - name: nodepool-builder
-          nodes:
-            - nb01
-        - name: nodepool-launcher
-          nodes:
-            - nl01
-        - name: zookeeper
-          nodes:
-            - zk01
-        - name: zuul-executor
-          nodes:
-            - ze01
-        - name: zuul-merger
-          nodes:
-            - zm01
-        - name: zuul-scheduler
-          nodes:
-            - zs01
-
-- job:
     name: windmill-fedora-27
     parent: windmill-base
     nodeset:

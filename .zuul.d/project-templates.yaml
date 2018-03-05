@@ -6,23 +6,6 @@
             voting: false
 
 - project-template:
-    name: windmill-jobs-fedora-26
-    check:
-      jobs:
-        - windmill-fedora-26
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-fedora-26
-
-- project-template:
-    name: windmill-jobs-fedora-26-nv
-    check:
-      jobs:
-        - windmill-fedora-26:
-            voting: false
-
-- project-template:
     name: windmill-jobs-fedora-27
     check:
       jobs:
