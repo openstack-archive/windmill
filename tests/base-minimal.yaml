@@ -3,7 +3,8 @@
     - configure-unbound
     - use-cached-repos
     # - mirror-workspace-git-repos
-    - mirror-info
+    - role: mirror-info
+      set_apt_mirrors_trusted: True
     - configure-mirrors
 
   tasks:

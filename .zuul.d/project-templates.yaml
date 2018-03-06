@@ -40,6 +40,12 @@
             voting: false
 
 - project-template:
+    name: windmill-jobs-bionic
+    check:
+      jobs:
+        - windmill-ubuntu-bionic
+
+- project-template:
     name: windmill-jobs-xenial
     check:
       jobs:
