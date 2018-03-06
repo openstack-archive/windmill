@@ -18,7 +18,6 @@
 # windmill.nodepool
 # NOTE(pabelanger): Because we are installing nodepool and nodepool-builder on a
 # shared host, we need to make sure both tasks use the same configuration.
-nodepool_file_builder_logging_conf_src: nodepool/etc/nodepool/builder-logging.conf.j2
 nodepool_file_nodepool_yaml_src: nodepool/etc/nodepool/nodepool.yaml.j2
 
 # windmill.ssh
