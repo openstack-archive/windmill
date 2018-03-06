@@ -16,7 +16,7 @@
   hosts: gear
 
   roles:
-    - openstack.gear
+    - openstack.gearman
 
   post_tasks:
     - name: Run gear validation.

@@ -18,7 +18,7 @@
       - zuul: openstack/ansible-role-diskimage-builder
         name: openstack.diskimage-builder
       - zuul: openstack/ansible-role-gearman
-        name: openstack.gear
+        name: openstack.gearman
       - zuul: openstack/ansible-role-logrotate
         name: openstack.logrotate
       - zuul: openstack/ansible-role-nodepool
