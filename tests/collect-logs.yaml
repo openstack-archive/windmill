@@ -33,7 +33,7 @@
         - /etc/nodepool/builder-logging.conf
         - /etc/nodepool/nodepool.yaml
         - /var/log/nodepool/builder-debug.log
-        - /var/log/nodepool/images
+        - /var/log/nodepool/builds
         - /var/log/nodepool/nodepool-builder.log
 
 - hosts: nl01
