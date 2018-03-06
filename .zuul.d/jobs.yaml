@@ -124,6 +124,44 @@
             - zs01
 
 - job:
+    name: windmill-ubuntu-bionic
+    parent: windmill-base
+    nodeset:
+      nodes:
+        - name:
+            - bastion
+            - gear01
+            - nb01
+            - nl01
+            - ze01
+            - zk01
+            - zm01
+            - zs01
+          label: ubuntu-bionic
+      groups:
+        - name: gear
+          nodes:
+            - gear01
+        - name: nodepool-builder
+          nodes:
+            - nb01
+        - name: nodepool-launcher
+          nodes:
+            - nl01
+        - name: zookeeper
+          nodes:
+            - zk01
+        - name: zuul-executor
+          nodes:
+            - ze01
+        - name: zuul-merger
+          nodes:
+            - zm01
+        - name: zuul-scheduler
+          nodes:
+            - zs01
+
+- job:
     name: windmill-ubuntu-xenial
     parent: windmill-base
     nodeset:
