@@ -30,3 +30,7 @@ git_dir = {{ zuul_user_home }}/git
 log_config = /etc/zuul/merger-logging.conf
 pidfile = /var/run/zuul-merger/zuul-merger.pid
 zuul_url = {{ hostvars['zs01'].ansible_host }}
+
+[web]
+log_config = /etc/zuul/web-logging.conf
+listen_address = {{ hostvars['zw01'].ansible_host }}

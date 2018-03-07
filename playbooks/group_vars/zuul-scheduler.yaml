@@ -24,6 +24,9 @@ zuul_file_zuul_executor_service_manage: false
 zuul_file_zuul_merger_service_config_manage: false
 zuul_file_zuul_merger_service_manage: false
 
+zuul_file_zuul_web_service_config_manage: false
+zuul_file_zuul_web_service_manage: false
+
 zuul_service_zuul_executor_enabled: no
 zuul_service_zuul_executor_manage: false
 zuul_service_zuul_executor_state: stopped
@@ -31,6 +34,10 @@ zuul_service_zuul_executor_state: stopped
 zuul_service_zuul_merger_enabled: no
 zuul_service_zuul_merger_manage: false
 zuul_service_zuul_merger_state: stopped
+
+zuul_service_zuul_web_enabled: no
+zuul_service_zuul_web_manage: false
+zuul_service_zuul_web_state: stopped
 
 zuul_user_name: zuul-test
 zuul_user_group: zuul-test

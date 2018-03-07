@@ -12,12 +12,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: gear.yaml
-- include: zookeeper.yaml
-- include: nodepool-builder.yaml
-- include: nodepool-launcher.yaml
-- include: zuul-executor.yaml
-- include: zuul-merger.yaml
-- include: zuul-scheduler.yaml
-- include: zuul-web.yaml
+- name: Register /opt/venv/zuul-web
+  stat:
+    path: /opt/venv/zuul-web
+  register: test_zuul_pip_virtualenv_stat
+
+- name: Assert /opt/venv/zuul-web tests
+  assert:
+    that:
+      - test_zuul_pip_virtualenv_stat.stat.exists
+      - test_zuul_pip_virtualenv_stat.stat.isdir
+
+- name: Ensure zuul-web is running
+  become: yes
+  shell: /usr/sbin/service zuul-web status
+  tags: skip_ansible_lint

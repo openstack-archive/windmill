@@ -61,6 +61,7 @@
             - zk01
             - zm01
             - zs01
+            - zw01
           label: fedora-27
       groups:
         - name: gear
@@ -84,6 +85,9 @@
         - name: zuul-scheduler
           nodes:
             - zs01
+        - name: zuul-web
+          nodes:
+            - zw01
 
 - job:
     name: windmill-ubuntu-bionic
@@ -99,6 +103,7 @@
             - zk01
             - zm01
             - zs01
+            - zw01
           label: ubuntu-bionic
       groups:
         - name: gear
@@ -122,6 +127,9 @@
         - name: zuul-scheduler
           nodes:
             - zs01
+        - name: zuul-web
+          nodes:
+            - zw01
 
 - job:
     name: windmill-ubuntu-xenial
@@ -137,6 +145,7 @@
             - zk01
             - zm01
             - zs01
+            - zw01
           label: ubuntu-xenial
       groups:
         - name: gear
@@ -160,3 +169,6 @@
         - name: zuul-scheduler
           nodes:
             - zs01
+        - name: zuul-web
+          nodes:
+            - zw01
