@@ -102,3 +102,20 @@
         - /etc/zuul/zuul.conf
         - /var/log/zuul/scheduler-debug.log
         - /var/log/zuul/scheduler.log
+
+- hosts: zw01
+  tasks:
+    - name: Collect zw01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/zw01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/config
+        - /etc/zuul/web-logging.conf
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/web-debug.log
+        - /var/log/zuul/web.log
