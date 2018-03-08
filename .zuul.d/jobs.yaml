@@ -41,6 +41,8 @@
       - openstack-infra/nodepool
       - openstack-infra/shade
       - openstack-infra/zuul
+    vars:
+      zuul_git_update: false
 
 - job:
     name: windmill-centos-7
