@@ -7,6 +7,26 @@
 
 - hosts: gear01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - gear
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/gear01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
+
     - name: Collect gear log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/gear01"
