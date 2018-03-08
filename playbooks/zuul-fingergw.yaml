@@ -12,13 +12,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: gear.yaml
-- include: zookeeper.yaml
-- include: nodepool-builder.yaml
-- include: nodepool-launcher.yaml
-- include: zuul-executor.yaml
-- include: zuul-fingergw.yaml
-- include: zuul-merger.yaml
-- include: zuul-scheduler.yaml
-- include: zuul-web.yaml
+- name: Install zuul-fingergw.
+  hosts: zuul-fingergw
+
+  tasks:
+    - name: Setup openstack.zuul role.
+      include_role:
+        name: openstack.zuul
+
+  post_tasks:
+    - name: Run zuul-fingergw validation.
+      include_role:
+        name: test.zuul-fingergw
+
+  vars_files:
+    - vars/zuul.yaml

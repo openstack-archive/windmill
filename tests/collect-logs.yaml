@@ -10,6 +10,7 @@
         - "{{ zuul.executor.log_root }}/logs/nb01/var/log"
         - "{{ zuul.executor.log_root }}/logs/nl01/var/log"
         - "{{ zuul.executor.log_root }}/logs/ze01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zf01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zm01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zs01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zw01/var/log"
@@ -157,6 +158,43 @@
         - /etc/zuul/zuul.conf
         - /var/log/zuul/executor-debug.log
         - /var/log/zuul/executor.log
+
+- hosts: zf01
+  tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: "~/logs/{{ inventory_hostname }}/journal"
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/{{ inventory_hostname }}/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/{{ inventory_hostname }}/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-fingergw
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}/var/log"
+        mode: pull
+        src: "~/logs/{{ inventory_hostname }}/journal"
+        verify_host: true
+
+    - name: Collect zf01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname}}"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/fingergw-logging.conf
+        - /etc/zuul/config
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/fingergw-debug.log
+        - /var/log/zuul/fingergw.log
 
 - hosts: zm01
   tasks:
