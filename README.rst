@@ -1,5 +1,5 @@
 ========
-windmill
+Windmill
 ========
 
 An Ansible deployment to validate ansible roles for Continuous Integration
