@@ -58,6 +58,7 @@
             - nb01
             - nl01
             - ze01
+            - zf01
             - zk01
             - zm01
             - zs01
@@ -79,6 +80,9 @@
         - name: zuul-executor
           nodes:
             - ze01
+        - name: zuul-fingergw
+          nodes:
+            - zf01
         - name: zuul-merger
           nodes:
             - zm01
@@ -100,6 +104,7 @@
             - nb01
             - nl01
             - ze01
+            - zf01
             - zk01
             - zm01
             - zs01
@@ -121,6 +126,9 @@
         - name: zuul-executor
           nodes:
             - ze01
+        - name: zuul-fingergw
+          nodes:
+            - zf01
         - name: zuul-merger
           nodes:
             - zm01
@@ -142,6 +150,7 @@
             - nb01
             - nl01
             - ze01
+            - zf01
             - zk01
             - zm01
             - zs01
@@ -163,6 +172,9 @@
         - name: zuul-executor
           nodes:
             - ze01
+        - name: zuul-fingergw
+          nodes:
+            - zf01
         - name: zuul-merger
           nodes:
             - zm01
