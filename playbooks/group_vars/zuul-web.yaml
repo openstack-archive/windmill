@@ -21,6 +21,9 @@ zuul_pip_virtualenv: /opt/venv/zuul-web
 zuul_file_zuul_executor_service_config_manage: false
 zuul_file_zuul_executor_service_manage: false
 
+zuul_file_zuul_fingergw_service_config_manage: false
+zuul_file_zuul_fingergw_service_manage: false
+
 zuul_file_zuul_merger_service_config_manage: false
 zuul_file_zuul_merger_service_manage: false
 
@@ -30,6 +33,10 @@ zuul_file_zuul_scheduler_service_manage: false
 zuul_service_zuul_executor_enabled: no
 zuul_service_zuul_executor_manage: false
 zuul_service_zuul_executor_state: stopped
+
+zuul_service_zuul_fingergw_enabled: no
+zuul_service_zuul_fingergw_manage: false
+zuul_service_zuul_fingergw_state: stopped
 
 zuul_service_zuul_merger_enabled: no
 zuul_service_zuul_merger_manage: false
