@@ -2,11 +2,40 @@
   tasks:
     - name: Ensure logs directory exists
       file:
-        path: "{{ zuul.executor.log_root }}/logs"
+        path: "{{ item }}"
         state: directory
+      with_items:
+        - "{{ zuul.executor.log_root }}/logs"
+        - "{{ zuul.executor.log_root }}/logs/gear01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/nb01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/nl01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/ze01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zm01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zs01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zw01/var/log"
 
 - hosts: gear01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - gear
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/gear01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
+
     - name: Collect gear log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/gear01"
@@ -21,6 +50,25 @@
 
 - hosts: nb01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - nodepool-builder
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/nb01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
     - name: Collect nodepool log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/nb01"
@@ -38,6 +86,25 @@
 
 - hosts: nl01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - nodepool-launcher
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/nl01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
     - name: Collect nl01 log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/nl01"
@@ -54,6 +121,25 @@
 
 - hosts: ze01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-executor
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/ze01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
     - name: Collect ze01 log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/ze01"
@@ -71,6 +157,25 @@
 
 - hosts: zm01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-merger
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/zm01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
     - name: Collect zm01 log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/zm01"
@@ -88,6 +193,25 @@
 
 - hosts: zs01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-scheduler
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/zs01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
     - name: Collect zs01 log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/zs01"
@@ -105,6 +229,25 @@
 
 - hosts: zw01
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-web
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/zw01/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
     - name: Collect zw01 log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/zw01"
