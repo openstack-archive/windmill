@@ -8,6 +8,12 @@
       set_apt_mirrors_trusted: True
 
   tasks:
+    - name: Synchronize src repos to workspace directory.
+      synchronize:
+        dest: .
+        src: "{{ zuul.executor.src_root }}"
+      no_log: true
+
     # NOTE(pabelanger): Because use-cache-repos force the delete of origin, the
     # git module from ansible will not setup origin correctly. This is like a
     # bug in ansible, and should be discussed upstream.
