@@ -69,6 +69,23 @@
         - /var/log/zuul/executor-debug.log
         - /var/log/zuul/executor.log
 
+- hosts: zf01
+  tasks:
+    - name: Collect zf01 log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/zf01"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/fingergw-logging.conf
+        - /etc/zuul/config
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/fingergw-debug.log
+        - /var/log/zuul/fingergw.log
+
 - hosts: zm01
   tasks:
     - name: Collect zm01 log files
