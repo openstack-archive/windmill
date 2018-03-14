@@ -46,10 +46,6 @@ zuul_service_zuul_web_enabled: no
 zuul_service_zuul_web_manage: false
 zuul_service_zuul_web_state: stopped
 
-zuul_user_name: zuul-test
-zuul_user_group: zuul-test
-zuul_user_home: /var/lib/zuul
-
 # openstack.logrotate
 logrotate_configs:
   - name: zuul-scheduler
