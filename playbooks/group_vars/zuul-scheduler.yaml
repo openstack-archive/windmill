@@ -50,6 +50,17 @@ zuul_user_name: zuul-test
 zuul_user_group: zuul-test
 zuul_user_home: /var/lib/zuul
 
+# openstack.logrotate
+logrotate_configs:
+  - name: zuul-scheduler
+    log: /var/log/zuul/scheduler-debug.log /var/log/zuul/scheduler.log
+    options:
+      - compress
+      - missingok
+      - rotate 7
+      - daily
+      - notifempty
+
 # windmill.ssh
 ssh_user_name: "{{ zuul_user_name }}"
 ssh_user_home: "{{ zuul_user_home }}"

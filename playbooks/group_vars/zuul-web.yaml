@@ -49,3 +49,14 @@ zuul_service_zuul_scheduler_state: stopped
 zuul_user_name: zuul-test
 zuul_user_group: zuul-test
 zuul_user_home: /var/lib/zuul
+
+# openstack.logrotate
+logrotate_configs:
+  - name: zuul-web
+    log: /var/log/zuul/web-debug.log /var/log/zuul/web.log
+    options:
+      - compress
+      - missingok
+      - rotate 7
+      - daily
+      - notifempty
