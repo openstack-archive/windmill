@@ -27,3 +27,8 @@
   become: yes
   shell: /usr/sbin/service zuul-fingergw status
   tags: skip_ansible_lint
+
+- name: Ensure logrotate is setup
+  become: yes
+  command: logrotate -d /etc/logrotate.d/zuul-fingergw
+  tags: skip_ansible_lint
