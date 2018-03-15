@@ -40,6 +40,7 @@
       - openstack-infra/gear
       - openstack-infra/nodepool
       - openstack-infra/shade
+      - openstack-infra/zuul
     vars:
       # NOTE(pabelanger): Because we want to test Depends-On patches in the
       # gate, we don't want our roles to update git after we pushed the repos
