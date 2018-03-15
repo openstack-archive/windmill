@@ -17,3 +17,5 @@ gear_file_gear_service_config_src: gear/etc/systemd/system/gear.service.d/overri
 
 gear_pip_virtualenv_python: python3
 gear_pip_virtualenv: /opt/venv/gear
+
+physical_host: localhost

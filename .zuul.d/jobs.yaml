@@ -56,6 +56,7 @@
       zuul_user_group: zuul-test
       zuul_user_home: /var/lib/zuul
 
+
 - job:
     name: windmill-centos-7
     parent: windmill-base
