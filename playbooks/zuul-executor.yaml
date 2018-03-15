@@ -20,6 +20,10 @@
       include_role:
         name: openstack.zuul
 
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
+
   post_tasks:
     - name: Run zuul-executor validation.
       include_role:
