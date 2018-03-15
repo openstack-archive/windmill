@@ -55,6 +55,11 @@
       zuul_user_name: zuul-test
       zuul_user_group: zuul-test
       zuul_user_home: /var/lib/zuul
+    host-vars:
+      bastion:
+        physical_host: "{{ ansible_host }}"
+      gear01:
+        physical_host: "{{ ansible_host }}"
 
 - job:
     name: windmill-centos-7
