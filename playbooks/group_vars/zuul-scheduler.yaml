@@ -58,7 +58,7 @@ logrotate_configs:
       - notifempty
 
 # windmill.ssh
-ssh_user_name: "{{ zuul_user_name }}"
-ssh_user_home: "{{ zuul_user_home }}"
+ssh_user_name: "{{ zuul_user_name|default('zuul') }}"
+ssh_user_home: "{{ zuul_user_home|default('/var/lib/zuul') }}"
 ssh_key_public_content: |
   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDizFxLzM8g9zce+K/pwZWZSa+wyoxFfyVTcQEzbb7IM0p8v/y4CPQHzL1DNYp4U+dybC+3EjdnSKAXIP7kLRyhBKDtIyBKhZ0U92WRy09ABnmNp+kWaEAynpSlipIAP0iVpgjNsRpHvLH5Yfm+EEsLIqZBLKEL3uh7B+FkyDWoOh4pBmcdyyRSwhLgGrwoxEawC0SOI1bNHYQ82ElazHvgf7S37RAMtb+RuL0+FeJsRPDlryvQbsmbRkRfBpK7ziULrYB+PgRiYNthdfyqhHT4J0Tt7mNemfwehn7ljaWod/PgcdZHAFDwX1rpVEOLvKkf2oUw2D+yll6fAzSkzGGveXRu63LQwyEaiFNteANcSrImbTncBKMINgdbDxdUA2/41y0sOwaCn7Q+BVlUmQa7zZVTctKlRG0OtLKZ7Ahi3z0Qu9fygfVmCRVFPl/v4VEadPRNXi55JZfemcj1HJEni0m0M8Ke50kQpPCDe3Zwzzz25thxCtvBAx3MY11EF7B1FYYDZjTyHt4E6XLYvQKyflm8R0la6dphlY4quq9fTS2MoteIUX9gD0hzIrX5CIOabncFYGFNSpIwMwbAy03IeXcr2nRW/ZsowDtts5YtMCKHHRcgt7x4XHZeYJ6/pEucSQ7HzflO5gGFiaUYps4K/LX0D9IaCIFUg2BctqhBjw== gerrit@example.org
