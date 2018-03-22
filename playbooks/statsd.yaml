@@ -1,4 +1,4 @@
-# Copyright 2016 Red Hat, Inc.
+# Copyright 2017 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,14 +12,19 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: statsd.yaml
-- include: gear.yaml
-- include: zookeeper.yaml
-- include: nodepool-builder.yaml
-- include: nodepool-launcher.yaml
-- include: zuul-executor.yaml
-- include: zuul-fingergw.yaml
-- include: zuul-merger.yaml
-- include: zuul-scheduler.yaml
-- include: zuul-web.yaml
+- name: Install statsd.
+  hosts: statsd
+
+  tasks:
+    - name: Setup openstack.statsd role.
+      include_role:
+        name: openstack.statsd
+
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
+
+  post_tasks:
+    - name: Run statsd validation.
+      include_role:
+        name: test.statsd
