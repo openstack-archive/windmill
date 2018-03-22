@@ -1,4 +1,4 @@
-# Copyright 2016 Red Hat, Inc.
+# Copyright 2017 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,14 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: statsd.yaml
-- include: gear.yaml
-- include: zookeeper.yaml
-- include: nodepool-builder.yaml
-- include: nodepool-launcher.yaml
-- include: zuul-executor.yaml
-- include: zuul-fingergw.yaml
-- include: zuul-merger.yaml
-- include: zuul-scheduler.yaml
-- include: zuul-web.yaml
+- name: Ensure statsd is running
+  become: yes
+  shell: /usr/sbin/service statsd status
+  tags: skip_ansible_lint
+
+- name: Ensure logrotate is setup
+  become: yes
+  command: logrotate -d /etc/logrotate.d/statsd
+  tags: skip_ansible_lint
