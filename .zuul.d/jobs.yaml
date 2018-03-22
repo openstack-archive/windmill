@@ -25,6 +25,8 @@
         name: openstack.nodepool
       - zuul: openstack/ansible-role-shade
         name: openstack.shade
+      - zuul: openstack/ansible-role-statsd
+        name: openstack.statsd
       - zuul: openstack/ansible-role-ssh
         name: openstack.ssh
       - zuul: openstack/ansible-role-sudoers
@@ -71,6 +73,7 @@
             - gear01
             - nb01
             - nl01
+            - statsd01
             - ze01
             - zf01
             - zk01
@@ -88,6 +91,9 @@
         - name: nodepool-launcher
           nodes:
             - nl01
+        - name: statsd
+          nodes:
+            - statsd01
         - name: zookeeper
           nodes:
             - zk01
@@ -117,6 +123,7 @@
             - gear01
             - nb01
             - nl01
+            - statsd01
             - ze01
             - zf01
             - zk01
@@ -134,6 +141,9 @@
         - name: nodepool-launcher
           nodes:
             - nl01
+        - name: statsd
+          nodes:
+            - statsd01
         - name: zookeeper
           nodes:
             - zk01
@@ -163,6 +173,7 @@
             - gear01
             - nb01
             - nl01
+            - statsd01
             - ze01
             - zf01
             - zk01
@@ -180,6 +191,9 @@
         - name: nodepool-launcher
           nodes:
             - nl01
+        - name: statsd
+          nodes:
+            - statsd01
         - name: zookeeper
           nodes:
             - zk01
