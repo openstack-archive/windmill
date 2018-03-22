@@ -9,11 +9,46 @@
         - "{{ zuul.executor.log_root }}/logs/gear01/var/log"
         - "{{ zuul.executor.log_root }}/logs/nb01/var/log"
         - "{{ zuul.executor.log_root }}/logs/nl01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/statsd01/var/log"
         - "{{ zuul.executor.log_root }}/logs/ze01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zf01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zm01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zs01/var/log"
         - "{{ zuul.executor.log_root }}/logs/zw01/var/log"
+
+- hosts: statsd01
+  tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: "~/logs/{{ inventory_hostname }}/journal"
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/{{ inventory_hostname }}/journal/{{ item }}.service.log"
+      args:
+        creates: "/home/{{ ansible_user }}/logs/{{ inventory_hostname }}/journal/{{ item }}.service.log"
+      with_items:
+        - statsd
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}/var/log"
+        mode: pull
+        src: "~/logs/{{ inventory_hostname }}/journal"
+        verify_host: true
+
+    - name: Collect statsd log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
+        mode: pull
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/statsd
+        - /var/log/statsd
 
 - hosts: gear01
   tasks:
