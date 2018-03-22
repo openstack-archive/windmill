@@ -1,0 +1,10 @@
+{
+{% if {{ ansible_host | ipv6('address') }} %}
+  address_ipv6: true,
+{% else %}
+  address_ipv6: false,
+{% endif %}
+  backends: [ "./backends/console" ],
+  host: "{{ ansible_host }}",
+  port: 8125
+}
