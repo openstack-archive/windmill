@@ -1,0 +1,6 @@
+{
+  address_ipv6: {{ ansible_host | ipv6('address') }},
+  backends: [ "./backends/console" ],
+  host: "{{ ansible_host }}",
+  port: 8125
+}
