@@ -4,7 +4,7 @@
 images-dir: /opt/nodepool/images
 
 zookeeper-servers:
-  - host: {{ hostvars['zk01'].ansible_host | ipwrap }}
+  - host: '{{ hostvars['zk01'].ansible_host | ipwrap }}'
     port: 2181
 
 diskimages:
