@@ -4,15 +4,8 @@
 images-dir: /opt/nodepool/images
 
 zookeeper-servers:
-{% if 'zookeeper' in groups %}
-{% for host in groups['zookeeper'] %}
-  - host: {{ hostvars[host].ansible_host }}
+  - host: {{ hostvars['zk01'].ansible_host | ipwrap }}
     port: 2181
-{% endfor %}
-{% else %}
-  - host: 127.0.0.1
-    port: 2181
-{% endif %}
 
 diskimages:
   - name: ubuntu-xenial

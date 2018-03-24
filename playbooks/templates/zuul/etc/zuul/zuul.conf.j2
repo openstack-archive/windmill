@@ -39,3 +39,6 @@ zuul_url = {{ hostvars['zs01'].ansible_host }}
 [web]
 log_config = /etc/zuul/web-logging.conf
 listen_address = {{ hostvars['zw01'].ansible_host }}
+
+[zookeeper]
+hosts = {{ hostvars['zk01'].ansible_host | ipwrap }}
