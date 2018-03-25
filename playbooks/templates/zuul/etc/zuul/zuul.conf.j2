@@ -21,7 +21,7 @@ pidfile = /var/run/zuul-scheduler/zuul-scheduler.pid
 state_dir = {{ zuul_user_home }}
 
 [statsd]
-server = {{ hostvars['statsd01'].ansible_host }}
+server = ::1
 
 [executor]
 finger_port = 17979
