@@ -43,6 +43,7 @@
         mode: pull
         rsync_opts:
           - "--relative"
+          - "--exclude=/etc/gear/ssl"
         src: "{{ item }}"
         verify_host: true
       with_items:
