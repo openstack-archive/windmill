@@ -57,6 +57,14 @@
       zuul_user_home: /var/lib/zuul
 
 - job:
+    name: windmill-tox-deploy
+    parent: windmill-base
+    run: tests/playbooks/run-tox.yaml
+    nodeset: ubuntu-xenial
+    vars:
+      tox_envlist: deploy
+
+- job:
     name: windmill-centos-7
     parent: windmill-base
     nodeset: centos-7
