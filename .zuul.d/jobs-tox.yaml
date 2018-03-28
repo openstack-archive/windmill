@@ -1,0 +1,19 @@
+- job:
+    name: windmill-tox-deploy
+    parent: tox
+    run: tests/playbooks/tox/run.yaml
+    nodeset: ubuntu-xenial
+    required-projects:
+      - openstack/ansible-role-diskimage-builder
+      - openstack/ansible-role-gearman
+      - openstack/ansible-role-logrotate
+      - openstack/ansible-role-nodepool
+      - openstack/ansible-role-shade
+      - openstack/ansible-role-ssh
+      - openstack/ansible-role-sudoers
+      - openstack/ansible-role-virtualenv
+      - openstack/ansible-role-zookeeper
+      - openstack/ansible-role-zuul
+    vars:
+      tox_envlist: deploy
+      tox_extra_args: '-vv -- --extra-vars "@tests/extra-vars.yaml"'
