@@ -22,3 +22,6 @@
     - name: Run gear validation.
       include_role:
         name: test.gear
+
+  vars_files:
+    - vars/gear.yaml
