@@ -1,0 +1,8 @@
+- job:
+    name: windmill-tox-deploy
+    parent: tox
+    pre-run: tests/playbooks/tox/pre.yaml
+    run: tests/playbooks/tox/run.yaml
+    nodeset: ubuntu-xenial
+    vars:
+      tox_envlist: deploy
