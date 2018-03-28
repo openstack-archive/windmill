@@ -1,0 +1,29 @@
+- src: git+https://git.openstack.org/openstack/ansible-role-diskimage-builder
+  name: openstack.diskimage-builder
+
+- src: git+https://git.openstack.org/openstack/ansible-role-gearman
+  name: openstack.gearman
+
+- src: git+https://git.openstack.org/openstack/ansible-role-logrotate
+  name: openstack.logrotate
+
+- src: git+https://git.openstack.org/openstack/ansible-role-nodepool
+  name: openstack.nodepool
+
+- src: git+https://git.openstack.org/openstack/ansible-role-shade
+  name: openstack.shade
+
+- src: git+https://git.openstack.org/openstack/ansible-role-ssh
+  name: openstack.ssh
+
+- src: git+https://git.openstack.org/openstack/ansible-role-sudoers
+  name: openstack.sudoers
+
+- src: git+https://git.openstack.org/openstack/ansible-role-virtualenv
+  name: openstack.virtualenv
+
+- src: git+https://git.openstack.org/openstack/ansible-role-zookeeper
+  name: openstack.zookeeper
+
+- src: git+https://git.openstack.org/openstack/ansible-role-zuul
+  name: openstack.zuul

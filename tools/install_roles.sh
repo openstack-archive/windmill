@@ -13,27 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-CLONEMAP=`mktemp`
-function cleanup {
-    rm -f $CLONEMAP
-}
-trap cleanup EXIT
-cat > $CLONEMAP << EOF
-clonemap:
-  - name: 'openstack/ansible-role-(.*)'
-    dest: 'playbooks/roles/openstack.\1'
-EOF
+TOOLSDIR=$(dirname $0)
 
-zuul-cloner -m $CLONEMAP \
-  --cache-dir /opt/git \
-  git://git.openstack.org \
-  openstack/ansible-role-diskimage-builder \
-  openstack/ansible-role-gearman \
-  openstack/ansible-role-logrotate \
-  openstack/ansible-role-nodepool \
-  openstack/ansible-role-shade \
-  openstack/ansible-role-ssh \
-  openstack/ansible-role-sudoers \
-  openstack/ansible-role-virtualenv \
-  openstack/ansible-role-zookeeper \
-  openstack/ansible-role-zuul
+ansible-galaxy install -v -r $TOOLSDIR/requirements.yaml -p playbooks/roles
