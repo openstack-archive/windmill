@@ -41,6 +41,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
