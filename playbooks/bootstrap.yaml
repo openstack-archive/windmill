@@ -23,16 +23,6 @@
     - openstack.virtualenv
 
   pre_tasks:
-    - name: Configure APT data sources.
-      become: yes
-      template:
-        dest: /etc/apt/sources.list
-        group: root
-        mode: 0644
-        owner: root
-        src: bootstrap/etc/apt/sources.list.j2
-      when: ansible_os_family == 'Debian'
-
     - name: Update apt cache.
       become: yes
       apt:
