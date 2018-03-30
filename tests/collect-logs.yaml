@@ -41,6 +41,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -75,6 +76,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -82,8 +84,8 @@
       with_items:
         - /etc/nodepool/builder-logging.conf
         - /etc/nodepool/nodepool.yaml
+        - /var/log/nodepool/builds/*.log
         - /var/log/nodepool/builder-debug.log
-        - /var/log/nodepool/builds
         - /var/log/nodepool/nodepool-builder.log
 
 - hosts: nl01
@@ -112,6 +114,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -148,6 +151,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -185,6 +189,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname}}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -222,6 +227,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -259,6 +265,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
@@ -296,6 +303,7 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs/{{ inventory_hostname }}"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
