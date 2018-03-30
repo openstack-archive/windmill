@@ -1,3 +1,21 @@
+- hosts: all
+  tasks:
+    - name: Gather hostnames
+      run_once: true
+      set_fact:
+          _nodes: "{{ _nodes|default({}) | combine({item: hostvars[item]['ansible_hostname']}) }}"
+      with_inventory_hostnames:
+        - all,!localhost
+
+    - name: Print hostname
+      run_once: true
+      debug:
+        msg: |
+          Nodepool information:
+          {% for k, v in _nodes.items() %}
+            {{ v }} ({{ k }})
+          {% endfor %}
+
 - hosts: bastion
   roles:
     - configure-unbound
