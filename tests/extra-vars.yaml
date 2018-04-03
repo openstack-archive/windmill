@@ -1,0 +1,5 @@
+# NOTE(pabelanger): In the gate, we want to create a zuul-test user /
+# group as zuul already exists on our images.
+zuul_user_name: zuul-test
+zuul_user_group: zuul-test
+zuul_user_home: /var/lib/zuul
