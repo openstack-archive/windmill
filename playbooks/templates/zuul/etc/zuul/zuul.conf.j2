@@ -23,6 +23,11 @@ log_config = /etc/zuul/scheduler-logging.conf
 pidfile = /var/run/zuul-scheduler/zuul-scheduler.pid
 state_dir = {{ zuul_user_home }}
 
+{% if ansible_host | ipv4 %}
+[statsd]
+server = {{ hostvars['statsd01'].ansible_host }}
+{% endif %}
+
 [executor]
 finger_port = 17979
 log_config = /etc/zuul/executor-logging.conf
