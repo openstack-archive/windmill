@@ -20,6 +20,14 @@
       include_role:
         name: openstack.zuul
 
+    # TODO(pabelanger): I'm thinking we should likely create
+    # ansible-role-bubblewrap to allow user to better manage this dependency.
+    - name: Ensure bubblewrap is installed.
+      become: yes
+      package:
+        name: bubblewrap
+        state: installed
+
     - name: Setup openstack.logrotate role.
       include_role:
         name: openstack.logrotate
