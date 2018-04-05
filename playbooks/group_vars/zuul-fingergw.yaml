@@ -13,8 +13,6 @@
 # under the License.
 ---
 # windmill.zuul
-zuul_file_zuul_fingergw_service_config_src: zuul/etc/systemd/system/zuul-fingergw.service.d/override.conf.j2
-
 zuul_pip_virtualenv_python: python3
 zuul_pip_virtualenv: /opt/venv/zuul-fingergw
 

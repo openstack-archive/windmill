@@ -5,4 +5,3 @@
 {% if ansible_host | ipv4 %}
 Environment="STATSD_HOST={{ hostvars['statsd01'].ansible_host }}"
 {% endif %}
-Environment="PREFIX={{ nodepool_pip_virtualenv }}"
