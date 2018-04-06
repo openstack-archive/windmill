@@ -28,6 +28,3 @@
     - name: Run zuul-fingergw validation.
       include_role:
         name: test.zuul-fingergw
-
-  vars_files:
-    - vars/zuul.yaml

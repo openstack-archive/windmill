@@ -12,10 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
-# current don't because this deployment is used as an example.
-
 # windmill.zuul
+zuul_pip_virtualenv_python: python3
+zuul_pip_virtualenv: /opt/venv/zuul
+
 zuul_file_zuul_conf_src: zuul/etc/zuul/zuul.conf.j2
 
 # windmill.ssh
