@@ -17,4 +17,3 @@
 
   roles:
     - role: test.prove
-      when: zuul_success | bool
