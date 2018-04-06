@@ -10,6 +10,10 @@ nb01 ansible_host=127.0.1.1
 [nodepool-launcher]
 nl01 ansible_host=127.0.7.1
 
+[nodepool:children]
+nodepool-builder
+nodepool-launcher
+
 [statsd]
 statsd01 ansible_host=127.0.9.1
 
@@ -30,3 +34,10 @@ zs01 ansible_host=127.0.5.1
 
 [zuul-web]
 zw01 ansible_host=127.0.9.1
+
+[zuul:children]
+zuul-executor
+zuul-fingergw
+zuul-merger
+zuul-scheduler
+zuul-web
