@@ -1,11 +1,11 @@
 [bastion]
-bastion ansible_connection=local
+bastion01 ansible_host=127.0.0.1
 
 [gear]
 gear01 ansible_host=127.0.2.1
 
 [nodepool-builder]
-nb01 ansible_host=127.0.1.1
+nb01 ansible_host=127.0.10.1
 
 [nodepool-launcher]
 nl01 ansible_host=127.0.7.1
