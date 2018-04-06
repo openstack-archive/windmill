@@ -12,12 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Register /opt/venv/zuul-executor
+- name: Register /opt/venv/zuul
   stat:
-    path: /opt/venv/zuul-executor
+    path: /opt/venv/zuul
   register: test_zuul_pip_virtualenv_stat
 
-- name: Assert /opt/venv/zuul-executor tests
+- name: Assert /opt/venv/zuul tests
   assert:
     that:
       - test_zuul_pip_virtualenv_stat.stat.exists

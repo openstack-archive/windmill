@@ -14,7 +14,7 @@
 ---
 # windmill.zuul
 zuul_pip_virtualenv_python: python3
-zuul_pip_virtualenv: /opt/venv/zuul-fingergw
+zuul_pip_virtualenv: /opt/venv/zuul
 
 zuul_file_zuul_executor_service_config_manage: false
 zuul_file_zuul_executor_service_manage: false
