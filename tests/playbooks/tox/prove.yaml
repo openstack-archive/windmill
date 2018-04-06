@@ -1,0 +1,6 @@
+- hosts: all
+  vars:
+    tox_envlist: venv
+    tox_extra_args: '-vv -- ansible-playbook -i inventory/single-node playbooks/prove.yaml'
+  roles:
+    - tox
