@@ -26,4 +26,4 @@
 - name: Ensure gear is running
   become: yes
   shell: /usr/sbin/service gear status
-  tags: skip_ansible_lint
+  changed_when: false

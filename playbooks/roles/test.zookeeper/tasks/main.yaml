@@ -15,4 +15,4 @@
 - name: Ensure zookeeper is running
   become: yes
   shell: /usr/sbin/service zookeeper status
-  tags: skip_ansible_lint
+  changed_when: false

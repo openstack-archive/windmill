@@ -15,4 +15,4 @@
 - name: Ensure statsd is running
   become: yes
   shell: /usr/sbin/service statsd status
-  tags: skip_ansible_lint
+  changed_when: false

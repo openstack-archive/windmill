@@ -31,4 +31,4 @@
 - name: Ensure nodepool-launcher is running
   become: yes
   shell: /usr/sbin/service nodepool-launcher status
-  tags: skip_ansible_lint
+  changed_when: false

@@ -45,4 +45,4 @@
 - name: Ensure nodepool-builder is running
   become: yes
   shell: /usr/sbin/service nodepool-builder status
-  tags: skip_ansible_lint
+  changed_when: false
