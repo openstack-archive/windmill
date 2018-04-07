@@ -32,8 +32,3 @@
   become: yes
   shell: /usr/sbin/service nodepool-launcher status
   tags: skip_ansible_lint
-
-- name: Ensure logrotate is setup
-  become: yes
-  command: logrotate -d /etc/logrotate.d/nodepool-launcher
-  tags: skip_ansible_lint
