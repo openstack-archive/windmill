@@ -16,7 +16,7 @@
 # current don't because this deployment is used as an example.
 
 # windmill.zuul
-zuul_file_zuul_conf_src: zuul/etc/zuul/zuul.conf.j2
+zuul_file_zuul_conf_src: "{{ windmill_config_git_dest }}/zuul/zuul.conf.j2"
 
 # windmill.ssh
 ssh_key_private_content: |
