@@ -14,3 +14,6 @@
 ---
 # windmill.virtualenv
 virtualenv_install_method: pip
+
+# windmill-config
+windmill_config_git_dest: ../..
