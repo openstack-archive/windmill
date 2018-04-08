@@ -15,10 +15,6 @@
 - name: Install nodepool-launcher.
   hosts: nodepool-launcher
 
-  roles:
-    - openstack.shade
-    - openstack.nodepool
-
   pre_tasks:
     # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
     # nodepool, create the required home direcotry first (pre task). So we can
@@ -49,7 +45,15 @@
         src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
 
   tasks:
-    - name: Setup openstack.logrotate role.
+    - name: Setup openstack.shade role
+      include_role:
+        name: openstack.shade
+
+    - name: Setup openstack.nodepool role
+      include_role:
+        name: openstack.nodepool
+
+    - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
 
