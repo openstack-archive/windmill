@@ -35,14 +35,6 @@
         path: /var/lib/nodepool/.config/openstack
         state: directory
 
-    - name: Create TMPDIR directory for nodepool-builder
-      become: yes
-      file:
-        group: nodepool
-        owner: nodepool
-        path: /opt/nodepool/tmp
-        state: directory
-
     - name: Copy clouds.yaml into place
       become: yes
       copy:
