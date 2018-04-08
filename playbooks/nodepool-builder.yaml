@@ -12,20 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install nodepool-builder.
+- name: Install nodepool-builder
   hosts: nodepool-builder
-
-  roles:
-    - openstack.sudoers
-    - openstack.diskimage-builder
-    - openstack.shade
-    - openstack.nodepool
 
   pre_tasks:
     # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
     # nodepool, create the required home direcotry first (pre task). So we can
     # add the clouds.yaml file.
-    - name: Create nodepool user directories.
+    - name: Create nodepool user directories
       include_role:
         name: openstack.nodepool
       vars:
@@ -33,15 +27,15 @@
           - pre
 
     # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
-    - name: Create os-client-config directories.
+    - name: Create os-client-config directories
       become: yes
       file:
         group: nodepool
         owner: nodepool
-        path: "{{ nodepool_user_home }}/.config/openstack"
+        path: /var/lib/nodepool/.config/openstack
         state: directory
 
-    - name: Create TMPDIR directory for nodepool-builder.
+    - name: Create TMPDIR directory for nodepool-builder
       become: yes
       file:
         group: nodepool
@@ -49,16 +43,16 @@
         path: /opt/nodepool/tmp
         state: directory
 
-    - name: Copy clouds.yaml into place.
+    - name: Copy clouds.yaml into place
       become: yes
       copy:
-        dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
+        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
         group: nodepool
         mode: 0400
         owner: nodepool
         src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
 
-    - name: Template disk-image-create wrapper script.
+    - name: Template disk-image-create wrapper script
       become: yes
       template:
         dest: /usr/local/bin/disk-image-create
@@ -68,12 +62,28 @@
         src: nodepool-builder/usr/local/bin/disk-image-create.j2
 
   tasks:
-    - name: Setup openstack.logrotate role.
+    - name: Setup openstack.sudoers role
+      include_role:
+        name: openstack.sudoers
+
+    - name: Setup openstack.diskimage-builder role
+      include_role:
+        name: openstack.diskimage-builder
+
+    - name: Setup openstack.shade role
+      include_role:
+        name: openstack.shade
+
+    - name: Setup openstack.nodepool role
+      include_role:
+        name: openstack.nodepool
+
+    - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
 
   post_tasks:
-    - name: Run nodepool-server validation.
+    - name: Run nodepool-server validation
       include_role:
         name: test.nodepool-builder
 

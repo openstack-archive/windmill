@@ -12,20 +12,25 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Bootstrap node.
+- name: Bootstrap nodes
   hosts: all
   # NOTE(pabelanger): Because we are currently using a single host, we need this
   # operation to be serial. When we switch to multi-host, this can be removed.
   serial: 1
 
-  roles:
-    - openstack.sudoers
-    - openstack.virtualenv
-
   pre_tasks:
-    - name: Update apt cache.
+    - name: Update apt cache
       become: yes
       apt:
         update_cache: yes
         upgrade: dist
       when: ansible_os_family == 'Debian'
+
+  tasks:
+    - name: Setup openstack.sudoers role
+      include_role:
+        name: openstack.sudoers
+
+    - name: Setup openstack.virtualenv role
+      include_role:
+        name: openstack.virtualenv

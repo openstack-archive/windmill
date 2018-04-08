@@ -15,10 +15,6 @@
 - name: Install nodepool-launcher.
   hosts: nodepool-launcher
 
-  roles:
-    - openstack.shade
-    - openstack.nodepool
-
   pre_tasks:
     # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
     # nodepool, create the required home direcotry first (pre task). So we can
@@ -36,20 +32,28 @@
       file:
         group: nodepool
         owner: nodepool
-        path: "{{ nodepool_user_home }}/.config/openstack"
+        path: /var/lib/nodepool/.config/openstack
         state: directory
 
     - name: Copy clouds.yaml into place.
       become: yes
       copy:
-        dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
+        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
         group: nodepool
         mode: 0400
         owner: nodepool
         src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
 
   tasks:
-    - name: Setup openstack.logrotate role.
+    - name: Setup openstack.shade role
+      include_role:
+        name: openstack.shade
+
+    - name: Setup openstack.nodepool role
+      include_role:
+        name: openstack.nodepool
+
+    - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
 
