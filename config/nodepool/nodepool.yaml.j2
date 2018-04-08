@@ -4,22 +4,12 @@
 images-dir: /opt/nodepool/images
 
 zookeeper-servers:
-  - host: '{{ hostvars['zk01'].ansible_host | ipwrap }}'
+{% if 'zookeeper' in groups %}
+{% for host in groups['zookeeper'] %}
+  - host: '{{ hostvars[host].ansible_host | ipwrap }}'
     port: 2181
-
-diskimages:
-  - name: ubuntu-xenial
-    elements:
-      - ubuntu-minimal
-      - growroot
-      - openssh-server
-      - simple-init
-      - vm
-    release: xenial
-    env-vars:
-      TMPDIR: /opt/nodepool/tmp
-      DIB_CHECKSUM: '1'
-      DIB_DEBIAN_COMPONENTS: 'main,universe'
+{% endfor %}
+{% endif %}
 
 labels:
   - name: ubuntu-xenial
@@ -39,3 +29,17 @@ providers:
             diskimage: ubuntu-xenial
             min-ram: 8192
             console-log: true
+
+diskimages:
+  - name: ubuntu-xenial
+    elements:
+      - ubuntu-minimal
+      - growroot
+      - openssh-server
+      - simple-init
+      - vm
+    release: xenial
+    env-vars:
+      TMPDIR: /opt/nodepool/tmp
+      DIB_CHECKSUM: '1'
+      DIB_DEBIAN_COMPONENTS: 'main,universe'
