@@ -46,7 +46,7 @@
         group: nodepool
         mode: 0400
         owner: nodepool
-        src: nodepool/home/nodepool/.config/openstack/clouds.yaml
+        src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
 
   tasks:
     - name: Setup openstack.logrotate role.
