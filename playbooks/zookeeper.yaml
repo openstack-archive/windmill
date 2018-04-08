@@ -12,13 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zookeeper.
+- name: Install zookeeper
   hosts: zookeeper
 
-  roles:
-    - openstack.zookeeper
+  tasks:
+    - name: Setup openstack.zookeeper role
+      include_role:
+        name: openstack.zookeeper
 
   post_tasks:
-    - name: Run zookeeper validation.
+    - name: Run zookeeper validation
       include_role:
         name: test.zookeeper

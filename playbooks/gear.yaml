@@ -15,8 +15,10 @@
 - name: Install gear.
   hosts: gear
 
-  roles:
-    - openstack.gearman
+  tasks:
+    - name: Setup openstack.gearman role
+      include_role:
+        name: openstack.gearman
 
   post_tasks:
     - name: Run gear validation.
