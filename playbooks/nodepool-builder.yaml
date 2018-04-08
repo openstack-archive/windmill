@@ -70,6 +70,15 @@
       include_role:
         name: openstack.nodepool
 
+    - name: Install nodepool elements directory
+      become: yes
+      copy:
+        dest: /etc/nodepool/
+        group: nodepool
+        mode: preserve
+        owner: nodepool
+        src: "{{ windmill_config_git_dest }}/nodepool/elements"
+
     - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
