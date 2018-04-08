@@ -41,6 +41,7 @@
   become: yes
   become_user: nodepool
   command: /opt/venv/nodepool/bin/nodepool -c /etc/nodepool/nodepool.yaml config-validate
+  changed_when: false
 
 - name: Ensure nodepool-builder is running
   become: yes
