@@ -56,3 +56,62 @@ logrotate_configs:
       - rotate 7
       - daily
       - notifempty
+
+# windmill.ssh
+ssh_user_name: "{{ zuul_user_name|default('zuul') }}"
+ssh_user_home: "{{ zuul_user_home|default('/var/lib/zuul') }}"
+
+ssh_key_private_content: |
+  -----BEGIN RSA PRIVATE KEY-----
+  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
+  -----END RSA PRIVATE KEY-----
+
+ssh_key_private_dest: "{{ ssh_user_home }}/.ssh/nodepool_id_rsa"
