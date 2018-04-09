@@ -57,6 +57,8 @@
       zuul_user_name: zuul-test
       zuul_user_group: zuul-test
       zuul_user_home: /var/lib/zuul
+      # Use full path to work around rsync issues for zuul-executors.
+      windmill_config_git_dest: "{{ zuul.executor.work_root }}/{{ zuul.project.src_dir }}/config"
 
 - job:
     name: windmill-centos-7
