@@ -17,4 +17,4 @@ virtualenv_install_method: pip
 
 # windmill-config
 # TODO(pabelanger): Create windmill-config project on git.o.o.
-windmill_config_git_dest: ../config
+windmill_config_git_dest: "{{ lookup('pipe', 'pwd') | dirname }}/config"
