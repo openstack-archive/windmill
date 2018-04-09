@@ -1,3 +1,16 @@
 - hosts: all
-  roles:
-    - tox
+  tasks:
+    - name: Install bindep dependendies
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      command: tox -evenv -vv -- ./tools/install_bindep.sh
+
+    - name: Install ansible requirements via galaxy
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      command: tox -evenv -vv -- ./tools/install_roles.sh
+
+    - name: Run ansible-playbook for bastion
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      command: tox -evenv -vv -- ansible-playbook -v -i inventory/single-node playbooks/bastion.yaml
