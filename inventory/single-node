@@ -1,32 +1,29 @@
-[bastion]
-bastion ansible_connection=local
-
 [gear]
-gear01 ansible_host=127.0.2.1
+gear01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [nodepool-builder]
-nb01 ansible_host=127.0.1.1
+nb01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [nodepool-launcher]
-nl01 ansible_host=127.0.7.1
+nl01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [statsd]
-statsd01 ansible_host=127.0.9.1
+statsd01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [zookeeper]
-zk01 ansible_host=127.0.6.1
+zk01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [zuul-executor]
-ze01 ansible_host=127.0.3.1
+ze01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [zuul-fingergw]
-zf01 ansible_host=127.0.8.1
+zf01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [zuul-merger]
-zm01 ansible_host=127.0.4.1
+zm01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [zuul-scheduler]
-zs01 ansible_host=127.0.5.1
+zs01 ansible_host=38.145.33.34 ansible_user=ubuntu
 
 [zuul-web]
-zw01 ansible_host=127.0.9.1
+zw01 ansible_host=38.145.33.34 ansible_user=ubuntu
