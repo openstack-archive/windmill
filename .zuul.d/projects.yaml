@@ -6,7 +6,7 @@
       - windmill-jobs-xenial
     check:
       jobs:
-        - windmill-tox-deploy
+        - windmill-tox-ubuntu-xenial
     gate:
       jobs:
-        - windmill-tox-deploy
+        - windmill-tox-ubuntu-xenial
