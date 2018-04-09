@@ -72,11 +72,12 @@
 
     - name: Install nodepool elements directory
       become: yes
-      copy:
+      synchronize:
+        delete: yes
         dest: /etc/nodepool/
-        group: nodepool
-        mode: preserve
-        owner: nodepool
+        perms: yes
+        rsync_opts:
+          - '--chown=nodepool:nodepool'
         src: "{{ windmill_config_git_dest }}/nodepool/elements"
 
     - name: Setup openstack.ssh role
