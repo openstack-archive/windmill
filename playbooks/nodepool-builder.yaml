@@ -79,6 +79,10 @@
         owner: nodepool
         src: "{{ windmill_config_git_dest }}/nodepool/elements"
 
+    - name: Setup openstack.ssh role
+      include_role:
+        name: openstack.ssh
+
     - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
