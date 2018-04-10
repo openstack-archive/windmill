@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Bootstrap nodes
-  hosts: all
+  hosts: all,!bastion
   # NOTE(pabelanger): Because we are currently using a single host, we need this
   # operation to be serial. When we switch to multi-host, this can be removed.
   serial: 1
