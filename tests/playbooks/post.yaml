@@ -1,0 +1,24 @@
+- hosts: localhost
+  tasks:
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ zuul.executor.log_root }}/logs"
+        - "{{ zuul.executor.log_root }}/logs/gear01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/nb01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/nl01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/statsd01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/ze01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zf01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zm01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zs01/var/log"
+        - "{{ zuul.executor.log_root }}/logs/zw01/var/log"
+
+- hosts: all
+  tasks:
+    - name: Run ansible-playbook for collect-logs.yaml
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      shell: tox -evenv -- ansible-playbook -i inventory/single-node tests/collect-logs.yaml

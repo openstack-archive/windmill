@@ -4,9 +4,3 @@
       - windmill-jobs-fedora-27
       - windmill-jobs-bionic
       - windmill-jobs-xenial
-    check:
-      jobs:
-        - windmill-tox-ubuntu-xenial
-    gate:
-      jobs:
-        - windmill-tox-ubuntu-xenial
