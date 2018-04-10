@@ -1,62 +1,25 @@
 - job:
-    name: windmill-base-minimal
-    parent: base-minimal
-    pre-run: tests/base-minimal.yaml
-    roles:
-      - zuul: openstack-infra/zuul-jobs
-      - zuul: openstack-infra/openstack-zuul-jobs
-    timeout: 3600
-
-- job:
     name: windmill-base
-    parent: windmill-base-minimal
-    run: playbooks/site.yaml
-    post-run:
-      - playbooks/prove.yaml
-      - tests/collect-logs.yaml
-    roles:
-      - zuul: openstack/ansible-role-diskimage-builder
-        name: openstack.diskimage-builder
-      - zuul: openstack/ansible-role-gearman
-        name: openstack.gearman
-      - zuul: openstack/ansible-role-logrotate
-        name: openstack.logrotate
-      - zuul: openstack/ansible-role-nodepool
-        name: openstack.nodepool
-      - zuul: openstack/ansible-role-shade
-        name: openstack.shade
-      - zuul: openstack/ansible-role-statsd
-        name: openstack.statsd
-      - zuul: openstack/ansible-role-ssh
-        name: openstack.ssh
-      - zuul: openstack/ansible-role-sudoers
-        name: openstack.sudoers
-      - zuul: openstack/ansible-role-virtualenv
-        name: openstack.virtualenv
-      - zuul: openstack/ansible-role-zookeeper
-        name: openstack.zookeeper
-      - zuul: openstack/ansible-role-zuul
-        name: openstack.zuul
+    pre-run: tests/playbooks/pre.yaml
+    run: tests/playbooks/run.yaml
+    post-run: tests/playbooks/post.yaml
     required-projects:
+      - openstack/ansible-role-diskimage-builder
+      - openstack/ansible-role-gearman
+      - openstack/ansible-role-logrotate
+      - openstack/ansible-role-nodepool
+      - openstack/ansible-role-shade
+      - openstack/ansible-role-ssh
+      - openstack/ansible-role-statsd
+      - openstack/ansible-role-sudoers
+      - openstack/ansible-role-virtualenv
+      - openstack/ansible-role-zookeeper
+      - openstack/ansible-role-zuul
       - openstack/diskimage-builder
       - openstack-infra/gear
       - openstack-infra/nodepool
       - openstack-infra/shade
       - openstack-infra/zuul
-    vars:
-      # NOTE(pabelanger): Because we want to test Depends-On patches in the
-      # gate, we don't want our roles to update git after we pushed the repos
-      # from zuul-executors.
-      diskimage_builder_git_update: false
-      gear_git_update: false
-      nodepool_git_update: false
-      shade_git_update: false
-      zuul_git_update: false
-      # NOTE(pabelanger): In the gate, we want to create a zuul-test user /
-      # group as zuul already exists on our images.
-      zuul_user_name: zuul-test
-      zuul_user_group: zuul-test
-      zuul_user_home: /var/lib/zuul
 
 - job:
     name: windmill-centos-7
@@ -66,149 +29,14 @@
 - job:
     name: windmill-fedora-27
     parent: windmill-base
-    nodeset:
-      nodes:
-        - name:
-            - bastion
-            - gear01
-            - nb01
-            - nl01
-            - statsd01
-            - ze01
-            - zf01
-            - zk01
-            - zm01
-            - zs01
-            - zw01
-          label: fedora-27
-      groups:
-        - name: gear
-          nodes:
-            - gear01
-        - name: nodepool-builder
-          nodes:
-            - nb01
-        - name: nodepool-launcher
-          nodes:
-            - nl01
-        - name: statsd
-          nodes:
-            - statsd01
-        - name: zookeeper
-          nodes:
-            - zk01
-        - name: zuul-executor
-          nodes:
-            - ze01
-        - name: zuul-fingergw
-          nodes:
-            - zf01
-        - name: zuul-merger
-          nodes:
-            - zm01
-        - name: zuul-scheduler
-          nodes:
-            - zs01
-        - name: zuul-web
-          nodes:
-            - zw01
+    nodeset: fedora-27
 
 - job:
     name: windmill-ubuntu-bionic
     parent: windmill-base
-    nodeset:
-      nodes:
-        - name:
-            - bastion
-            - gear01
-            - nb01
-            - nl01
-            - statsd01
-            - ze01
-            - zf01
-            - zk01
-            - zm01
-            - zs01
-            - zw01
-          label: ubuntu-bionic
-      groups:
-        - name: gear
-          nodes:
-            - gear01
-        - name: nodepool-builder
-          nodes:
-            - nb01
-        - name: nodepool-launcher
-          nodes:
-            - nl01
-        - name: statsd
-          nodes:
-            - statsd01
-        - name: zookeeper
-          nodes:
-            - zk01
-        - name: zuul-executor
-          nodes:
-            - ze01
-        - name: zuul-fingergw
-          nodes:
-            - zf01
-        - name: zuul-merger
-          nodes:
-            - zm01
-        - name: zuul-scheduler
-          nodes:
-            - zs01
-        - name: zuul-web
-          nodes:
-            - zw01
+    nodeset: ubuntu-bionic
 
 - job:
     name: windmill-ubuntu-xenial
     parent: windmill-base
-    nodeset:
-      nodes:
-        - name:
-            - bastion
-            - gear01
-            - nb01
-            - nl01
-            - statsd01
-            - ze01
-            - zf01
-            - zk01
-            - zm01
-            - zs01
-            - zw01
-          label: ubuntu-xenial
-      groups:
-        - name: gear
-          nodes:
-            - gear01
-        - name: nodepool-builder
-          nodes:
-            - nb01
-        - name: nodepool-launcher
-          nodes:
-            - nl01
-        - name: statsd
-          nodes:
-            - statsd01
-        - name: zookeeper
-          nodes:
-            - zk01
-        - name: zuul-executor
-          nodes:
-            - ze01
-        - name: zuul-fingergw
-          nodes:
-            - zf01
-        - name: zuul-merger
-          nodes:
-            - zm01
-        - name: zuul-scheduler
-          nodes:
-            - zs01
-        - name: zuul-web
-          nodes:
-            - zw01
+    nodeset: ubuntu-xenial
