@@ -49,6 +49,3 @@
     - name: Run zuul-executor validation
       include_role:
         name: test.zuul-executor
-
-  vars_files:
-    - vars/zuul.yaml

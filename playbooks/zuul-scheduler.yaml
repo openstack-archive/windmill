@@ -32,6 +32,3 @@
     - name: Run zuul-scheduler validation.
       include_role:
         name: test.zuul-scheduler
-
-  vars_files:
-    - vars/zuul.yaml
