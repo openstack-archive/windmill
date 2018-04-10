@@ -5,7 +5,12 @@
         chdir: "{{ zuul.project.src_dir }}"
       shell: tox -evenv -- ansible-playbook -i inventory/single-node playbooks/bastion.yaml
 
-    - name: Run ansible-playbook
+    - name: Run ansible-playbook for site.yaml
       args:
         chdir: "{{ zuul.project.src_dir }}"
       shell: tox -evenv -- ansible-playbook -i inventory/single-node playbooks/site.yaml --extra-vars "@tests/extra-vars.yaml"
+
+    - name: Run ansible-playbook for prove.yaml
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      shell: tox -evenv -- ansible-playbook -i inventory/single-node playbooks/prove.yaml
