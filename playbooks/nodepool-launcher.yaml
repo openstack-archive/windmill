@@ -61,6 +61,3 @@
     - name: Run nodepool-launcher validation.
       include_role:
         name: test.nodepool-launcher
-
-  vars_files:
-    - vars/nodepool.yaml

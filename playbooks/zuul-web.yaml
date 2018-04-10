@@ -28,6 +28,3 @@
     - name: Run zuul-web validation.
       include_role:
         name: test.zuul-web
-
-  vars_files:
-    - vars/zuul.yaml

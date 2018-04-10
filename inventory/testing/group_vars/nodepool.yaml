@@ -12,10 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# NOTE(pabelanger): This file _should_ be encrypted using ansible-vault.  We
-# current don't because this deployment is used as an example.
-
 # windmill.nodepool
-# NOTE(pabelanger): Because we are installing nodepool and nodepool-builder on a
-# shared host, we need to make sure both tasks use the same configuration.
 nodepool_file_nodepool_yaml_src: "{{ windmill_config_git_dest }}/nodepool/nodepool.yaml.j2"
+
+nodepool_pip_virtualenv_python: python3
+nodepool_pip_virtualenv: /opt/venv/nodepool
+
+# windmill.shade
+shade_pip_virtualenv_python: python3
+shade_pip_virtualenv: /opt/venv/nodepool
