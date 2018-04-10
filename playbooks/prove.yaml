@@ -19,4 +19,3 @@
     - name: Setup test.prove role
       include_role:
         name: test.prove
-      when: zuul_success | bool
