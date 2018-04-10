@@ -3,7 +3,7 @@
     - name: Run ansible-playbook for collect-logs.yaml
       args:
         chdir: "{{ zuul.project.src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/single-node tests/collect-logs.yaml
+      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts tests/collect-logs.yaml
 
     - name: Collect log files
       synchronize:
