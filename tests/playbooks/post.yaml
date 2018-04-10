@@ -1,0 +1,24 @@
+- hosts: localhost
+  tasks:
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ zuul.executor.log_root }}/logs"
+
+- hosts: all
+  tasks:
+    - name: Run ansible-playbook for collect-logs.yaml
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      shell: tox -evenv -- ansible-playbook -i inventory/single-node tests/collect-logs.yaml
+
+- hosts: localhost
+  tasks:
+    - name: Collect log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}"
+        mode: pull
+        src: ~/logs
+        verify_host: true
