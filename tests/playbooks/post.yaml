@@ -5,6 +5,14 @@
         chdir: "{{ zuul.project.src_dir }}"
       shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts tests/collect-logs.yaml
 
+    - name: Ensure ara-report directory exists
+      file:
+        path: ~/logs/ara-report
+        state: directory
+
+    - name: Copy ARA database to ara-report directory
+      shell: cp ~/.ara/ansible.sqlite ~/logs/ara-report
+
     - name: Collect log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}"
