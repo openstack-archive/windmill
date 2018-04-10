@@ -91,6 +91,3 @@
     - name: Run nodepool-server validation
       include_role:
         name: test.nodepool-builder
-
-  vars_files:
-    - vars/nodepool.yaml
