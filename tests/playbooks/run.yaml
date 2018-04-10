@@ -3,14 +3,14 @@
     - name: Bootstrap bastion node using ansible
       args:
         chdir: "{{ zuul.project.src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/single-node playbooks/bastion.yaml
+      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/bastion.yaml
 
     - name: Run ansible-playbook for site.yaml
       args:
         chdir: "{{ zuul.project.src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/single-node playbooks/site.yaml --extra-vars "@tests/extra-vars.yaml"
+      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/site.yaml --extra-vars "@tests/extra-vars.yaml"
 
     - name: Run ansible-playbook for prove.yaml
       args:
         chdir: "{{ zuul.project.src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/single-node playbooks/prove.yaml
+      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/prove.yaml
