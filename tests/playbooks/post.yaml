@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: Run ansible-playbook for collect-logs.yaml
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      shell: tox -evenv -- ansible-playbook -i inventory/single-node tests/collect-logs.yaml
