@@ -2,7 +2,7 @@
   tasks:
     - name: Run ansible-playbook for collect-logs.yaml
       args:
-        chdir: "{{ zuul.project.src_dir }}"
+        chdir: "{{ windmill_src_dir }}"
       shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts tests/collect-logs.yaml
 
     - name: Ensure ara-report directory exists

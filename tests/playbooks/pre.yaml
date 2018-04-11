@@ -2,17 +2,17 @@
   tasks:
     - name: Bootstrap tox environment
       args:
-        chdir: "{{ zuul.project.src_dir }}"
+        chdir: "{{ windmill_src_dir }}"
       command: tox -evenv --notest
 
     - name: Install bindep dependendies
       args:
-        chdir: "{{ zuul.project.src_dir }}"
+        chdir: "{{ windmill_src_dir }}"
         executable: /bin/bash
       shell: source .tox/venv/bin/activate; ./tools/install_bindep.sh
 
     - name: Install ansible roles via galaxy
       args:
-        chdir: "{{ zuul.project.src_dir }}"
+        chdir: "{{ windmill_src_dir }}"
         executable: /bin/bash
       shell: source .tox/venv/bin/activate; ./tools/install_roles.sh
