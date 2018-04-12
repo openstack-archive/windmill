@@ -16,6 +16,7 @@
       - openstack/ansible-role-zookeeper
       - openstack/ansible-role-zuul
       - openstack/diskimage-builder
+      - openstack/windmill
       - openstack-infra/gear
       - openstack-infra/nodepool
       - openstack-infra/shade
