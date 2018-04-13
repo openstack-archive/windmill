@@ -1,5 +1,12 @@
 - hosts: all
   tasks:
+    - name: Disable extra wheels mirror
+      become: yes
+      lineinfile:
+        dest: /etc/pip.conf
+        regexp: ^extra-index-url
+        state: absent
+
     - name: Bootstrap tox environment
       args:
         chdir: "{{ windmill_src_dir }}"
