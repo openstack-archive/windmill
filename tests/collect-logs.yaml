@@ -135,7 +135,6 @@
         verify_host: true
       with_items:
         - /etc/zuul/executor-logging.conf
-        - /etc/zuul/config
         - /etc/zuul/zuul.conf
         - /var/log/zuul/executor-debug.log
         - /var/log/zuul/executor.log
@@ -165,7 +164,6 @@
         verify_host: true
       with_items:
         - /etc/zuul/fingergw-logging.conf
-        - /etc/zuul/config
         - /etc/zuul/zuul.conf
         - /var/log/zuul/fingergw-debug.log
         - /var/log/zuul/fingergw.log
@@ -194,7 +192,6 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
-        - /etc/zuul/config
         - /etc/zuul/merger-logging.conf
         - /etc/zuul/zuul.conf
         - /var/log/zuul/merger-debug.log
@@ -224,7 +221,6 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
-        - /etc/zuul/config
         - /etc/zuul/scheduler-logging.conf
         - /etc/zuul/zuul.conf
         - /var/log/zuul/scheduler-debug.log
@@ -254,7 +250,6 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
-        - /etc/zuul/config
         - /etc/zuul/web-logging.conf
         - /etc/zuul/zuul.conf
         - /var/log/zuul/web-debug.log

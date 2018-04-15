@@ -18,7 +18,7 @@ sshkey = {{ zuul_user_home }}/.ssh/gerrit_id_rsa
 user = zuul
 
 [scheduler]
-tenant_config = /etc/zuul/config/layout.yaml
+tenant_config = {{ zuul_file_main_yaml_dest | default('/etc/zuul/config/layout.yaml') }}
 log_config = /etc/zuul/scheduler-logging.conf
 pidfile = /var/run/zuul-scheduler/zuul-scheduler.pid
 state_dir = {{ zuul_user_home }}
