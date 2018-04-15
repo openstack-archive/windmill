@@ -18,8 +18,8 @@
 - include: zookeeper.yaml
 - include: nodepool-builder.yaml
 - include: nodepool-launcher.yaml
+- include: zuul-scheduler.yaml
 - include: zuul-executor.yaml
 - include: zuul-fingergw.yaml
 - include: zuul-merger.yaml
-- include: zuul-scheduler.yaml
 - include: zuul-web.yaml
