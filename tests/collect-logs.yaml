@@ -221,6 +221,7 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
+        - /etc/zuul/main.yaml
         - /etc/zuul/scheduler-logging.conf
         - /etc/zuul/zuul.conf
         - /var/log/zuul/scheduler-debug.log
