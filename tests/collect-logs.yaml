@@ -110,6 +110,36 @@
         - /var/log/nodepool/launcher-debug.log
         - /var/log/nodepool/nodepool-launcher.log
 
+- hosts: zs01
+  tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
+        state: directory
+
+    - name: Collect journald logs
+      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      args:
+        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-scheduler
+
+    - name: Collect zs01 log files
+      synchronize:
+        dest: "~/logs/{{ inventory_hostname }}"
+        mode: pull
+        recursive: false
+        rsync_opts:
+          - "--relative"
+        src: "{{ item }}"
+        verify_host: true
+      with_items:
+        - /etc/zuul/main.yaml
+        - /etc/zuul/scheduler-logging.conf
+        - /etc/zuul/zuul.conf
+        - /var/log/zuul/scheduler-debug.log
+        - /var/log/zuul/scheduler.log
+
 - hosts: ze01
   tasks:
     - name: Ensure journald logs directory exists
@@ -196,36 +226,6 @@
         - /etc/zuul/zuul.conf
         - /var/log/zuul/merger-debug.log
         - /var/log/zuul/merger.log
-
-- hosts: zs01
-  tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
-    - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
-      args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
-      with_items:
-        - zuul-scheduler
-
-    - name: Collect zs01 log files
-      synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
-        rsync_opts:
-          - "--relative"
-        src: "{{ item }}"
-        verify_host: true
-      with_items:
-        - /etc/zuul/main.yaml
-        - /etc/zuul/scheduler-logging.conf
-        - /etc/zuul/zuul.conf
-        - /var/log/zuul/scheduler-debug.log
-        - /var/log/zuul/scheduler.log
 
 - hosts: zw01
   tasks:
