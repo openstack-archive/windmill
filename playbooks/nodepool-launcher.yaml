@@ -16,16 +16,6 @@
   hosts: nodepool-launcher
 
   pre_tasks:
-    # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
-    # nodepool, create the required home direcotry first (pre task). So we can
-    # add the clouds.yaml file.
-    - name: Create nodepool user directories.
-      include_role:
-        name: openstack.nodepool
-      vars:
-        nodepool_task_manager:
-          - pre
-
     # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
     - name: Create os-client-config directories.
       become: yes
