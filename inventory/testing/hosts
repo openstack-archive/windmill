@@ -1,4 +1,3 @@
-[bastion]
 bastion ansible_connection=local
 
 [gear]
