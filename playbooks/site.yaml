@@ -16,8 +16,10 @@
 - include: statsd.yaml
 - include: gear.yaml
 - include: zookeeper.yaml
+- include: nodepool.yaml
 - include: nodepool-builder.yaml
 - include: nodepool-launcher.yaml
+- include: zuul.yaml
 - include: zuul-scheduler.yaml
 - include: zuul-executor.yaml
 - include: zuul-fingergw.yaml
