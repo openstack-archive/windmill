@@ -1,4 +1,4 @@
-# Copyright 2016 Red Hat, Inc.
+# Copyright 2018 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,23 +12,21 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul-scheduler.
-  hosts: zuul-scheduler
+- name: Install zuul
+  hosts: zuul
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
 
   tasks:
-    - name: Setup openstack.ssh role.
-      include_role:
-        name: openstack.ssh
-
-    - name: Setup openstack.zuul role.
+    # NOTE(pabelanger): Because of ordering issues create the required home
+    # directory first.
+    - name: Create zuul user directories.
       include_role:
         name: openstack.zuul
+      vars:
+        zuul_task_manager:
+          - pre
 
-    - name: Setup openstack.logrotate role.
-      include_role:
-        name: openstack.logrotate
-
-  post_tasks:
-    - name: Run zuul-scheduler validation.
-      include_role:
-        name: test.zuul-scheduler
