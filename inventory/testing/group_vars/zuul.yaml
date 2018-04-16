@@ -13,6 +13,7 @@
 # under the License.
 ---
 # windmill.zuul
+zuul_file_main_yaml_src: "{{ windmill_config_git_dest }}/zuul/main.yaml"
 zuul_file_zuul_conf_src: "{{ windmill_config_git_dest }}/zuul/zuul.conf.j2"
 
 zuul_pip_virtualenv_python: python3
