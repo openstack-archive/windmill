@@ -1,0 +1,49 @@
+# Copyright 2018 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+- name: Install nodepool
+  hosts: nodepool
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
+
+  tasks:
+    # NOTE(pabelanger): Because of ordering issues create the required home
+    # directory first.
+    - name: Create nodepool user directories.
+      include_role:
+        name: openstack.nodepool
+      vars:
+        nodepool_task_manager:
+          - pre
+
+    # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
+    - name: Create os-client-config directories.
+      become: yes
+      file:
+        group: nodepool
+        owner: nodepool
+        path: /var/lib/nodepool/.config/openstack
+        state: directory
+
+    - name: Copy clouds.yaml into place.
+      become: yes
+      copy:
+        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
+        group: nodepool
+        mode: 0400
+        owner: nodepool
+        src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"

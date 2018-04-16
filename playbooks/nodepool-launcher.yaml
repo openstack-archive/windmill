@@ -15,35 +15,6 @@
 - name: Install nodepool-launcher.
   hosts: nodepool-launcher
 
-  pre_tasks:
-    # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
-    # nodepool, create the required home direcotry first (pre task). So we can
-    # add the clouds.yaml file.
-    - name: Create nodepool user directories.
-      include_role:
-        name: openstack.nodepool
-      vars:
-        nodepool_task_manager:
-          - pre
-
-    # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
-    - name: Create os-client-config directories.
-      become: yes
-      file:
-        group: nodepool
-        owner: nodepool
-        path: /var/lib/nodepool/.config/openstack
-        state: directory
-
-    - name: Copy clouds.yaml into place.
-      become: yes
-      copy:
-        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
-        group: nodepool
-        mode: 0400
-        owner: nodepool
-        src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
-
   tasks:
     - name: Setup openstack.shade role
       include_role:

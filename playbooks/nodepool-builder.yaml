@@ -16,34 +16,6 @@
   hosts: nodepool-builder
 
   pre_tasks:
-    # NOTE(pabelanger): Because of ordering issues with clouds.yaml and
-    # nodepool, create the required home direcotry first (pre task). So we can
-    # add the clouds.yaml file.
-    - name: Create nodepool user directories
-      include_role:
-        name: openstack.nodepool
-      vars:
-        nodepool_task_manager:
-          - pre
-
-    # TODO(pabelanger): This should be moved into ansible-role-os-client-config.
-    - name: Create os-client-config directories
-      become: yes
-      file:
-        group: nodepool
-        owner: nodepool
-        path: /var/lib/nodepool/.config/openstack
-        state: directory
-
-    - name: Copy clouds.yaml into place
-      become: yes
-      copy:
-        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
-        group: nodepool
-        mode: 0400
-        owner: nodepool
-        src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
-
     - name: Template disk-image-create wrapper script
       become: yes
       template:
@@ -54,6 +26,10 @@
         src: nodepool-builder/usr/local/bin/disk-image-create.j2
 
   tasks:
+    - name: Setup openstack.ssh role
+      include_role:
+        name: openstack.ssh
+
     - name: Setup openstack.sudoers role
       include_role:
         name: openstack.sudoers
@@ -79,10 +55,6 @@
         rsync_opts:
           - '--chown=nodepool:nodepool'
         src: "{{ windmill_config_git_dest }}/nodepool/elements"
-
-    - name: Setup openstack.ssh role
-      include_role:
-        name: openstack.ssh
 
     - name: Setup openstack.logrotate role
       include_role:
