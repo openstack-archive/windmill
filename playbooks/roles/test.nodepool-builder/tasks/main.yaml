@@ -23,20 +23,6 @@
       - test_nodepool_pip_virtualenv_stat.stat.exists
       - test_nodepool_pip_virtualenv_stat.stat.isdir
 
-- name: Register /usr/local/bin/disk-image-create
-  stat:
-    path: /usr/local/bin/disk-image-create
-  register: test_nodepool_builder_dib_command
-
-- name: Assert /usr/local/bin/disk-image-create
-  assert:
-    that:
-      - test_nodepool_builder_dib_command.stat.exists
-      - test_nodepool_builder_dib_command.stat.isreg
-      - test_nodepool_builder_dib_command.stat.pw_name == 'root'
-      - test_nodepool_builder_dib_command.stat.gr_name == 'root'
-      - test_nodepool_builder_dib_command.stat.mode == '0755'
-
 - name: Validate /etc/nodepool/nodepool.yaml
   become: yes
   become_user: nodepool
