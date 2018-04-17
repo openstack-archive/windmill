@@ -15,16 +15,6 @@
 - name: Install nodepool-builder
   hosts: nodepool-builder
 
-  pre_tasks:
-    - name: Template disk-image-create wrapper script
-      become: yes
-      template:
-        dest: /usr/local/bin/disk-image-create
-        group: root
-        mode: 0755
-        owner: root
-        src: nodepool-builder/usr/local/bin/disk-image-create.j2
-
   tasks:
     - name: Setup openstack.ssh role
       include_role:
