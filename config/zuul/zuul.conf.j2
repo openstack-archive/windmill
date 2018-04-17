@@ -31,6 +31,7 @@ server = {{ hostvars['statsd01'].ansible_host }}
 [executor]
 finger_port = 17979
 log_config = /etc/zuul/executor-logging.conf
+private_key_file = {{ zuul_user_home }}/.ssh/nodepool_id_rsa
 workspace_root = {{ zuul_user_home }}/workspace
 
 [fingergw]
@@ -40,6 +41,8 @@ user = {{ zuul_user_name }}
 
 [merger]
 git_dir = {{ zuul_user_home }}/git
+git_user_email = windmill@example.org
+git_user_name = windmill
 log_config = /etc/zuul/merger-logging.conf
 pidfile = /var/run/zuul-merger/zuul-merger.pid
 zuul_url = {{ hostvars['zs01'].ansible_host }}
