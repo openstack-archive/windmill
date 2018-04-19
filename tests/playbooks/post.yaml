@@ -1,5 +1,12 @@
 - hosts: all
   tasks:
+    - name: Collect tox logs
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/tox"
+        mode: pull
+        src: "{{ windmill_src_dir }}/.tox/venv/log/"
+        verify_host: true
+
     - name: Collect logs from hosts
       block:
         - name: Run ansible-playbook for collect-logs.yaml
