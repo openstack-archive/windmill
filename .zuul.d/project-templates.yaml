@@ -44,3 +44,29 @@
       jobs:
         - windmill-ubuntu-xenial:
             voting: false
+
+- project-template:
+    name: windmill-jobs-src-fedora-27
+    check:
+      jobs:
+        - windmill-src-fedora-27
+    gate:
+      queue: windmill
+      jobs:
+        - windmill-src-fedora-27
+
+- project-template:
+    name: windmill-jobs-src-bionic
+    check:
+      jobs:
+        - windmill-src-ubuntu-bionic
+
+- project-template:
+    name: windmill-jobs-src-xenial
+    check:
+      jobs:
+        - windmill-src-ubuntu-xenial
+    gate:
+      queue: windmill
+      jobs:
+        - windmill-src-ubuntu-xenial

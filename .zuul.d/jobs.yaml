@@ -22,22 +22,62 @@
       - openstack-infra/shade
       - openstack-infra/zuul
 
+# Testing for install_method: pip
+- job:
+    name: windmill
+    parent: windmill-base
+    vars:
+      windmill_extra_vars_file: tests/extra-vars/pip.yaml
+
 - job:
     name: windmill-centos-7
-    parent: windmill-base
+    parent: windmill
     nodeset: centos-7
 
 - job:
     name: windmill-fedora-27
-    parent: windmill-base
+    parent: windmill
     nodeset: fedora-27
 
 - job:
     name: windmill-ubuntu-bionic
-    parent: windmill-base
+    parent: windmill
     nodeset: ubuntu-bionic
 
 - job:
     name: windmill-ubuntu-xenial
+    parent: windmill
+    nodeset: ubuntu-xenial
+
+# Testing for install_method: git
+- job:
+    name: windmill-src
     parent: windmill-base
+    required-projects:
+      - openstack/diskimage-builder
+      - openstack-infra/gear
+      - openstack-infra/nodepool
+      - openstack-infra/shade
+      - openstack-infra/zuul
+    vars:
+      windmill_extra_vars_file: tests/extra-vars/git.yaml
+
+- job:
+    name: windmill-src-centos-7
+    parent: windmill-src
+    nodeset: centos-7
+
+- job:
+    name: windmill-src-fedora-27
+    parent: windmill-src
+    nodeset: fedora-27
+
+- job:
+    name: windmill-src-ubuntu-bionic
+    parent: windmill-src
+    nodeset: ubuntu-bionic
+
+- job:
+    name: windmill-src-ubuntu-xenial
+    parent: windmill-src
     nodeset: ubuntu-xenial
