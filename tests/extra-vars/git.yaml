@@ -2,10 +2,20 @@
 # gate, we don't want our roles to update git after we pushed the repos
 # from zuul-executors.
 diskimage_builder_git_update: false
+diskimage_builder_install_method: git
+
 gear_git_update: false
+gear_install_method: git
+
 nodepool_git_update: false
+nodepool_install_method: git
+
 shade_git_update: false
+shade_install_method: git
+
 zuul_git_update: false
+zuul_install_method: git
+
 # NOTE(pabelanger): In the gate, we want to create a zuul-test user /
 # group as zuul already exists on our images.
 zuul_user_name: zuul-test

@@ -4,3 +4,6 @@
       - windmill-jobs-fedora-27
       - windmill-jobs-bionic
       - windmill-jobs-xenial
+      - windmill-jobs-src-fedora-27
+      - windmill-jobs-src-bionic
+      - windmill-jobs-src-xenial
