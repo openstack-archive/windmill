@@ -39,11 +39,18 @@
         path: /var/lib/nodepool/.config/openstack
         state: directory
 
-    - name: Copy clouds.yaml into place.
+    # NOTE(AGoncharov) If our "project-config" brings os-cloud-config
+    # then deploy it to nodepool user.
+    # Ignore errors not to check existence of each separate file
+    - name: Copy os-client-configs
       become: yes
-      copy:
-        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
+      template:
+        dest: "/var/lib/nodepool/.config/openstack/{{ item.name }}"
         group: nodepool
         mode: 0400
         owner: nodepool
-        src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
+        src: "{{ windmill_config_git_dest }}/nodepool/{{ item.template_name | default(item.name) }}"
+      ignore_errors: yes
+      with_items:
+        - { name: clouds.yaml, template_name: clouds.yaml.j2 }
+        - { name: secure.yaml, template_name: secure.yaml.j2 }
