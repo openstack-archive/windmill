@@ -21,3 +21,8 @@ nodepool_pip_virtualenv: /opt/venv/nodepool
 # windmill.shade
 shade_pip_virtualenv_python: python3
 shade_pip_virtualenv: /opt/venv/nodepool
+
+# windmill-config
+# values for os-client-config templates
+nodepool_os_cloud_password: secretadmin
+nodepool_os_cloud_username: demo

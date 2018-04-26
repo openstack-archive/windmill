@@ -39,11 +39,22 @@
         path: /var/lib/nodepool/.config/openstack
         state: directory
 
-    - name: Copy clouds.yaml into place.
+    # NOTE(AGoncharov): check presence of os-client-config templates
+    # before trying to deploy them
+    - name: Check presence of os-client-config templates
+      local_action: stat path="{{ windmill_config_git_dest }}/nodepool/{{item}}.j2"
+      with_items:
+        - clouds.yaml
+        - secure.yaml
+      register: templates_stat
+
+    - name: Deploy os-client-config templates
       become: yes
-      copy:
-        dest: /var/lib/nodepool/.config/openstack/clouds.yaml
+      template:
+        dest: "/var/lib/nodepool/.config/openstack/{{ item.item }}"
         group: nodepool
-        mode: 0400
+        mode: 0600
         owner: nodepool
-        src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
+        src: "{{ item.stat.path }}"
+      with_items: "{{templates_stat.results}}"
+      when: item.stat | default(false) and item.stat.exists
