@@ -27,6 +27,10 @@
     check:
       jobs:
         - windmill-ubuntu-bionic
+    gate:
+      queue: windmill
+      jobs:
+        - windmill-ubuntu-bionic
 
 - project-template:
     name: windmill-jobs-xenial
@@ -58,6 +62,10 @@
 - project-template:
     name: windmill-jobs-src-bionic
     check:
+      jobs:
+        - windmill-src-ubuntu-bionic
+    gate:
+      queue: windmill
       jobs:
         - windmill-src-ubuntu-bionic
 
