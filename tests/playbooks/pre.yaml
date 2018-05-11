@@ -7,16 +7,21 @@
         regexp: ^extra-index-url
         state: absent
 
-    - name: Bootstrap tox environment
+    - name: Bootstrap bindep environment
       args:
         chdir: "{{ windmill_src_dir }}"
-      command: tox -evenv --notest
+      command: tox -ebindep --notest
 
     - name: Install bindep dependendies
       args:
         chdir: "{{ windmill_src_dir }}"
         executable: /bin/bash
-      shell: source .tox/venv/bin/activate; ./tools/install_bindep.sh
+      shell: source .tox/bindep/bin/activate; ./tools/install_bindep.sh
+
+    - name: Bootstrap tox environment
+      args:
+        chdir: "{{ windmill_src_dir }}"
+      command: tox -evenv --notest
 
     - name: Install ansible roles via galaxy
       args:
