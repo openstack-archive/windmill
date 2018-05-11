@@ -45,6 +45,11 @@
     nodeset: ubuntu-bionic
 
 - job:
+    name: windmill-ubuntu-bionic-arm64
+    parent: windmill
+    nodeset: ubuntu-bionic-arm64
+
+- job:
     name: windmill-ubuntu-xenial
     parent: windmill
     nodeset: ubuntu-xenial
@@ -76,6 +81,11 @@
     name: windmill-src-ubuntu-bionic
     parent: windmill-src
     nodeset: ubuntu-bionic
+
+- job:
+    name: windmill-src-ubuntu-bionic-arm64
+    parent: windmill-src
+    nodeset: ubuntu-bionic-arm64
 
 - job:
     name: windmill-src-ubuntu-xenial
