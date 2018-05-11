@@ -13,12 +13,7 @@
 # under the License.
 ---
 - name: Install nodepool
-  hosts: nodepool
-  # TODO(pabelanger): We really don't want to use serial here, but this allows
-  # us to still support a single node install.  What we should do here is expose
-  # some sort of variable to only toggle this when we are doing a single node
-  # install. Otherwise, we just slow down multinode deployments.
-  serial: 1
+  hosts: nodepool_unique
 
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
