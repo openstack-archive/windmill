@@ -33,6 +33,12 @@
         - windmill-ubuntu-bionic
 
 - project-template:
+    name: windmill-jobs-bionic-arm64
+    check:
+      jobs:
+        - windmill-ubuntu-bionic-arm64
+
+- project-template:
     name: windmill-jobs-xenial
     check:
       jobs:
@@ -68,6 +74,12 @@
       queue: windmill
       jobs:
         - windmill-src-ubuntu-bionic
+
+- project-template:
+    name: windmill-jobs-src-bionic-arm64
+    check:
+      jobs:
+        - windmill-src-ubuntu-bionic-arm64
 
 - project-template:
     name: windmill-jobs-src-xenial
