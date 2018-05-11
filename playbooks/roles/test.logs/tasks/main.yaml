@@ -12,17 +12,22 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: statsd.yaml
-- include: gear.yaml
-- include: logs.yaml
-- include: zookeeper.yaml
-- include: nodepool.yaml
-- include: nodepool-builder.yaml
-- include: nodepool-launcher.yaml
-- include: zuul.yaml
-- include: zuul-scheduler.yaml
-- include: zuul-executor.yaml
-- include: zuul-fingergw.yaml
-- include: zuul-merger.yaml
-- include: zuul-web.yaml
+- name: Register /srv/static/logs
+  stat:
+    path: /srv/static/logs
+  register: test_logs_root_stat
+
+- name: Assert /srv/static/logs tests
+  assert:
+    that:
+      - test_logs_root_stat.stat.exists
+      - test_logs_root_stat.stat.isdir
+
+- name: Ensure nginx is running
+  become: yes
+  shell: /usr/sbin/service nginx status
+  changed_when: false
+
+- name: Ensure nginx configuration is valid
+  uri:
+    url: http://localhost/logs
