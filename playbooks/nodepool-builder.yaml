@@ -36,6 +36,13 @@
       include_role:
         name: openstack.nodepool
 
+    # NOTE(AGoncharov) if elements are being checked out from SCV their
+    # executable attribute might be missing, so we fix them first locally
+    # before the transfer looking for shebangs
+    - name: Set nodepool elements executable locally before rsync
+      delegate_to: localhost
+      shell: grep -rl '^#!/.*' "{{ windmill_config_git_dest }}/nodepool/elements" | xargs chmod u+x
+
     - name: Install nodepool elements directory
       become: yes
       synchronize:
