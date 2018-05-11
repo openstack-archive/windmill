@@ -5,6 +5,8 @@ dbus
 libffi-devel [platform:rpm]
 libffi-dev [platform:dpkg]
 libselinux-python [platform:rpm]
+libssl-dev [platform:dpkg]
+openssl-devel [platform:rpm]
 python2-dnf [platform:fedora]
 python3-devel [platform:rpm]
 python3-dev [platform:dpkg]
