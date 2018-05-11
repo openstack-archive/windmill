@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    listen [::]:80;
+    root /srv/static;
+
+    location /logs {
+        autoindex on;
+        location ~* ^.+\.(log)$ {
+            add_header Content-Type text/plain;
+        }
+        location ~* ^.+\.(json|txt).gz$ {
+            add_header Content-Encoding gzip;
+            gzip off;
+            types {
+                text/plain gz;
+            }
+        }
+    }
+}

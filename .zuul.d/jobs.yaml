@@ -7,6 +7,7 @@
       - openstack/ansible-role-diskimage-builder
       - openstack/ansible-role-gearman
       - openstack/ansible-role-logrotate
+      - openstack/ansible-role-nginx
       - openstack/ansible-role-nodepool
       - openstack/ansible-role-shade
       - openstack/ansible-role-ssh
