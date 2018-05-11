@@ -1,0 +1,41 @@
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+- name: Evaluate facts about groups
+  hosts: localhost
+
+  tasks:
+    # NOTE(AGoncharov): this is required to spedup installation of the
+    # single-host mode.
+    # Otherwise use of serial is required to avoid conflicts
+    # We gather groups of unique hosts by adding their IP
+    # (ansible_host set in inventory)
+    - name: Evaluate unique zuul group hosts
+      add_host:
+        name: "{{ hostvars[item].ansible_host | default(item) }}"
+        ansible_host: "{{ hostvars[item].ansible_host | default(item)}}"
+        groups: zuul_unique
+      with_items: "{{ groups['zuul'] | default([]) }}"
+
+    - name: Evaluate unique nodepool group hosts
+      add_host:
+        name: "{{ hostvars[item].ansible_host | default(item) }}"
+        ansible_host: "{{ hostvars[item].ansible_host | default(item)}}"
+        groups: nodepool_unique
+      with_items: "{{ groups['nodepool'] | default([]) }}"
+
+    - name: Evaluate unique installation hosts (for bootstrapping)
+      add_host:
+        name: "{{ hostvars[item].ansible_host | default(item) }}"
+        ansible_host: "{{ hostvars[item].ansible_host | default(item)}}"
+        groups: all_unique
+      with_items: "{{ groups['nodepool_unique'] | union(groups['zuul_unique']) | union(groups['statsd']) | union(groups['zookeeper']) | default([])  }}"
