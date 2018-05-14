@@ -12,6 +12,19 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- name: Boostrap localhost
+  hosts: localhost
+  tasks:
+    - name: Git clone config project locally.
+      delegate_to: localhost
+      git:
+        dest: "{{ windmill_config_git_dest }}"
+        refspec: "{{ windmill_config_git_refspec|default(omit) }}"
+        repo: "{{ windmill_config_git_uri }}"
+        update: "{{ windmill_config_git_update|default(omit) }}"
+        version: "{{ windmill_config_git_version|default(omit) }}"
+      when: windmill_config_git_uri is defined
+
 - name: Bootstrap nodes
   hosts: all,!bastion
   # NOTE(pabelanger): Because we are currently using a single host, we need this
