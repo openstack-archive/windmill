@@ -48,8 +48,8 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
-        - /etc/gear
-        - /var/log/gear
+        - /etc/gear/logging.conf
+        - /var/log/gear/*.log
 
 - hosts: nb01
   tasks:

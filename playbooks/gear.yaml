@@ -20,6 +20,10 @@
       include_role:
         name: openstack.gearman
 
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
+
   post_tasks:
     - name: Run gear validation.
       include_role:

@@ -95,3 +95,14 @@ gear_file_ssl_key_content: |
   7NSS/HJJGlt/SqWSbASpt9gfw1k6a0wffIq6h0+I6bNeajfwMz8bGAMIdHqGRhze
   TPw69kX4BM39nK3lP2/aiTQ=
   -----END PRIVATE KEY-----
+
+# openstack.logrotate
+logrotate_configs:
+  - name: gear
+    log: /var/log/gear/debug.log /var/log/gear/gear.log
+    options:
+      - compress
+      - missingok
+      - rotate 7
+      - daily
+      - notifempty
