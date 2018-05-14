@@ -5,5 +5,5 @@
 {% if ansible_host | ipv4 %}
 Environment="STATSD_HOST={{ hostvars['statsd01'].ansible_host }}"
 {% endif %}
-Environment="ARGS=--ssl-ca {{ gear_file_ssl_ca_dest }} --ssl-cert {{ gear_file_ssl_cert_dest }} --ssl-key {{ gear_file_ssl_key_dest }}"
+Environment="ARGS=--ssl-ca {{ gear_file_ssl_ca_dest }} --ssl-cert {{ gear_file_ssl_cert_dest }} --ssl-key {{ gear_file_ssl_key_dest }} --log-config /etc/gear/logging.conf"
 Environment="PREFIX={{ gear_pip_virtualenv }}"
