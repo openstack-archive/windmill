@@ -10,13 +10,7 @@
     - name: Bootstrap bindep environment
       args:
         chdir: "{{ windmill_src_dir }}"
-      command: tox -ebindep --notest
-
-    - name: Install bindep dependendies
-      args:
-        chdir: "{{ windmill_src_dir }}"
-        executable: /bin/bash
-      shell: source .tox/bindep/bin/activate; ./tools/install_bindep.sh
+      command: tox -ebindep
 
     - name: Bootstrap tox environment
       args:
