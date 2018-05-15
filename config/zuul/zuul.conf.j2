@@ -11,12 +11,6 @@ ssl_key = {{ zuul_file_gearman_ssl_key_dest }}
 [gearman_server]
 start = false
 
-[gerrit]
-port = 29418
-server = 127.0.0.1
-sshkey = {{ zuul_user_home }}/.ssh/gerrit_id_rsa
-user = zuul
-
 [scheduler]
 tenant_config = {{ zuul_file_main_yaml_dest }}
 log_config = /etc/zuul/scheduler-logging.conf
@@ -53,3 +47,9 @@ listen_address = {{ hostvars['zw01'].ansible_host }}
 
 [zookeeper]
 hosts = {{ hostvars['zk01'].ansible_host | ipwrap }}
+
+[connection gerrit]
+driver = gerrit
+server = 127.0.0.1
+sshkey = {{ zuul_user_home }}/.ssh/gerrit_id_rsa
+user = windmill
