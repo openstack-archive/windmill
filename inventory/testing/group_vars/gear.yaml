@@ -15,6 +15,8 @@
 # openstack.gearman
 gear_file_gear_service_config_src: gear/etc/systemd/system/gear.service.d/override.conf.j2
 
+# TODO(pabelanger): Remove once https://review.openstack.org/558938 is merged
+gear_pip_extra_args: statsd
 gear_pip_virtualenv_python: python3
 gear_pip_virtualenv: /opt/venv/gear
 
