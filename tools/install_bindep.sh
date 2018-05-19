@@ -22,9 +22,14 @@ if is_fedora; then
     YUM=dnf
 fi
 
+PACKAGES=$(bindep -b -f bindep.txt test || true)
+if [ -z $PACKAGES ]; then
+    exit
+fi
+
 if apt-get -v > /dev/null 2>&1 ; then
     sudo apt-get update
-    sudo apt-get --assume-yes install `bindep -b bindep.txt test`
+    sudo apt-get --assume-yes install $PACKAGES
 else
-    sudo $YUM install -y `bindep -b bindep.txt test`
+    sudo $YUM install -y $PACKAGES
 fi
