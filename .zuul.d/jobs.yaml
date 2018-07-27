@@ -35,6 +35,11 @@
     nodeset: centos-7
 
 - job:
+    name: windmill-fedora-latest
+    parent: windmill
+    nodeset: fedora-latest
+
+- job:
     name: windmill-fedora-27
     parent: windmill
     nodeset: fedora-27
@@ -66,6 +71,11 @@
     name: windmill-src-centos-7
     parent: windmill-src
     nodeset: centos-7
+
+- job:
+    name: windmill-src-fedora-latest
+    parent: windmill-src
+    nodeset: fedora-latest
 
 - job:
     name: windmill-src-fedora-27
