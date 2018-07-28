@@ -27,3 +27,5 @@
   become: yes
   shell: /usr/sbin/service zuul-fingergw status
   changed_when: false
+  tags:
+    - skip_ansible_lint

@@ -16,3 +16,5 @@
   become: yes
   shell: /usr/sbin/service statsd status
   changed_when: false
+  tags:
+    - skip_ansible_lint

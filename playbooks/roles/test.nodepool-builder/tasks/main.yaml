@@ -33,3 +33,5 @@
   become: yes
   shell: /usr/sbin/service nodepool-builder status
   changed_when: false
+  tags:
+    - skip_ansible_lint
