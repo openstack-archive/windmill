@@ -20,10 +20,6 @@
       include_role:
         name: openstack.ssh
 
-    - name: Setup openstack.sudoers role
-      include_role:
-        name: openstack.sudoers
-
     - name: Setup openstack.diskimage-builder role
       include_role:
         name: openstack.diskimage-builder
