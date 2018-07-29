@@ -47,3 +47,6 @@
         mode: 0400
         owner: nodepool
         src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml"
+
+- include: nodepool-builder.yaml
+- include: nodepool-launcher.yaml
