@@ -12,9 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: bootstrap.yaml
-- include: statsd.yaml
-- include: gear.yaml
-- include: zookeeper.yaml
-- include: nodepool.yaml
-- include: zuul.yaml
+- import_playbook: bootstrap.yaml
+- import_playbook: statsd.yaml
+- import_playbook: gear.yaml
+- import_playbook: zookeeper.yaml
+- import_playbook: nodepool.yaml
+- import_playbook: zuul.yaml
