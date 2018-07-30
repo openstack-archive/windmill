@@ -13,15 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-function is_fedora {
-    [ -f /usr/bin/yum ] && cat /etc/*release | grep -q -e "Fedora"
-}
-
-YUM=yum
-if is_fedora; then
-    YUM=dnf
-fi
-
 PACKAGES=$(bindep -b -f bindep.txt test || true)
 if [ -z $PACKAGES ]; then
     exit
@@ -31,5 +22,5 @@ if apt-get -v > /dev/null 2>&1 ; then
     sudo apt-get update
     sudo apt-get --assume-yes install $PACKAGES
 else
-    sudo $YUM install -y $PACKAGES
+    sudo dnf install -y $PACKAGES
 fi
