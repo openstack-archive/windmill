@@ -1,5 +1,6 @@
 - job:
     name: windmill-base
+    parent: base-test
     pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
     post-run: tests/playbooks/post.yaml
