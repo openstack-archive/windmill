@@ -16,23 +16,6 @@
         - windmill-fedora-latest
 
 - project-template:
-    name: windmill-jobs-fedora-27
-    check:
-      jobs:
-        - windmill-fedora-27
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-fedora-27
-
-- project-template:
-    name: windmill-jobs-fedora-27-nv
-    check:
-      jobs:
-        - windmill-fedora-27:
-            voting: false
-
-- project-template:
     name: windmill-jobs-bionic
     check:
       jobs:
@@ -68,16 +51,6 @@
       queue: windmill
       jobs:
         - windmill-src-fedora-latest
-
-- project-template:
-    name: windmill-jobs-src-fedora-27
-    check:
-      jobs:
-        - windmill-src-fedora-27
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-src-fedora-27
 
 - project-template:
     name: windmill-jobs-src-bionic

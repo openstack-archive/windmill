@@ -40,11 +40,6 @@
     nodeset: fedora-latest
 
 - job:
-    name: windmill-fedora-27
-    parent: windmill
-    nodeset: fedora-27
-
-- job:
     name: windmill-ubuntu-bionic
     parent: windmill
     nodeset: ubuntu-bionic
@@ -76,11 +71,6 @@
     name: windmill-src-fedora-latest
     parent: windmill-src
     nodeset: fedora-latest
-
-- job:
-    name: windmill-src-fedora-27
-    parent: windmill-src
-    nodeset: fedora-27
 
 - job:
     name: windmill-src-ubuntu-bionic
