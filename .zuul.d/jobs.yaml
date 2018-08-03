@@ -8,7 +8,7 @@
       - openstack/ansible-role-gearman
       - openstack/ansible-role-logrotate
       - openstack/ansible-role-nodepool
-      - openstack/ansible-role-shade
+      - openstack/ansible-role-openstacksdk
       - openstack/ansible-role-ssh
       - openstack/ansible-role-statsd
       - openstack/ansible-role-sudoers
@@ -16,10 +16,10 @@
       - openstack/ansible-role-zookeeper
       - openstack/ansible-role-zuul
       - openstack/diskimage-builder
+      - openstack/openstacksdk
       - openstack/windmill
       - openstack-infra/gear
       - openstack-infra/nodepool
-      - openstack-infra/shade
       - openstack-infra/zuul
 
 # Testing for install_method: pip
@@ -55,9 +55,10 @@
     parent: windmill-base
     required-projects:
       - openstack/diskimage-builder
+      - openstack/openstacksdk
       - openstack-infra/gear
       - openstack-infra/nodepool
-      - openstack-infra/shade
+      - openstack/openstacksdk
       - openstack-infra/zuul
     vars:
       windmill_extra_vars_file: tests/extra-vars/git.yaml

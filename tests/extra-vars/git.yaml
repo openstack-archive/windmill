@@ -10,8 +10,8 @@ gear_install_method: git
 nodepool_git_update: false
 nodepool_install_method: git
 
-shade_git_update: false
-shade_install_method: git
+openstacksdk_git_update: false
+openstacksdk_install_method: git
 
 zuul_git_update: false
 zuul_install_method: git

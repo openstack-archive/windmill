@@ -16,9 +16,9 @@
   hosts: nodepool-launcher
 
   tasks:
-    - name: Setup openstack.shade role
+    - name: Setup openstack.openstacksdk role
       include_role:
-        name: openstack.shade
+        name: openstack.openstacksdk
 
     - name: Setup openstack.nodepool role
       include_role:
