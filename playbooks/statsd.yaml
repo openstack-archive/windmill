@@ -12,19 +12,27 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install statsd.
+- name: Install statsd
   hosts: statsd
 
   tasks:
-    - name: Setup openstack.statsd role.
+    - name: Setup openstack.whisper role
+      include_role:
+        name: openstack.whisper
+
+    - name: Setup openstack.carbon role
+      include_role:
+        name: openstack.carbon
+
+    - name: Setup openstack.statsd role
       include_role:
         name: openstack.statsd
 
-    - name: Setup openstack.logrotate role.
+    - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
 
   post_tasks:
-    - name: Run statsd validation.
+    - name: Run statsd validation
       include_role:
         name: test.statsd
