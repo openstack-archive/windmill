@@ -1,3 +1,6 @@
+- name: openstack.carbon
+  src: git+https://git.openstack.org/openstack/ansible-role-carbon
+
 - name: openstack.diskimage-builder
   src: git+https://git.openstack.org/openstack/ansible-role-diskimage-builder
 
@@ -24,6 +27,9 @@
 
 - name: openstack.virtualenv
   src: git+https://git.openstack.org/openstack/ansible-role-virtualenv
+
+- name: openstack.whisper
+  src: git+https://git.openstack.org/openstack/ansible-role-whisper
 
 - name: openstack.zookeeper
   src: git+https://git.openstack.org/openstack/ansible-role-zookeeper

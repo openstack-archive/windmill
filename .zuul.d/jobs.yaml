@@ -4,6 +4,7 @@
     run: tests/playbooks/run.yaml
     post-run: tests/playbooks/post.yaml
     required-projects:
+      - openstack/ansible-role-carbon
       - openstack/ansible-role-diskimage-builder
       - openstack/ansible-role-gearman
       - openstack/ansible-role-logrotate
@@ -13,6 +14,7 @@
       - openstack/ansible-role-statsd
       - openstack/ansible-role-sudoers
       - openstack/ansible-role-virtualenv
+      - openstack/ansible-role-whisper
       - openstack/ansible-role-zookeeper
       - openstack/ansible-role-zuul
       - openstack/diskimage-builder
