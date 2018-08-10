@@ -12,7 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# windmill.statsd
+# openstack.carbon
+carbon_pip_virtualenv_python: python3
+carbon_pip_virtualenv: /opt/venv/carbon
+
+# openstack.whisper
+whisper_pip_virtualenv_python: python3
+whisper_pip_virtualenv: /opt/venv/carbon
+
+# openstack.statsd
 statsd_file_config_js_src: statsd/etc/statsd/config.js.j2
 
 # openstack.logrotate
