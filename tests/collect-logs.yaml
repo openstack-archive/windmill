@@ -10,6 +10,7 @@
       args:
         creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
+        - carbon-cache
         - statsd
 
     - name: Collect statsd log files
@@ -21,6 +22,8 @@
         src: "{{ item }}"
         verify_host: true
       with_items:
+        - /etc/carbon
+        - /var/log/carbon
         - /etc/statsd
         - /var/log/statsd
 
