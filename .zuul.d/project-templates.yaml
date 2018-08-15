@@ -1,11 +1,4 @@
 - project-template:
-    name: windmill-jobs-centos7-nv
-    check:
-      jobs:
-        - windmill-centos-7:
-            voting: false
-
-- project-template:
     name: windmill-jobs-fedora-latest
     check:
       jobs:
@@ -34,13 +27,6 @@
       queue: windmill
       jobs:
         - windmill-ubuntu-xenial
-
-- project-template:
-    name: windmill-jobs-xenial-nv
-    check:
-      jobs:
-        - windmill-ubuntu-xenial:
-            voting: false
 
 - project-template:
     name: windmill-jobs-src-fedora-latest
