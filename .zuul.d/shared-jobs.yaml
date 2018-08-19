@@ -1,0 +1,8 @@
+- job:
+    name: windmill-tox-molecule
+    parent: tox-with-sudo
+    pre-run: tests/playbooks/molecule/pre.yaml
+    post-run: tests/playbooks/molecule/post.yaml
+    vars:
+      tox_envlist: molecule
+      tox_install_siblings: false
