@@ -1,79 +1,75 @@
-- hosts: statsd01
+- hosts: all
   tasks:
     - name: Ensure journald logs directory exists
       file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
+        path: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal"
         state: directory
 
+- hosts: statsd01
+  tasks:
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - statsd
 
     - name: Collect statsd log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/statsd
         - /var/log/statsd
 
 - hosts: gear01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - gear
 
     - name: Collect gear log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/gear/logging.conf
         - /var/log/gear/*.log
 
 - hosts: nb01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - nodepool-builder
 
-    - name: Collect nodepool log files
+    - name: Collect nodepool-builder log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/nodepool/builder-logging.conf
         - /etc/nodepool/nodepool.yaml
@@ -83,27 +79,23 @@
 
 - hosts: nl01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - nodepool-launcher
 
-    - name: Collect nl01 log files
+    - name: Collect nodepool-launcher log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/nodepool/launcher-logging.conf
         - /etc/nodepool/nodepool.yaml
@@ -112,27 +104,23 @@
 
 - hosts: zs01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - zuul-scheduler
 
-    - name: Collect zs01 log files
+    - name: Collect zuul-scheduler log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/zuul/main.yaml
         - /etc/zuul/scheduler-logging.conf
@@ -142,27 +130,23 @@
 
 - hosts: ze01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - zuul-executor
 
-    - name: Collect ze01 log files
+    - name: Collect zuul-executor log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/zuul/executor-logging.conf
         - /etc/zuul/zuul.conf
@@ -171,27 +155,23 @@
 
 - hosts: zf01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - zuul-fingergw
 
-    - name: Collect zf01 log files
+    - name: Collect zuul-fingergw log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname}}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/zuul/fingergw-logging.conf
         - /etc/zuul/zuul.conf
@@ -200,27 +180,23 @@
 
 - hosts: zm01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - zuul-merger
 
-    - name: Collect zm01 log files
+    - name: Collect zuul-merger log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/zuul/merger-logging.conf
         - /etc/zuul/zuul.conf
@@ -229,27 +205,23 @@
 
 - hosts: zw01
   tasks:
-    - name: Ensure journald logs directory exists
-      file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
-        state: directory
-
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - zuul-web
 
-    - name: Collect zw01 log files
+    - name: Collect zuul-web log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/zuul/web-logging.conf
         - /etc/zuul/zuul.conf
