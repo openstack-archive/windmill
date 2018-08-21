@@ -2,24 +2,26 @@
   tasks:
     - name: Ensure journald logs directory exists
       file:
-        path: "~/logs/{{ inventory_hostname }}/var/log/journal"
+        path: "{{ zuul_output_dir }}/logs/{{ inventory_hostname }}/var/log/journal"
         state: directory
 
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
         - statsd
 
     - name: Collect statsd log files
+      become: yes
       synchronize:
-        dest: "~/logs/{{ inventory_hostname }}"
-        mode: pull
+        dest: "{{ zuul_output_dir }}/logs/{{ inventory_hostname }}"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
         - /etc/statsd
         - /var/log/statsd
