@@ -13,26 +13,26 @@ zookeeper-servers:
 {% endif %}
 
 labels:
-  - name: ubuntu-xenial
+  - name: ubuntu-bionic
     min-ready: 1
 
 providers:
   - name: openstackzuul
     cloud: openstackzuul
     diskimages:
-      - name: ubuntu-xenial
+      - name: ubuntu-bionic
         config-drive: true
     pools:
       - name: main
         max-servers: 10
         labels:
-          - name: ubuntu-xenial
-            diskimage: ubuntu-xenial
+          - name: ubuntu-bionic
+            diskimage: ubuntu-bionic
             min-ram: 8192
             console-log: true
 
 diskimages:
-  - name: ubuntu-xenial
+  - name: ubuntu-bionic
     elements:
       - ubuntu-minimal
       - growroot
@@ -40,7 +40,7 @@ diskimages:
       - simple-init
       - vm
       - zuul-worker
-    release: xenial
+    release: bionic
     env-vars:
       TMPDIR: /opt/nodepool/tmp
       DIB_CHECKSUM: '1'

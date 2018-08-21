@@ -29,13 +29,13 @@
     owner: root
     src: test_dib_image_list.sh
 
-- name: Ensure ubuntu-xenial DIB image is built.
+- name: Ensure ubuntu-bionic DIB image is built.
   become: yes
   become_user: nodepool
   delay: 10
   register: task_result
   retries: 360
-  shell: /opt/windmill/test.prove/test_dib_image_list.sh ubuntu-xenial ready
+  shell: /opt/windmill/test.prove/test_dib_image_list.sh ubuntu-bionic ready
   tags: skip_ansible_lint
   until: task_result.rc == 0
   delegate_to: "{{ item }}"
