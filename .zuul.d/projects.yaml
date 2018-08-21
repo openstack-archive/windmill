@@ -4,6 +4,3 @@
       - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
       - windmill-jobs-xenial
-      - windmill-jobs-src-fedora-latest
-      - windmill-jobs-src-bionic
-      - windmill-jobs-src-xenial

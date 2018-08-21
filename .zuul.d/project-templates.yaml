@@ -3,57 +3,33 @@
     check:
       jobs:
         - windmill-fedora-latest
+        - windmill-src-fedora-latest
     gate:
       queue: windmill
       jobs:
         - windmill-fedora-latest
+        - windmill-src-fedora-latest
 
 - project-template:
     name: windmill-jobs-bionic
     check:
       jobs:
         - windmill-ubuntu-bionic
+        - windmill-src-ubuntu-bionic
     gate:
       queue: windmill
       jobs:
         - windmill-ubuntu-bionic
+        - windmill-src-ubuntu-bionic
 
 - project-template:
     name: windmill-jobs-xenial
     check:
       jobs:
         - windmill-ubuntu-xenial
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-ubuntu-xenial
-
-- project-template:
-    name: windmill-jobs-src-fedora-latest
-    check:
-      jobs:
-        - windmill-src-fedora-latest
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-src-fedora-latest
-
-- project-template:
-    name: windmill-jobs-src-bionic
-    check:
-      jobs:
-        - windmill-src-ubuntu-bionic
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-src-ubuntu-bionic
-
-- project-template:
-    name: windmill-jobs-src-xenial
-    check:
-      jobs:
         - windmill-src-ubuntu-xenial
     gate:
       queue: windmill
       jobs:
+        - windmill-ubuntu-xenial
         - windmill-src-ubuntu-xenial
