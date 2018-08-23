@@ -1,0 +1,15 @@
+# TODO(pabelanger): Remove once https://review.openstack.org/593150 is merged.
+- job:
+    name: windmill-tox-with-sudo
+    parent: tox
+    run: tests/playbooks/windmill-tox-with-sudo/run.yaml
+    protected: true
+
+- job:
+    name: windmill-tox-molecule
+    parent: windmill-tox-with-sudo
+    pre-run: tests/playbooks/molecule/pre.yaml
+    post-run: tests/playbooks/molecule/post.yaml
+    vars:
+      tox_envlist: molecule
+      tox_install_siblings: false
