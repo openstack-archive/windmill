@@ -1,0 +1,10 @@
+Code-Review+1: 98k <18552437190@163.com>
+Code-Review+1: Andriy Shevchenko <huang.zhiping@99cloud.net>
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Thu, 29 Nov 2018 14:19:41 +0000
+Reviewed-on: https://review.openstack.org/606748
+Project: openstack/windmill
+Branch: refs/heads/master
