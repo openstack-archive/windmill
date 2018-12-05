@@ -13,6 +13,8 @@
 # under the License.
 ---
 # windmill.nodepool
+nodepool_user_shell: /bin/bash
+
 nodepool_file_nodepool_yaml_src: "{{ windmill_config_git_dest }}/nodepool/nodepool.yaml.j2"
 
 nodepool_pip_virtualenv_python: python3
