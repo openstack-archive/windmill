@@ -21,7 +21,7 @@
       - openstack-infra/gear
       - openstack-infra/nodepool
       - openstack-infra/zuul
-    timeout: 2700
+    timeout: 3600
 
 # Testing for install_method: pip
 - job:
