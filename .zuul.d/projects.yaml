@@ -3,4 +3,3 @@
       - ansible-role-jobs
       - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
-      - windmill-jobs-xenial
