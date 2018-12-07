@@ -13,6 +13,14 @@
         regexp: ^extra-index-url
         state: absent
 
+    - name: Remove exclude from dnf.conf
+      become: true
+      lineinfile:
+        dest: /etc/dnf/dnf.conf
+        regexp: ^exclude
+        state: absent
+      when: ansible_os_family == 'RedHat'
+
     - name: Bootstrap bindep environment
       args:
         chdir: "{{ windmill_src_dir }}"
