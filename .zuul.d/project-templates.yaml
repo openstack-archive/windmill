@@ -21,15 +21,3 @@
       jobs:
         - windmill-ubuntu-bionic
         - windmill-src-ubuntu-bionic
-
-- project-template:
-    name: windmill-jobs-xenial
-    check:
-      jobs:
-        - windmill-ubuntu-xenial
-        - windmill-src-ubuntu-xenial
-    gate:
-      queue: windmill
-      jobs:
-        - windmill-ubuntu-xenial
-        - windmill-src-ubuntu-xenial
