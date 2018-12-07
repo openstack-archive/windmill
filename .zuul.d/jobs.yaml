@@ -45,11 +45,6 @@
     parent: windmill
     nodeset: ubuntu-bionic
 
-- job:
-    name: windmill-ubuntu-xenial
-    parent: windmill
-    nodeset: ubuntu-xenial
-
 # Testing for install_method: git
 - job:
     name: windmill-src
@@ -78,8 +73,3 @@
     name: windmill-src-ubuntu-bionic
     parent: windmill-src
     nodeset: ubuntu-bionic
-
-- job:
-    name: windmill-src-ubuntu-xenial
-    parent: windmill-src
-    nodeset: ubuntu-xenial
