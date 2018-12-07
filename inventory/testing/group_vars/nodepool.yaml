@@ -21,5 +21,11 @@ nodepool_pip_virtualenv_python: python3
 nodepool_pip_virtualenv: /opt/venv/nodepool
 
 # windmill.openstacksdk
+openstacksdk_user_name: "{{ nodepool_user_name }}"
+openstacksdk_user_group: "{{ nodepool_user_group }}"
+openstacksdk_user_home: "{{ nodepool_user_home }}"
+
 openstacksdk_pip_virtualenv_python: python3
 openstacksdk_pip_virtualenv: /opt/venv/nodepool
+
+openstacksdk_file_clouds_yaml_src: "{{ windmill_config_git_dest }}/nodepool/clouds.yaml.j2"
