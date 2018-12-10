@@ -23,6 +23,12 @@
         chdir: "{{ windmill_src_dir }}"
       command: tox -evenv --notest
 
+    - name: Install ansible configuration file
+      copy:
+        dest: "{{ ansible_user_dir }}/.ansible.cfg"
+        remote_src: True
+        src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
+
     - name: Install ansible roles via galaxy
       args:
         chdir: "{{ windmill_src_dir }}"
