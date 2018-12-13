@@ -24,7 +24,7 @@
       - test_nodepool_pip_virtualenv_stat.stat.isdir
 
 - name: Ensure gear is running
-  become: yes
+  become: true
   shell: /usr/sbin/service gear status
   changed_when: false
   tags:

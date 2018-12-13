@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Create required directories.
-  become: yes
+  become: true
   file:
     group: root
     owner: root
@@ -21,7 +21,7 @@
     state: directory
 
 - name: Install dib-image-list.sh wrapper.
-  become: yes
+  become: true
   copy:
     dest: /opt/windmill/test.prove
     group: root
@@ -30,7 +30,7 @@
     src: test_dib_image_list.sh
 
 - name: Ensure ubuntu-bionic DIB image is built.
-  become: yes
+  become: true
   become_user: nodepool
   delay: 10
   register: task_result

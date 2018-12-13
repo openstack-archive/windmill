@@ -1,3 +1,4 @@
+---
 - project-template:
     name: windmill-jobs-fedora-latest
     check:

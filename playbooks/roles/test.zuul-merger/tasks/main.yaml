@@ -24,7 +24,7 @@
       - test_zuul_pip_virtualenv_stat.stat.isdir
 
 - name: Ensure zuul-merger is running
-  become: yes
+  become: true
   shell: /usr/sbin/service zuul-merger status
   changed_when: false
   tags:

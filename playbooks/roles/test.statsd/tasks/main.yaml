@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Ensure statsd is running
-  become: yes
+  become: true
   shell: /usr/sbin/service statsd status
   changed_when: false
   tags:

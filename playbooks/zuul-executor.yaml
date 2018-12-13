@@ -23,7 +23,7 @@
     # TODO(pabelanger): I'm thinking we should likely create
     # ansible-role-bubblewrap to allow user to better manage this dependency.
     - name: Ensure bubblewrap is installed
-      become: yes
+      become: true
       package:
         name: bubblewrap
         state: installed

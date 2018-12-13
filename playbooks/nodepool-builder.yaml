@@ -29,11 +29,11 @@
         name: openstack.nodepool
 
     - name: Install nodepool elements directory
-      become: yes
+      become: true
       synchronize:
-        delete: yes
+        delete: true
         dest: /etc/nodepool/
-        perms: yes
+        perms: true
         rsync_opts:
           - '--chown=nodepool:nodepool'
         src: "{{ windmill_config_git_dest }}/nodepool/elements"

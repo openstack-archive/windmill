@@ -20,9 +20,9 @@
 
   pre_tasks:
     - name: Update apt cache
-      become: yes
+      become: true
       apt:
-        update_cache: yes
+        update_cache: true
         upgrade: dist
       when: ansible_os_family == 'Debian'
 

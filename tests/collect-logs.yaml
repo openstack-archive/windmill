@@ -1,3 +1,4 @@
+---
 - hosts: all,!bastion
   tasks:
     - name: Ensure journald logs directory exists
@@ -15,7 +16,7 @@
         - statsd
 
     - name: Collect statsd log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -38,7 +39,7 @@
         - gear
 
     - name: Collect gear log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -61,7 +62,7 @@
         - nodepool-builder
 
     - name: Collect nodepool-builder log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -87,7 +88,7 @@
         - nodepool-launcher
 
     - name: Collect nodepool-launcher log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -112,7 +113,7 @@
         - zuul-scheduler
 
     - name: Collect zuul-scheduler log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -138,7 +139,7 @@
         - zuul-executor
 
     - name: Collect zuul-executor log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -163,7 +164,7 @@
         - zuul-fingergw
 
     - name: Collect zuul-fingergw log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -188,7 +189,7 @@
         - zuul-merger
 
     - name: Collect zuul-merger log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:
@@ -213,7 +214,7 @@
         - zuul-web
 
     - name: Collect zuul-web log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}"
         rsync_opts:

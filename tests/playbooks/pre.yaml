@@ -1,3 +1,4 @@
+---
 - hosts: all
   tasks:
     # TODO(pabelanger): Remove once this lands in our base job in
@@ -7,7 +8,7 @@
         name: ensure-output-dirs
 
     - name: Disable extra wheels mirror
-      become: yes
+      become: true
       lineinfile:
         dest: /etc/pip.conf
         regexp: ^extra-index-url
@@ -26,7 +27,7 @@
     - name: Install ansible configuration file
       copy:
         dest: "{{ ansible_user_dir }}/.ansible.cfg"
-        remote_src: True
+        remote_src: true
         src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
 
     - name: Install ansible roles via galaxy

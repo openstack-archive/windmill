@@ -1,3 +1,4 @@
+---
 - job:
     name: windmill-base
     pre-run: tests/playbooks/pre.yaml

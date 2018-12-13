@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Ensure zookeeper is running
-  become: yes
+  become: true
   shell: /usr/sbin/service zookeeper status
   changed_when: false
   tags:

@@ -24,13 +24,13 @@
       - test_nodepool_pip_virtualenv_stat.stat.isdir
 
 - name: Validate /etc/nodepool/nodepool.yaml
-  become: yes
+  become: true
   become_user: nodepool
   command: /opt/venv/nodepool/bin/nodepool -c /etc/nodepool/nodepool.yaml config-validate
   changed_when: false
 
 - name: Ensure nodepool-builder is running
-  become: yes
+  become: true
   shell: /usr/sbin/service nodepool-builder status
   changed_when: false
   tags:

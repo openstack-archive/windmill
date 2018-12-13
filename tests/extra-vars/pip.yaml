@@ -1,3 +1,4 @@
+---
 # NOTE(pabelanger): In the gate, we want to create a zuul-test user /
 # group as zuul already exists on our images.
 zuul_user_name: zuul-test
