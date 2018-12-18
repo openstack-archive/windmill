@@ -12,8 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Bootstrap nodepool hosts
-  hosts: nodepool
+- name: Bootstrap nodepool-builder
+  hosts: nodepool-builder
   # TODO(pabelanger): We really don't want to use serial here, but this allows
   # us to still support a single node install.  What we should do here is expose
   # some sort of variable to only toggle this when we are doing a single node
@@ -30,15 +30,6 @@
         nodepool_task_manager:
           - pre
 
-- name: Bootstrap nodepool-builder
-  hosts: nodepool-builder
-  # TODO(pabelanger): We really don't want to use serial here, but this allows
-  # us to still support a single node install.  What we should do here is expose
-  # some sort of variable to only toggle this when we are doing a single node
-  # install. Otherwise, we just slow down multinode deployments.
-  serial: 1
-
-  tasks:
     - name: Setup openstack.ssh role
       include_role:
         name: openstack.ssh
@@ -66,13 +57,13 @@
   serial: 1
 
   tasks:
-    - name: Setup openstack.openstacksdk role
-      include_role:
-        name: openstack.openstacksdk
-
     - name: Setup openstack.nodepool role
       include_role:
         name: openstack.nodepool
+
+    - name: Setup openstack.openstacksdk role
+      include_role:
+        name: openstack.openstacksdk
 
     - name: Setup openstack.logrotate role
       include_role:
