@@ -12,8 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul
-  hosts: zuul
+- name: Bootstrap zuul-executor and zuul-scheduler
+  hosts: zuul-executor, zuul-scheduler
   # TODO(pabelanger): We really don't want to use serial here, but this allows
   # us to still support a single node install.  What we should do here is expose
   # some sort of variable to only toggle this when we are doing a single node
@@ -23,12 +23,50 @@
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
     # directory first.
-    - name: Create zuul user directories.
+    - name: Create zuul user directories
       include_role:
         name: openstack.zuul
       vars:
         zuul_task_manager:
           - pre
+
+    - name: Setup openstack.ssh role
+      include_role:
+        name: openstack.ssh
+
+- name: Bootstrap zuul-executor
+  hosts: zuul-executor
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
+
+  tasks:
+    # TODO(pabelanger): I'm thinking we should likely create
+    # ansible-role-bubblewrap to allow user to better manage this dependency.
+    - name: Ensure bubblewrap is installed
+      become: true
+      package:
+        name: bubblewrap
+        state: installed
+
+- name: Install zuul
+  hosts: zuul
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
+
+  tasks:
+    - name: Setup openstack.zuul role
+      include_role:
+        name: openstack.zuul
+
+    - name: Setup openstack.logrotate role.
+      include_role:
+        name: openstack.logrotate
 
 - import_playbook: zuul-scheduler.yaml
 - import_playbook: zuul-executor.yaml

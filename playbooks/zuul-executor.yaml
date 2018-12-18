@@ -15,27 +15,6 @@
 - name: Install zuul-executor
   hosts: zuul-executor
 
-  tasks:
-    - name: Setup openstack.zuul role
-      include_role:
-        name: openstack.zuul
-
-    # TODO(pabelanger): I'm thinking we should likely create
-    # ansible-role-bubblewrap to allow user to better manage this dependency.
-    - name: Ensure bubblewrap is installed
-      become: true
-      package:
-        name: bubblewrap
-        state: installed
-
-    - name: Setup openstack.ssh role
-      include_role:
-        name: openstack.ssh
-
-    - name: Setup openstack.logrotate role
-      include_role:
-        name: openstack.logrotate
-
   post_tasks:
     - name: Run zuul-executor validation
       include_role:

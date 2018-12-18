@@ -12,19 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul-fingergw.
+- name: Install zuul-fingergw
   hosts: zuul-fingergw
 
-  tasks:
-    - name: Setup openstack.zuul role.
-      include_role:
-        name: openstack.zuul
-
-    - name: Setup openstack.logrotate role.
-      include_role:
-        name: openstack.logrotate
-
   post_tasks:
-    - name: Run zuul-fingergw validation.
+    - name: Run zuul-fingergw validation
       include_role:
         name: test.zuul-fingergw

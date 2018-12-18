@@ -12,19 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul-merger.
+- name: Install zuul-merger
   hosts: zuul-merger
 
-  tasks:
-    - name: Setup openstack.zuul role.
-      include_role:
-        name: openstack.zuul
-
-    - name: Setup openstack.logrotate role.
-      include_role:
-        name: openstack.logrotate
-
   post_tasks:
-    - name: Run zuul-merger validation.
+    - name: Run zuul-merger validation
       include_role:
         name: test.zuul-merger
