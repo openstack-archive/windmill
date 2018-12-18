@@ -12,19 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install nodepool-launcher.
+- name: Install nodepool-launcher
   hosts: nodepool-launcher
 
-  tasks:
-    - name: Setup openstack.nodepool role
-      include_role:
-        name: openstack.nodepool
-
-    - name: Setup openstack.logrotate role
-      include_role:
-        name: openstack.logrotate
-
   post_tasks:
-    - name: Run nodepool-launcher validation.
+    - name: Run nodepool-launcher validation
       include_role:
         name: test.nodepool-launcher

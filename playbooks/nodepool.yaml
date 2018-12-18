@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install nodepool
+- name: Bootstrap nodepool hosts
   hosts: nodepool
   # TODO(pabelanger): We really don't want to use serial here, but this allows
   # us to still support a single node install.  What we should do here is expose
@@ -23,16 +23,60 @@
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
     # directory first.
-    - name: Create nodepool user directories.
+    - name: Create nodepool user directories
       include_role:
         name: openstack.nodepool
       vars:
         nodepool_task_manager:
           - pre
 
+- name: Bootstrap nodepool-builder
+  hosts: nodepool-builder
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
+
+  tasks:
+    - name: Setup openstack.ssh role
+      include_role:
+        name: openstack.ssh
+
+    - name: Setup openstack.diskimage-builder role
+      include_role:
+        name: openstack.diskimage-builder
+
+    - name: Install nodepool elements directory
+      become: true
+      synchronize:
+        delete: true
+        dest: /etc/nodepool/
+        perms: true
+        rsync_opts:
+          - '--chown=nodepool:nodepool'
+        src: "{{ windmill_config_git_dest }}/nodepool/elements"
+
+- name: Bootstrap nodepool hosts
+  hosts: nodepool
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
+
+  tasks:
     - name: Setup openstack.openstacksdk role
       include_role:
         name: openstack.openstacksdk
+
+    - name: Setup openstack.nodepool role
+      include_role:
+        name: openstack.nodepool
+
+    - name: Setup openstack.logrotate role
+      include_role:
+        name: openstack.logrotate
 
 - import_playbook: nodepool-builder.yaml
 - import_playbook: nodepool-launcher.yaml

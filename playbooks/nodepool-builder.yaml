@@ -15,33 +15,6 @@
 - name: Install nodepool-builder
   hosts: nodepool-builder
 
-  tasks:
-    - name: Setup openstack.ssh role
-      include_role:
-        name: openstack.ssh
-
-    - name: Setup openstack.diskimage-builder role
-      include_role:
-        name: openstack.diskimage-builder
-
-    - name: Setup openstack.nodepool role
-      include_role:
-        name: openstack.nodepool
-
-    - name: Install nodepool elements directory
-      become: true
-      synchronize:
-        delete: true
-        dest: /etc/nodepool/
-        perms: true
-        rsync_opts:
-          - '--chown=nodepool:nodepool'
-        src: "{{ windmill_config_git_dest }}/nodepool/elements"
-
-    - name: Setup openstack.logrotate role
-      include_role:
-        name: openstack.logrotate
-
   post_tasks:
     - name: Run nodepool-server validation
       include_role:
