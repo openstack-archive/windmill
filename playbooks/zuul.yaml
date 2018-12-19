@@ -68,6 +68,21 @@
       include_role:
         name: openstack.logrotate
 
+- name: Bootstrap zuul-web
+  hosts: zuul-web
+  # TODO(pabelanger): We really don't want to use serial here, but this allows
+  # us to still support a single node install.  What we should do here is expose
+  # some sort of variable to only toggle this when we are doing a single node
+  # install. Otherwise, we just slow down multinode deployments.
+  serial: 1
+
+  tasks:
+    # NOTE(pabelanger): Because of ordering issues create the required home
+    # directory first.
+    - name: Setup openstack.nginx role
+      include_role:
+        name: openstack.nginx
+
 - import_playbook: zuul-scheduler.yaml
 - import_playbook: zuul-executor.yaml
 - import_playbook: zuul-fingergw.yaml
