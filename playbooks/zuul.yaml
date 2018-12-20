@@ -14,11 +14,6 @@
 ---
 - name: Bootstrap zuul-executor and zuul-scheduler
   hosts: zuul-executor, zuul-scheduler
-  # TODO(pabelanger): We really don't want to use serial here, but this allows
-  # us to still support a single node install.  What we should do here is expose
-  # some sort of variable to only toggle this when we are doing a single node
-  # install. Otherwise, we just slow down multinode deployments.
-  serial: 1
 
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
@@ -36,11 +31,6 @@
 
 - name: Bootstrap zuul-executor
   hosts: zuul-executor
-  # TODO(pabelanger): We really don't want to use serial here, but this allows
-  # us to still support a single node install.  What we should do here is expose
-  # some sort of variable to only toggle this when we are doing a single node
-  # install. Otherwise, we just slow down multinode deployments.
-  serial: 1
 
   tasks:
     # TODO(pabelanger): I'm thinking we should likely create
@@ -53,11 +43,6 @@
 
 - name: Install zuul
   hosts: zuul
-  # TODO(pabelanger): We really don't want to use serial here, but this allows
-  # us to still support a single node install.  What we should do here is expose
-  # some sort of variable to only toggle this when we are doing a single node
-  # install. Otherwise, we just slow down multinode deployments.
-  serial: 1
 
   tasks:
     - name: Setup openstack.zuul role
