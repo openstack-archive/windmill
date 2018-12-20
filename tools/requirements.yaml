@@ -8,6 +8,9 @@
 - name: openstack.logrotate
   src: git+https://git.openstack.org/openstack/ansible-role-logrotate
 
+- name: openstack.nginx
+  src: git+https://git.openstack.org/openstack/ansible-role-nginx
+
 - name: openstack.nodepool
   src: git+https://git.openstack.org/openstack/ansible-role-nodepool
 

@@ -53,6 +53,14 @@
       include_role:
         name: openstack.logrotate
 
+- name: Bootstrap zuul-web
+  hosts: zuul-web
+
+  tasks:
+    - name: Setup openstack.nginx role
+      include_role:
+        name: openstack.nginx
+
 - import_playbook: zuul-scheduler.yaml
 - import_playbook: zuul-executor.yaml
 - import_playbook: zuul-fingergw.yaml
