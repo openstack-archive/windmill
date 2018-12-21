@@ -35,11 +35,11 @@
   tasks:
     # TODO(pabelanger): I'm thinking we should likely create
     # ansible-role-bubblewrap to allow user to better manage this dependency.
-    - name: Ensure bubblewrap is installed
+    - name: Ensure bubblewrap is present
       become: true
       package:
         name: bubblewrap
-        state: installed
+        state: present
 
 - name: Install zuul
   hosts: zuul
