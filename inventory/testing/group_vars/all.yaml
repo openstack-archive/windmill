@@ -13,7 +13,7 @@
 # under the License.
 ---
 # windmill.virtualenv
-virtualenv_install_method: pip
+virtualenv_install_method: package
 
 # windmill-config
 # TODO(pabelanger): Create windmill-config project on git.o.o.
