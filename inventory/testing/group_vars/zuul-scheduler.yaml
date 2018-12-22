@@ -15,33 +15,12 @@
 # windmill.zuul
 zuul_file_zuul_scheduler_service_config_src: zuul/etc/systemd/system/zuul-scheduler.service.d/override.conf.j2
 
-zuul_file_zuul_executor_service_config_manage: false
-zuul_file_zuul_executor_service_manage: false
+zuul_file_zuul_scheduler_service_config_manage: true
+zuul_file_zuul_scheduler_service_manage: true
 
-zuul_file_zuul_fingergw_service_config_manage: false
-zuul_file_zuul_fingergw_service_manage: false
-
-zuul_file_zuul_merger_service_config_manage: false
-zuul_file_zuul_merger_service_manage: false
-
-zuul_file_zuul_web_service_config_manage: false
-zuul_file_zuul_web_service_manage: false
-
-zuul_service_zuul_executor_enabled: false
-zuul_service_zuul_executor_manage: false
-zuul_service_zuul_executor_state: stopped
-
-zuul_service_zuul_fingergw_enabled: false
-zuul_service_zuul_fingergw_manage: false
-zuul_service_zuul_fingergw_state: stopped
-
-zuul_service_zuul_merger_enabled: false
-zuul_service_zuul_merger_manage: false
-zuul_service_zuul_merger_state: stopped
-
-zuul_service_zuul_web_enabled: false
-zuul_service_zuul_web_manage: false
-zuul_service_zuul_web_state: stopped
+zuul_service_zuul_scheduler_enabled: true
+zuul_service_zuul_scheduler_manage: true
+zuul_service_zuul_scheduler_state: started
 
 # openstack.logrotate
 logrotate_configs:
