@@ -12,8 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Bootstrap zuul-executor and zuul-scheduler
-  hosts: zuul-executor, zuul-scheduler
+- name: Bootstrap SSH keys for zuul-connections
+  hosts: zuul-connections
 
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
@@ -28,6 +28,14 @@
     - name: Setup openstack.ssh role
       include_role:
         name: openstack.ssh
+      with_items: "{{ zuul_connections_ssh }}"
+      vars:
+        ssh_key_private_content: "{{ item.ssh_key_private_content }}"
+        ssh_key_private_dest: "{{ item.ssh_key_private_dest }}"
+        ssh_key_public_content: "{{ item.ssh_key_public_content }}"
+        ssh_key_public_dest: "{{ item.ssh_key_public_dest }}"
+        ssh_user_name: "{{ item.ssh_user_name }}"
+        ssh_user_home: "{{ item.ssh_user_home }}"
 
 - name: Bootstrap zuul-executor
   hosts: zuul-executor
