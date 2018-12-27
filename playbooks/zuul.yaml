@@ -12,8 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Bootstrap zuul-executor and zuul-scheduler
-  hosts: zuul-executor, zuul-scheduler
+- name: Bootstrap SSH keys for zuul-connections
+  hosts: zuul-connections
 
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
