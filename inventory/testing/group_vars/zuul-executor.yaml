@@ -34,8 +34,8 @@ logrotate_configs:
       - notifempty
 
 # windmill.ssh
-ssh_user_name: "{{ zuul_user_name|default('zuul') }}"
-ssh_user_home: "{{ zuul_user_home|default('/var/lib/zuul') }}"
+ssh_user_name: zuul
+ssh_user_home: /var/lib/zuul
 
 ssh_key_private_content: |
   -----BEGIN RSA PRIVATE KEY-----
