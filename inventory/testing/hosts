@@ -40,3 +40,8 @@ zuul-fingergw
 zuul-merger
 zuul-scheduler
 zuul-web
+
+[zuul-connections:children]
+zuul-executor
+zuul-merger
+zuul-scheduler
