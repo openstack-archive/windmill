@@ -21,6 +21,13 @@ zuul_file_zuul_conf_src: "{{ windmill_config_git_dest }}/zuul/zuul.conf.j2"
 zuul_pip_virtualenv_python: python3
 zuul_pip_virtualenv: /opt/venv/zuul
 
+zuul_file_executor_logging_conf_manage: false
+zuul_file_fingergw_logging_conf_manage: false
+zuul_file_gearman_logging_conf_manage: false
+zuul_file_merger_logging_conf_manage: false
+zuul_file_scheduler_logging_conf_manage: false
+zuul_file_web_logging_conf_manage: false
+
 zuul_file_zuul_executor_service_config_manage: false
 zuul_file_zuul_executor_service_manage: false
 

@@ -13,9 +13,10 @@
 # under the License.
 ---
 # windmill.zuul
-zuul_file_zuul_merger_service_config_src: zuul/etc/systemd/system/zuul-merger.service.d/override.conf.j2
+zuul_file_merger_logging_conf_manage: true
 
 zuul_file_zuul_merger_service_config_manage: true
+zuul_file_zuul_merger_service_config_src: zuul/etc/systemd/system/zuul-merger.service.d/override.conf.j2
 zuul_file_zuul_merger_service_manage: true
 
 zuul_service_zuul_merger_enabled: true
