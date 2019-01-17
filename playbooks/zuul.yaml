@@ -32,9 +32,9 @@
       vars:
         ssh_key_private_content: "{{ item.ssh_key_private_content }}"
         ssh_key_private_dest: "{{ item.ssh_key_private_dest }}"
-        ssh_key_public_content: "{{ item.ssh_key_public_content }}"
+        ssh_key_public_content: "{{ item.ssh_key_public_content | default(False) }}"
         ssh_key_public_dest: "{{ item.ssh_key_public_dest }}"
-        ssh_known_hosts_content: "{{ item.ssh_known_hosts_content | default(omit) }}"
+        ssh_known_hosts_content: "{{ item.ssh_known_hosts_content | default(False) }}"
         ssh_user_name: "{{ item.ssh_user_name }}"
         ssh_user_home: "{{ item.ssh_user_home }}"
 
