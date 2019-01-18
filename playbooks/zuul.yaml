@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Bootstrap SSH keys for zuul-connections
-  hosts: zuul-connections
+  hosts: zuul-connections:!disabled
 
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
@@ -39,7 +39,7 @@
         ssh_user_home: "{{ item.ssh_user_home }}"
 
 - name: Bootstrap zuul-executor
-  hosts: zuul-executor
+  hosts: zuul-executor:!disabled
 
   tasks:
     - name: Setup openstack.ssh role
@@ -55,7 +55,7 @@
         state: present
 
 - name: Install zuul
-  hosts: zuul
+  hosts: zuul:!disabled
 
   tasks:
     - name: Setup openstack.zuul role
@@ -67,7 +67,7 @@
         name: openstack.logrotate
 
 - name: Bootstrap zuul-web
-  hosts: zuul-web
+  hosts: zuul-web:!disabled
 
   tasks:
     - name: Setup openstack.nginx role

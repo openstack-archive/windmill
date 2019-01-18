@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Bootstrap nodepool hosts
-  hosts: nodepool
+  hosts: nodepool:!disabled
 
   tasks:
     # NOTE(pabelanger): Because of ordering issues create the required home
@@ -26,7 +26,7 @@
           - pre
 
 - name: Bootstrap nodepool-builder
-  hosts: nodepool-builder
+  hosts: nodepool-builder:!disabled
 
   tasks:
     - name: Setup openstack.ssh role
@@ -48,7 +48,7 @@
         src: "{{ windmill_config_git_dest }}/nodepool/elements"
 
 - name: Bootstrap nodepool hosts
-  hosts: nodepool
+  hosts: nodepool:!disabled
 
   tasks:
     - name: Setup openstack.openstacksdk role

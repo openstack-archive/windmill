@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Install zuul-scheduler
-  hosts: zuul-scheduler
+  hosts: zuul-scheduler:!disabled
 
   post_tasks:
     - name: Run zuul-scheduler validation

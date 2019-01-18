@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Install zuul-merger
-  hosts: zuul-merger
+  hosts: zuul-merger:!disabled
 
   post_tasks:
     - name: Run zuul-merger validation

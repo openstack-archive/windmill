@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Install statsd.
-  hosts: statsd
+  hosts: statsd:!disabled
 
   tasks:
     - name: Setup openstack.statsd role.

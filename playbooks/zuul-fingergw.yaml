@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Install zuul-fingergw
-  hosts: zuul-fingergw
+  hosts: zuul-fingergw:!disabled
 
   post_tasks:
     - name: Run zuul-fingergw validation

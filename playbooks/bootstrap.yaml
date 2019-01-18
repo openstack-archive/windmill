@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Bootstrap nodes
-  hosts: all,!bastion
+  hosts: all:!bastion:!disabled
 
   pre_tasks:
     - name: Update apt cache
@@ -29,7 +29,7 @@
         name: openstack.sudoers
 
 - name: Bootstrap python dependencies for windmill
-  hosts: all,!bastion,!zookeeper
+  hosts: all:!bastion:!zookeeper:!disabled
 
   tasks:
     - name: Setup openstack.virtualenv role

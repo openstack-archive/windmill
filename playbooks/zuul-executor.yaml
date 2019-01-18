@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Install zuul-executor
-  hosts: zuul-executor
+  hosts: zuul-executor:!disabled
 
   post_tasks:
     - name: Run zuul-executor validation
