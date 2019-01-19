@@ -21,7 +21,7 @@ zuul_file_zuul_executor_service_manage: true
 
 zuul_service_zuul_executor_enabled: true
 zuul_service_zuul_executor_manage: true
-zuul_service_zuul_executor_state: started
+zuul_service_zuul_executor_state: false
 
 # openstack.logrotate
 logrotate_configs:
