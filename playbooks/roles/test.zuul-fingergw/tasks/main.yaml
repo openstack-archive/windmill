@@ -27,5 +27,6 @@
   become: true
   shell: /usr/sbin/service zuul-fingergw status
   changed_when: false
+  when: zuul_service_zuul_fingergw_state in ['reloaded', 'restarted', 'started']
   tags:
     - skip_ansible_lint
