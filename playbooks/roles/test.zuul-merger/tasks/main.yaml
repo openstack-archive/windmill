@@ -12,12 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Register /opt/venv/zuul
+- name: "Register {{ zuul_pip_virtualenv }}"
   stat:
-    path: /opt/venv/zuul
+    path: "{{ zuul_pip_virtualenv }}"
   register: test_zuul_pip_virtualenv_stat
 
-- name: Assert /opt/venv/zuul tests
+- name: "Assert {{ zuul_pip_virtualenv }} tests"
   assert:
     that:
       - test_zuul_pip_virtualenv_stat.stat.exists
