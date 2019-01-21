@@ -17,12 +17,15 @@ diskimage_builder_pip_virtualenv_python: python3
 diskimage_builder_pip_virtualenv: /opt/venv/nodepool
 
 # windmill.nodepool
-nodepool_file_nodepool_builder_service_config_src: nodepool-builder/etc/systemd/system/nodepool-builder.service.d/override.conf.j2
+nodepool_file_builder_logging_conf_manage: true
 
-nodepool_file_launcher_logging_conf_manage: false
-nodepool_file_nodepool_launcher_service_config_manage: false
-nodepool_file_nodepool_launcher_service_manage: false
-nodepool_service_nodepool_launcher_manage: false
+nodepool_file_nodepool_builder_service_config_manage: true
+nodepool_file_nodepool_builder_service_config_src: nodepool-builder/etc/systemd/system/nodepool-builder.service.d/override.conf.j2
+nodepool_file_nodepool_builder_service_manage: true
+
+nodepool_service_nodepool_builder_enabled: true
+nodepool_service_nodepool_builder_manage: true
+
 
 # openstack.logrotate
 logrotate_configs:
