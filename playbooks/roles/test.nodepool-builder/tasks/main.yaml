@@ -32,6 +32,7 @@
 - name: Ensure nodepool-builder is running
   become: true
   shell: /usr/sbin/service nodepool-builder status
+  when: nodepool_service_nodepool_builder_state in ['reloaded', 'restarted', 'started']
   changed_when: false
   tags:
     - skip_ansible_lint
