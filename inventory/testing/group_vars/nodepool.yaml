@@ -17,8 +17,25 @@ nodepool_user_shell: /bin/bash
 
 nodepool_file_nodepool_yaml_src: "{{ windmill_config_git_dest }}/nodepool/nodepool.yaml.j2"
 
+nodepool_file_builder_logging_conf_manage: false
+nodepool_file_launcher_logging_conf_manage: false
+
+nodepool_file_nodepool_builder_service_config_manage: false
+nodepool_file_nodepool_builder_service_manage: false
+
+nodepool_file_nodepool_launcher_service_config_manage: false
+nodepool_file_nodepool_launcher_service_manage: false
+
 nodepool_pip_virtualenv_python: python3
 nodepool_pip_virtualenv: /opt/venv/nodepool
+
+nodepool_service_nodepool_builder_enabled: false
+nodepool_service_nodepool_builder_manage: false
+nodepool_service_nodepool_builder_state: stopped
+
+nodepool_service_nodepool_launcher_enabled: false
+nodepool_service_nodepool_launcher_manage: false
+nodepool_service_nodepool_launcher_state: stopped
 
 # windmill.openstacksdk
 openstacksdk_user_name: nodepool
