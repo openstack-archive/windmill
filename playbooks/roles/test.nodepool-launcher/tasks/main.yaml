@@ -32,6 +32,7 @@
 - name: Ensure nodepool-launcher is running
   become: true
   shell: /usr/sbin/service nodepool-launcher status
+  when: nodepool_service_nodepool_launcher_state in ['reloaded', 'restarted', 'started']
   changed_when: false
   tags:
     - skip_ansible_lint
