@@ -12,12 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Register /opt/venv/nodepool
+- name: "Register {{ nodepool_pip_virtualenv }}"
   stat:
     path: /opt/venv/nodepool
   register: test_nodepool_pip_virtualenv_stat
 
-- name: Assert /opt/venv/nodepool tests
+- name: "Assert {{ nodepool_pip_virtualenv }} tests"
   assert:
     that:
       - test_nodepool_pip_virtualenv_stat.stat.exists
@@ -26,7 +26,7 @@
 - name: Validate /etc/nodepool/nodepool.yaml
   become: true
   become_user: nodepool
-  command: /opt/venv/nodepool/bin/nodepool -c /etc/nodepool/nodepool.yaml config-validate
+  command: "{{ nodepool_pip_virtuelenv }} -c /etc/nodepool/nodepool.yaml config-validate"
   changed_when: false
 
 - name: Ensure nodepool-launcher is running
