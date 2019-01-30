@@ -15,6 +15,9 @@
 # windmill.statsd
 statsd_file_config_js_src: statsd/etc/statsd/config.js.j2
 
+# NOTE(pabelanger): Update ansible-role-statsd to make this default.
+statsd_install_method: npm
+
 # openstack.logrotate
 logrotate_configs:
   - name: statsd
