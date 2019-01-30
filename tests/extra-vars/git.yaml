@@ -14,6 +14,8 @@ nodepool_install_method: git
 openstacksdk_git_update: false
 openstacksdk_install_method: git
 
+statsd_install_method: git
+
 zuul_git_update: false
 zuul_install_method: git
 
