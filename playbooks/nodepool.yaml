@@ -33,9 +33,9 @@
       include_role:
         name: openstack.ssh
 
-    - name: Setup openstack.diskimage-builder role
-      include_role:
-        name: openstack.diskimage-builder
+#    - name: Setup openstack.diskimage-builder role
+#      include_role:
+#        name: openstack.diskimage-builder
 
     - name: Install nodepool elements directory
       become: true
