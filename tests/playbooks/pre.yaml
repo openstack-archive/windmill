@@ -16,16 +16,10 @@
         state: absent
       when: ansible_os_family == 'RedHat'
 
-    - name: Symlink ansible configuration file
-      file:
+    - name: Install ansible configuration file
+      template:
         dest: ~/.ansible.cfg
         src: "{{ ansible_user_dir}}/{{ windmill_src_dir }}/inventory/testing/ansible.cfg"
-        state: link
-
-    - name: Bootstrap bindep environment
-      args:
-        chdir: "{{ windmill_src_dir }}"
-      command: tox -ebindep
 
     - name: Bootstrap tox environment
       args:
