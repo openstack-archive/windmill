@@ -16,16 +16,26 @@
         state: absent
       when: ansible_os_family == 'RedHat'
 
-    - name: Symlink ansible configuration file
-      file:
+    - name: Install ansible configuration file
+      template:
         dest: ~/.ansible.cfg
-        src: "{{ ansible_user_dir}}/{{ windmill_src_dir }}/inventory/testing/ansible.cfg"
-        state: link
+        src: "{{ zuul.executor.work_root }}/{{ windmill_src_dir }}/inventory/testing/ansible.cfg"
 
-    - name: Bootstrap bindep environment
-      args:
-        chdir: "{{ windmill_src_dir }}"
-      command: tox -ebindep
+    - name: Set ARA fact for Debian
+      set_fact:
+        ara_path: /opt/venv/ansible/lib/python3.6/site-packages/ara/plugins/callbacks
+      when: ansible_os_family == 'Debian'
+
+    - name: Set ARA fact for RedHat
+      set_fact:
+        ara_path: /opt/venv/ansible/lib/python3.7/site-packages/ara/plugins/callbacks
+      when: ansible_os_family == 'RedHat'
+
+    - name: Enable ARA callback plugin
+      path: ~/.ansible.cfg
+      section: defaults
+      option: callback_plugins
+      value: "{{ ara_path }}"
 
     - name: Bootstrap tox environment
       args:
