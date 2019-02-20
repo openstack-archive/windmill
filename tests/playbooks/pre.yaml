@@ -16,11 +16,6 @@
         state: absent
       when: ansible_os_family == 'RedHat'
 
-    - name: Bootstrap bindep environment
-      args:
-        chdir: "{{ windmill_src_dir }}"
-      command: tox -ebindep
-
     - name: Bootstrap tox environment
       args:
         chdir: "{{ windmill_src_dir }}"
@@ -31,9 +26,3 @@
         dest: "{{ ansible_user_dir }}/.ansible.cfg"
         remote_src: true
         src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
-
-    - name: Install ansible roles via galaxy
-      args:
-        chdir: "{{ windmill_src_dir }}"
-        executable: /bin/bash
-      shell: source .tox/venv/bin/activate; ./tools/install_roles.sh
