@@ -16,11 +16,6 @@
         state: absent
       when: ansible_os_family == 'RedHat'
 
-    - name: Bootstrap bindep environment
-      args:
-        chdir: "{{ windmill_src_dir }}"
-      command: tox -ebindep
-
     - name: Bootstrap tox environment
       args:
         chdir: "{{ windmill_src_dir }}"

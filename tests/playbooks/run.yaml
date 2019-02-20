@@ -9,9 +9,9 @@
     - name: Run ansible-playbook for site.yaml
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: "tox -evenv -- ansible-playbook -v -f1 -i inventory/testing/hosts playbooks/site.yaml -e @{{ windmill_extra_vars_file }}"
+      shell: "/opt/venv/ansible/bin/ansible-playbook -v -f1 -i inventory/testing/hosts playbooks/site.yaml -e @{{ windmill_extra_vars_file }}"
 
     - name: Run ansible-playbook for prove.yaml
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/prove.yaml
+      shell: /opt/venv/ansible/bin/ansible-playbook -i inventory/testing/hosts playbooks/prove.yaml
