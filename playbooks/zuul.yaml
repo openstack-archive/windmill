@@ -42,6 +42,10 @@
   hosts: zuul-executor:!disabled
 
   tasks:
+    - name: Setup openstack.ansible role
+      include_role:
+        name: openstack.ansible
+
     - name: Setup openstack.ssh role
       include_role:
         name: openstack.ssh

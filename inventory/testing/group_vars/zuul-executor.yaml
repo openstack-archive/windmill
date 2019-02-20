@@ -12,6 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# openstack.ansible
+ansible_pip_virtualenv_python: python3
+ansible_pip_virtualenv: /opt/venv/ansible
+
 # windmill.zuul
 zuul_file_executor_logging_conf_manage: true
 
