@@ -1,6 +1,7 @@
-bastion ansible_connection=local
-
 [disabled]
+
+[bastion]
+bastion01 ansible_connection=local
 
 [gear]
 gear01 ansible_host=127.0.2.1
