@@ -6,6 +6,11 @@
         chdir: "{{ windmill_src_dir }}"
       shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/bastion.yaml
 
+    - name: Bootstrap all nodes using windmill-ops
+      args:
+        chdir: "{{ zuul.projects['git.openstack.org/openstack/windmill-ops'].src_dir }}"
+      shell: "tox -evenv -- ansible-playbook -i {{ windmill_src_dir }}/inventory/testing/hosts playbooks/bootstrap/site.yaml"
+
     - name: Run ansible-playbook for site.yaml
       args:
         chdir: "{{ windmill_src_dir }}"

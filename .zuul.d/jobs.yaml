@@ -20,6 +20,7 @@
       - openstack/diskimage-builder
       - openstack/openstacksdk
       - openstack/windmill
+      - openstack/windmill-ops
       - openstack-infra/gear
       - openstack-infra/nodepool
       - openstack-infra/zuul
