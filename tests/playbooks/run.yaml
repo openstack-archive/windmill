@@ -1,10 +1,10 @@
 ---
 - hosts: all
   tasks:
-    - name: Bootstrap bastion node using ansible
+    - name: Setup SSH host keys for ansible
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/bastion.yaml
+      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts tests/playbooks/bastion/site.yaml
 
     - name: Run ansible-playbook for site.yaml
       args:
