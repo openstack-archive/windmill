@@ -29,6 +29,10 @@
   hosts: nodepool-builder:!disabled
 
   tasks:
+    - name: Setup openstack.sudoers role
+      include_role:
+        name: openstack.sudoers
+
     - name: Setup openstack.ssh role
       include_role:
         name: openstack.ssh

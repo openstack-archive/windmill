@@ -23,11 +23,6 @@
         upgrade: dist
       when: ansible_os_family == 'Debian'
 
-  tasks:
-    - name: Setup openstack.sudoers role
-      include_role:
-        name: openstack.sudoers
-
 - name: Bootstrap python dependencies for windmill
   hosts: all:!bastion:!zookeeper:!disabled
 
