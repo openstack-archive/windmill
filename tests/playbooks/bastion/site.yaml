@@ -12,21 +12,21 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Bootstrap bastion node.
+- name: Bootstrap bastion node
   hosts: bastion
 
   pre_tasks:
-    - name: Create SSH keys (if missing).
+    - name: Create SSH keys (if missing)
       command: ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
       args:
         creates: ~/.ssh/id_rsa
 
-    - name: Ensure SSH public key is authorized.
+    - name: Ensure SSH public key is authorized
       authorized_key:
         user: "{{ lookup('env', 'USER') }}"
         key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 
-    - name: Ensure remote SSH host keys are known.
+    - name: Ensure remote SSH host keys are known
       known_hosts:
         name: "{{ hostvars[item].ansible_host }}"
         key: "{{ lookup('pipe', 'ssh-keyscan -t rsa {{ hostvars[item].ansible_host }}') }}"
