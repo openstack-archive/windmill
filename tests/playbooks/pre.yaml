@@ -16,6 +16,12 @@
         state: absent
       when: ansible_os_family == 'RedHat'
 
+    - name: Install ansible configuration file
+      copy:
+        dest: "{{ ansible_user_dir }}/.ansible.cfg"
+        remote_src: true
+        src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
+
     - name: Bootstrap bindep environment
       args:
         chdir: "{{ windmill_src_dir }}"
@@ -23,17 +29,17 @@
 
     - name: Bootstrap tox environment
       args:
-        chdir: "{{ windmill_src_dir }}"
-      command: tox -evenv --notest
-
-    - name: Install ansible configuration file
-      copy:
-        dest: "{{ ansible_user_dir }}/.ansible.cfg"
-        remote_src: true
-        src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
+        chdir: "{{ item }}"
+      shell: tox -evenv --notest
+      with_items:
+        - ~/src/git.openstack.org/openstack/windmill-ops
+        - ~/src/git.openstack.org/openstack/windmill
 
     - name: Install ansible roles via galaxy
       args:
-        chdir: "{{ windmill_src_dir }}"
+        chdir: "{{ item }}"
         executable: /bin/bash
-      shell: source .tox/venv/bin/activate; ./tools/install_roles.sh
+      shell: source .tox/venv/bin/activate; ./tools/install_roles.sh --force
+      with_items:
+        - ~/src/git.openstack.org/openstack/windmill-ops
+        - ~/src/git.openstack.org/openstack/windmill

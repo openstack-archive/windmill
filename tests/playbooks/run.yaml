@@ -4,19 +4,19 @@
     - name: Setup SSH host keys for ansible
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts tests/playbooks/bastion/site.yaml
+      shell: "tox -evenv -- ansible-playbook -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts tests/playbooks/bastion/site.yaml"
 
     - name: Bootstrap all nodes using windmill-ops
       args:
         chdir: "{{ zuul.projects['git.openstack.org/openstack/windmill-ops'].src_dir }}"
-      shell: "tox -evenv -- ansible-playbook -i {{ windmill_src_dir }}/inventory/testing/hosts playbooks/bootstrap/site.yaml"
+      shell: "tox -evenv -- ansible-playbook -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/bootstrap/site.yaml"
 
     - name: Run ansible-playbook for site.yaml
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: "tox -evenv -- ansible-playbook -v -f1 -i inventory/testing/hosts playbooks/site.yaml -e @{{ windmill_extra_vars_file }}"
+      shell: "tox -evenv -- ansible-playbook -v -f1 -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/site.yaml -e @{{ windmill_extra_vars_file }}"
 
     - name: Run ansible-playbook for prove.yaml
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: tox -evenv -- ansible-playbook -i inventory/testing/hosts playbooks/prove.yaml
+      shell: "tox -evenv -- ansible-playbook -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/prove.yaml"

@@ -6,6 +6,7 @@
     run: tests/playbooks/run.yaml
     post-run: tests/playbooks/post.yaml
     required-projects:
+      - openstack/ansible-role-ansible
       - openstack/ansible-role-diskimage-builder
       - openstack/ansible-role-gearman
       - openstack/ansible-role-logrotate
