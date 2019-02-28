@@ -21,4 +21,4 @@ if [ -f /etc/ci/mirror_info.sh ]; then
     sed -e "s|https://|file://${HOME}/src/|g" -i $TOOLSDIR/requirements.yaml
 fi
 
-ansible-galaxy install -v -r $TOOLSDIR/requirements.yaml -p playbooks/roles $@
+ansible-galaxy install -v -r $TOOLSDIR/requirements.yaml -p ~/.ansible/roles $@
