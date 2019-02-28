@@ -12,7 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- import_playbook: bootstrap.yaml
 - import_playbook: statsd.yaml
 - import_playbook: gear.yaml
 - import_playbook: zookeeper.yaml
