@@ -16,11 +16,11 @@
         state: absent
       when: ansible_os_family == 'RedHat'
 
-    - name: Install ansible configuration file
-      copy:
-        dest: "{{ ansible_user_dir }}/.ansible.cfg"
-        remote_src: true
-        src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
+    - name: Symlink ansible configuration file
+      file:
+        dest: ~/.ansible.cfg
+        src: "{{ ansible_user_dir}}/{{ windmill_src_dir }}/inventory/testing/ansible.cfg"
+        state: link
 
     - name: Bootstrap bindep environment
       args:
