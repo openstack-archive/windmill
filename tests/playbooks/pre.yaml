@@ -20,7 +20,7 @@
       copy:
         dest: "{{ ansible_user_dir }}/.ansible.cfg"
         remote_src: true
-        src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/tests/ansible.cfg"
+        src: "{{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/ansible.cfg"
 
     - name: Bootstrap bindep environment
       args:
