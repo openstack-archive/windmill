@@ -4,4 +4,4 @@
     - name: Run ansible-playbook for prove.yaml
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: "/opt/venv/ansible/bin/ansible-playbook -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/prove.yaml"
+      shell: "/opt/venv/ansible/bin/ansible-playbook -v -f1 playbooks/prove.yaml"
