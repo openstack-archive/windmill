@@ -4,7 +4,7 @@
     - name: Setup SSH host keys for ansible
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: "tox -evenv -- ansible-playbook -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts tests/playbooks/bastion/site.yaml"
+      shell: "tox -evenv -- ansible-playbook tests/playbooks/bastion/site.yaml"
 
     # TODO(pabelanger): Because we use ansible, to install ansible, we first
     # need to run windmill-ops, like we do with the current launch-node.py
@@ -12,4 +12,4 @@
     - name: Bootstrap bastion node using windmill-ops
       args:
         chdir: "{{ zuul.projects['git.openstack.org/openstack/windmill-ops'].src_dir }}"
-      shell: "tox -evenv -- ansible-playbook -v -f1 -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/bootstrap/site.yaml --limit bastion"
+      shell: "tox -evenv -- ansible-playbook -v -f1 playbooks/bootstrap/site.yaml --limit bastion"
