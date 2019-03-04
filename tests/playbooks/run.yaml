@@ -4,9 +4,9 @@
     - name: Bootstrap all nodes using windmill-ops
       args:
         chdir: "{{ zuul.projects['git.openstack.org/openstack/windmill-ops'].src_dir }}"
-      shell: "/opt/venv/ansible/bin/ansible-playbook -v -f1 -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/bootstrap/site.yaml"
+      shell: "/opt/venv/ansible/bin/ansible-playbook -v -f1 playbooks/bootstrap/site.yaml"
 
     - name: Run ansible-playbook for site.yaml
       args:
         chdir: "{{ windmill_src_dir }}"
-      shell: "/opt/venv/ansible/bin/ansible-playbook -v -f1 -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts playbooks/site.yaml -e @{{ windmill_extra_vars_file }}"
+      shell: "/opt/venv/ansible/bin/ansible-playbook -v -f1 playbooks/site.yaml -e @{{ windmill_extra_vars_file }}"
