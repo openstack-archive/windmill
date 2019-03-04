@@ -13,7 +13,7 @@
         - name: Run ansible-playbook for collect-logs.yaml
           args:
             chdir: "{{ windmill_src_dir }}"
-          shell: "tox -evenv -- ansible-playbook -i inventory/testing/hosts -ezuul_output_dir={{ zuul_output_dir }} tests/collect-logs.yaml"
+          shell: "tox -evenv -- ansible-playbook -ezuul_output_dir={{ zuul_output_dir }} tests/collect-logs.yaml"
 
       always:
         - name: Ensure ara-report directory exists
