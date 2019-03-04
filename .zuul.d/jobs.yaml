@@ -3,7 +3,10 @@
     name: windmill-base
     parent: unittests
     pre-run: tests/playbooks/pre.yaml
-    run: tests/playbooks/run.yaml
+    run:
+      - tests/playbooks/run-pre.yaml
+      - tests/playbooks/run.yaml
+      - tests/playbooks/run-post.yaml
     post-run: tests/playbooks/post.yaml
     required-projects:
       - openstack/ansible-role-ansible

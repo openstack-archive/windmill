@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+    - name: Setup SSH host keys for ansible
+      args:
+        chdir: "{{ windmill_src_dir }}"
+      shell: "tox -evenv -- ansible-playbook -i {{ ansible_user_dir }}/{{ windmill_src_dir }}/inventory/testing/hosts tests/playbooks/bastion/site.yaml"
