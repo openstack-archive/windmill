@@ -3,5 +3,5 @@
 #
 [Service]
 {% if groups['statsd'] | list and ansible_host | ipv4 %}
-Environment="STATSD_HOST={{ hostvars['statsd01'].ansible_host }}"
+Environment="STATSD_HOST={{ groups['statsd'][0].ansible_host }}"
 {% endif %}
