@@ -73,9 +73,3 @@
     - name: Setup openstack.nginx role
       include_role:
         name: openstack.nginx
-
-- import_playbook: zuul-scheduler.yaml
-- import_playbook: zuul-executor.yaml
-- import_playbook: zuul-fingergw.yaml
-- import_playbook: zuul-merger.yaml
-- import_playbook: zuul-web.yaml

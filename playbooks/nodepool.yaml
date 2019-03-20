@@ -66,6 +66,3 @@
     - name: Setup openstack.logrotate role
       include_role:
         name: openstack.logrotate
-
-- import_playbook: nodepool-builder.yaml
-- import_playbook: nodepool-launcher.yaml

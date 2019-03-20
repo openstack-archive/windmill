@@ -19,8 +19,3 @@
     - name: Setup openstack.zookeeper role
       include_role:
         name: openstack.zookeeper
-
-  post_tasks:
-    - name: Run zookeeper validation
-      include_role:
-        name: test.zookeeper

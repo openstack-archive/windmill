@@ -12,6 +12,86 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- name: Validate statsd
+  hosts: statsd:!disabled
+
+  tasks:
+    - name: Run statsd validation
+      include_role:
+        name: test.statsd
+
+- name: Validate gear
+  hosts: gear:!disabled
+
+  tasks:
+    - name: Run gear validation
+      include_role:
+        name: test.gear
+
+- name: Validate zookeeper
+  hosts: zookeeper:!disabled
+
+  tasks:
+    - name: Run zookeeper validation
+      include_role:
+        name: test.zookeeper
+
+- name: Validate nodepool-builder
+  hosts: nodepool-builder:!disabled
+
+  tasks:
+    - name: Run nodepool-builder validation
+      include_role:
+        name: test.nodepool-builder
+
+- name: Validate nodepool-launcher
+  hosts: nodepool-launcher:!disabled
+
+  tasks:
+    - name: Run nodepool-launcher validation
+      include_role:
+        name: test.nodepool-launcher
+
+- name: Validate zuul-scheduler
+  hosts: zuul-scheduler:!disabled
+
+  tasks:
+    - name: Run zuul-scheduler validation
+      include_role:
+        name: test.zuul-scheduler
+
+- name: Validate zuul-executor
+  hosts: zuul-executor:!disabled
+
+  tasks:
+    - name: Run zuul-executor validation
+      include_role:
+        name: test.zuul-executor
+
+- name: Validate zuul-fingergw
+  hosts: zuul-fingergw:!disabled
+
+  tasks:
+    - name: Run zuul-fingergw validation
+      include_role:
+        name: test.zuul-fingergw
+
+- name: Validate zuul-merger
+  hosts: zuul-merger:!disabled
+
+  tasks:
+    - name: Run zuul-merger validation
+      include_role:
+        name: test.zuul-merger
+
+- name: Validate zuul-web
+  hosts: zuul-web:!disabled
+
+  tasks:
+    - name: Run zuul-web validation
+      include_role:
+        name: test.zuul-web
+
 - name: Prove our CI tools are working
   hosts: bastion
 
