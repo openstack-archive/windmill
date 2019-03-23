@@ -54,6 +54,16 @@
         name: bubblewrap
         state: present
 
+    - name: Setup openstack.ansible role
+      include_role:
+        name: openstack.ansible
+      with_items: "{{ zuul_executor_ansible }}"
+      vars:
+        ansible_pip_name: "{{ item.ansible_pip_name }}"
+        ansible_pip_virtualenv_python: "{{ item.ansible_pip_virtualenv_python }}"
+        ansible_pip_virtualenv: "{{ item.ansible_pip_virtualenv }}"
+        ansible_pip_virtualenv_symlink: "{{ item.ansible_pip_virtualenv_symlink }}"
+
 - name: Install zuul
   hosts: zuul:!disabled
 
