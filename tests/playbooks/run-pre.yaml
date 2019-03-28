@@ -1,14 +1,6 @@
 ---
 - hosts: all
   tasks:
-    # TODO(pabelanger): Because we use ansible, to install ansible, we first
-    # need to run windmill-ops, like we do with the current launch-node.py
-    # script. However, limit it to only the bastion host.
-    - name: Bootstrap bastion node using windmill-ops
-      args:
-        chdir: "{{ zuul.projects['git.openstack.org/openstack/windmill-ops'].src_dir }}"
-      shell: "tox -evenv -- ansible-playbook -v -f1 playbooks/bootstrap/site.yaml --limit bastion"
-
     # NOTE(pabelanger): In production, this is not needed as the previous
     # playbooks will properly setup SSH host keys from the inventory file.
     - name: Disable SSH hostkey checking
@@ -17,3 +9,11 @@
         section: defaults
         option: host_key_checking
         value: false
+
+    # TODO(pabelanger): Because we use ansible, to install ansible, we first
+    # need to run windmill-ops, like we do with the current launch-node.py
+    # script. However, limit it to only the bastion host.
+    - name: Bootstrap bastion node using windmill-ops
+      args:
+        chdir: "{{ zuul.projects['git.openstack.org/openstack/windmill-ops'].src_dir }}"
+      shell: "tox -evenv -- ansible-playbook -v -f1 playbooks/bootstrap/site.yaml --limit bastion"
