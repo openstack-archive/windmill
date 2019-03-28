@@ -47,6 +47,7 @@
         delete: true
         dest: /etc/nodepool/
         perms: true
+        recursive: yes
         rsync_opts:
           - '--chown=nodepool:nodepool'
         src: "{{ windmill_config_git_dest }}/nodepool/elements"
