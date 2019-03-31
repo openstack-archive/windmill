@@ -30,3 +30,10 @@
   when: zuul_service_zuul_web_state in ['reloaded', 'restarted', 'started']
   tags:
     - skip_ansible_lint
+
+- name: Ensure nginx is running
+  become: true
+  shell: /usr/sbin/service nginx status
+  changed_when: false
+  tags:
+    - skip_ansible_lint
