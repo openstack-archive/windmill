@@ -211,6 +211,7 @@
       args:
         creates: "{{ zuul_output_dir }}/logs/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
       with_items:
+        - nginx
         - zuul-web
 
     - name: Collect zuul-web log files
@@ -226,5 +227,7 @@
       with_items:
         - /etc/zuul/web-logging.conf
         - /etc/zuul/zuul.conf
+        - /var/log/nginx/access.log
+        - /var/log/nginx/error.log
         - /var/log/zuul/web-debug.log
         - /var/log/zuul/web.log
