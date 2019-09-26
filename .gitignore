@@ -1,8 +1,0 @@
-AUTHORS
-ChangeLog
-doc/build/
-# Production inventory
-inventory/production
-# Roles installed from galaxy
-playbooks/roles/openstack.*
-.tox/
